@@ -131,8 +131,8 @@ export function PlanManagerForm(props) {
                                     name="isPublic"
                                     margin="dense"
                                 >
-                                    <MenuItem value={true}>Sim</MenuItem>
-                                    <MenuItem value={false}>Não</MenuItem>
+                                    <MenuItem value={true}>{i18n.t("compaies.table.yes")}</MenuItem>
+                                    <MenuItem value={false}>{i18n.t("compaies.table.no")}</MenuItem>
                                 </Field>
                             </FormControl>
                         </Grid>
@@ -477,10 +477,10 @@ export function PlansManagerGrid(props) {
                             </TableCell>
                             <TableCell align="left">{row.name || '-'}</TableCell>
                             <TableCell align="center">{row.users || '-'}</TableCell>
-                            <TableCell align="center">{row.isPublic ? "Sim": "Não" || '-'}</TableCell>
+                            <TableCell align="center">{row.isPublic ? i18n.t("compaies.table.yes") : i18n.t("compaies.table.no") || '-'}</TableCell>
                             <TableCell align="center">{row.connections || '-'}</TableCell>
                             <TableCell align="center">{row.queues || '-'}</TableCell>
-                            <TableCell align="center">{i18n.t("plans.form.money")} {row.amount ? row.amount.toLocaleString('pt-br', { minimumFractionDigits: 2 }) : '00.00'}</TableCell>
+                            <TableCell align="center">{i18n.t("plans.form.money")} {row.amount ? row.amount.toLocaleString('es-ES', { minimumFractionDigits: 2 }) : '00.00'}</TableCell>
                             <TableCell align="center">{renderWhatsapp(row)}</TableCell>
                             <TableCell align="center">{renderFacebook(row)}</TableCell>
                             <TableCell align="center">{renderInstagram(row)}</TableCell>
@@ -620,7 +620,7 @@ export default function PlansManager() {
             users: data.users || 0,
             connections: data.connections || 0,
             queues: data.queues || 0,
-            amount: data.amount?.toLocaleString('pt-br', { minimumFractionDigits: 2 }) || 0,
+            amount: data.amount?.toLocaleString('es-ES', { minimumFractionDigits: 2 }) || 0,
             useWhatsapp,
             useFacebook,
             useInstagram,

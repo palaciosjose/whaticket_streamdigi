@@ -441,7 +441,7 @@ export function CompaniesManagerGrid(props) {
   const { dateToClient, datetimeToClient } = useDate();
 
   const renderStatus = (row) => {
-    return row.status === false ? "Não" : "Sim";
+    return row.status === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes");
   };
 
   const renderPlan = (row) => {
@@ -449,7 +449,7 @@ export function CompaniesManagerGrid(props) {
   };
 
   const renderPlanValue = (row) => {
-    return row.planId !== null ? row.plan.amount ? row.plan.amount.toLocaleString('pt-br', { minimumFractionDigits: 2 }) : '00.00' : "-";
+    return row.planId !== null ? row.plan.amount ? row.plan.amount.toLocaleString('es-ES', { minimumFractionDigits: 2 }) : '00.00' : "-";
   };
 
   // const renderCampaignsStatus = (row) => {

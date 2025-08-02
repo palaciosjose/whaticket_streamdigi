@@ -16,6 +16,7 @@ import TableRowSkeleton from "../../components/TableRowSkeleton";
 import toastError from "../../errors/toastError";
 
 import moment from "moment";
+import { i18n } from "../../translate/i18n";
 
 const reducer = (state, action) => {
   if (action.type === "LOAD_INVOICES") {
@@ -156,13 +157,13 @@ const Invoices = () => {
     }
   }
   
-  const renderUseWhatsapp = (row) => { return row.status === false ? "Não" : "Sim" };
-  const renderUseFacebook = (row) => { return row.status === false ? "Não" : "Sim" };
-  const renderUseInstagram = (row) => { return row.status === false ? "Não" : "Sim" };
-  const renderUseCampaigns = (row) => { return row.status === false ? "Não" : "Sim" };
-  const renderUseSchedules = (row) => { return row.status === false ? "Não" : "Sim" };
-  const renderUseInternalChat = (row) => { return row.status === false ? "Não" : "Sim" };
-  const renderUseExternalApi = (row) => { return row.status === false ? "Não" : "Sim" };
+  const renderUseWhatsapp = (row) => { return row.status === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes") };
+  const renderUseFacebook = (row) => { return row.status === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes") };
+  const renderUseInstagram = (row) => { return row.status === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes") };
+  const renderUseCampaigns = (row) => { return row.status === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes") };
+  const renderUseSchedules = (row) => { return row.status === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes") };
+  const renderUseInternalChat = (row) => { return row.status === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes") };
+  const renderUseExternalApi = (row) => { return row.status === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes") };
 
   return (
     <MainContainer>
@@ -223,7 +224,7 @@ const Invoices = () => {
                   <TableCell align="center">{renderUseInternalChat(invoices.useInternalChat)}</TableCell>
                   <TableCell align="center">{renderUseExternalApi(invoices.useExternalApi)}</TableCell> */}
 
-                  <TableCell style={{ fontWeight: 'bold' }} align="center">{invoices.value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</TableCell>
+                  <TableCell style={{ fontWeight: 'bold' }} align="center">{invoices.value.toLocaleString('es-ES', { style: 'currency', currency: 'BRL' })}</TableCell>
                   <TableCell align="center">{moment(invoices.dueDate).format("DD/MM/YYYY")}</TableCell>
                   <TableCell style={{ fontWeight: 'bold' }} align="center">{rowStatus(invoices)}</TableCell>
                   <TableCell align="center">

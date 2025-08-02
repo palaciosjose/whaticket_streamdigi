@@ -35,7 +35,7 @@ const PixPreview = ({ companyId, avatarUser, avatarName, avatarUrl, name, numero
     const handleCloseModal = () => setOpenModal(false);
 
     const formatCurrency = (value) => {
-        const formattedValue = (value / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+        const formattedValue = (value / 100).toLocaleString('es-ES', { minimumFractionDigits: 2 });
         return `R$ ${formattedValue}`;
     };
 
