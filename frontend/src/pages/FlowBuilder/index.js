@@ -268,7 +268,7 @@ const FlowBuilder = () => {
         setDeletingContact(null);
         setReloadData(old => !old);
       });
-      toast.success("Flujo eliminado con éxito");
+      toast.success(i18n.t("flowBuilder.toasts.deleted"));
     } catch (err) {
       toastError(err);
     }
@@ -280,7 +280,7 @@ const FlowBuilder = () => {
         setDeletingContact(null);
         setReloadData(old => !old);
       });
-      toast.success("Flujo duplicado con éxito");
+      toast.success(i18n.t("flowBuilder.toasts.duplicated"));
     } catch (err) {
       toastError(err);
     }
@@ -360,9 +360,9 @@ const FlowBuilder = () => {
       <ConfirmationModal
         title={
           deletingContact
-            ? `${i18n.t("contacts.confirmationModal.deleteTitle")} ${
-                deletingContact.name
-              }?`
+            ? i18n.t("flowBuilder.confirmationModal.deleteTitle", {
+                name: deletingContact.name
+              })
             : `${i18n.t("contacts.confirmationModal.importTitlte")}`
         }
         open={confirmOpen}
@@ -372,13 +372,15 @@ const FlowBuilder = () => {
         }
       >
         {deletingContact
-          ? `¿Está seguro de que desea eliminar este flujo? Todas las integraciones relacionadas se perderán.`
+          ? i18n.t("flowBuilder.confirmationModal.deleteMessage")
           : `${i18n.t("contacts.confirmationModal.importMessage")}`}
       </ConfirmationModal>
       <ConfirmationModal
         title={
           deletingContact
-            ? `¿Desea duplicar el flujo ${deletingContact.name}?`
+            ? i18n.t("flowBuilder.confirmationModal.duplicateTitle", {
+                name: deletingContact.name
+              })
             : `${i18n.t("contacts.confirmationModal.importTitlte")}`
         }
         open={confirmDuplicateOpen}
@@ -388,11 +390,11 @@ const FlowBuilder = () => {
         }
       >
         {deletingContact
-          ? `¿Está seguro de que desea duplicar este flujo?`
+          ? i18n.t("flowBuilder.confirmationModal.duplicateMessage")
           : `${i18n.t("contacts.confirmationModal.importMessage")}`}
       </ConfirmationModal>
       <MainHeader>
-        <Title>Flujos de conversación</Title>
+        <Title>{i18n.t("flowBuilder.title")}</Title>
         <MainHeaderButtonsWrapper>
           <TextField
             placeholder={i18n.t("contacts.searchPlaceholder")}
@@ -417,7 +419,7 @@ const FlowBuilder = () => {
           >
             <Stack direction={"row"} gap={1}>
               <AddCircle />
-              {"Agregar Flujo"}
+              {i18n.t("flowBuilder.buttons.add")}
             </Stack>
           </Button>
         </MainHeaderButtonsWrapper>
@@ -433,7 +435,7 @@ const FlowBuilder = () => {
               {i18n.t("contacts.table.name")}
             </Grid>
             <Grid item xs={4} style={{ color: "#1C2E36", fontWeight: 500 }} align="center">
-              Status
+              {i18n.t("flowBuilder.table.status")}
             </Grid>
             <Grid item xs={4} align="end" style={{ color: "#1C2E36", fontWeight: 500 }}>
               {i18n.t("contacts.table.actions")}
@@ -478,7 +480,7 @@ const FlowBuilder = () => {
                           {contact.name}
                         </Typography>
                         <Typography variant="caption" color="text.secondary">
-                          Creado el: {new Date(contact.createdAt).toLocaleDateString()}
+                          {i18n.t("flowBuilder.list.createdAt")} {new Date(contact.createdAt).toLocaleDateString()}
                         </Typography>
                       </Stack>
                     </Stack>
@@ -514,8 +516,10 @@ const FlowBuilder = () => {
                             backgroundColor: contact.active ? '#01a19a' : '#ff0000',
                           }}
                         />
-                        {contact.active ? "Activo" : "Desactivado"}
-                      </Box>
+                          {contact.active
+                            ? i18n.t("flowBuilder.status.active")
+                            : i18n.t("flowBuilder.status.inactive")}
+                        </Box>
                     </Stack>
                   </Stack>
                 </Grid>
@@ -577,7 +581,7 @@ const FlowBuilder = () => {
                   hadleEditContact()
                 }}>
                 <EditIcon sx={{ fontSize: 20, color: '#1C2E36' }} />
-                Editar nombre
+                {i18n.t("flowBuilder.menu.editName")}
               </MenuItem>
               <MenuItem
                 onClick={() => {
@@ -585,7 +589,7 @@ const FlowBuilder = () => {
                   exportLink()
                 }}>
                 <Build sx={{ fontSize: 20, color: '#1C2E36' }} />
-                Editar flujo
+                {i18n.t("flowBuilder.menu.editFlow")}
               </MenuItem>
               <MenuItem
                 onClick={() => {
@@ -593,7 +597,7 @@ const FlowBuilder = () => {
                   setConfirmDuplicateOpen(true);
                 }}>
                 <ContentCopy sx={{ fontSize: 20, color: '#1C2E36' }} />
-                Duplicar
+                {i18n.t("flowBuilder.menu.duplicate")}
               </MenuItem>
               <MenuItem
                 onClick={() => {
@@ -601,7 +605,7 @@ const FlowBuilder = () => {
                   setConfirmOpen(true);
                 }}>
                 <DeleteOutlineIcon sx={{ fontSize: 20, color: '#f44336' }} />
-                Eliminar
+                {i18n.t("flowBuilder.menu.delete")}
               </MenuItem>
             </Menu>
             {loading && (

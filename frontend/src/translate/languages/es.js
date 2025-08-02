@@ -1738,6 +1738,39 @@ const messages = {
             "¿Realmente deseas desbloquear este contacto? Volverás a recibir mensajes de él.",
         },
       },
+      flowBuilder: {
+        title: "Flujos de conversación",
+        buttons: {
+          add: "Agregar Flujo",
+        },
+        table: {
+          status: "Status",
+        },
+        list: {
+          createdAt: "Creado el:",
+        },
+        status: {
+          active: "Activo",
+          inactive: "Desactivado",
+        },
+        toasts: {
+          deleted: "Flujo eliminado con éxito",
+          duplicated: "Flujo duplicado con éxito",
+        },
+        confirmationModal: {
+          deleteTitle: "¿Desea eliminar el flujo {{name}}?",
+          deleteMessage:
+            "¿Está seguro de que desea eliminar este flujo? Todas las integraciones relacionadas se perderán.",
+          duplicateTitle: "¿Desea duplicar el flujo {{name}}?",
+          duplicateMessage: "¿Está seguro de que desea duplicar este flujo?",
+        },
+        menu: {
+          editName: "Editar nombre",
+          editFlow: "Editar flujo",
+          duplicate: "Duplicar",
+          delete: "Eliminar",
+        },
+      },
       flowBuilderConfig: {
         messages: {
           rememberToSave: "¡No te olvides de guardar tu flujo!",
