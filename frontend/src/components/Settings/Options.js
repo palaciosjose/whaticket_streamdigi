@@ -314,7 +314,7 @@ export default function Options(props) {
       key: 'eficlientid',
       value,
     });
-    toast.success('Operação atualizada com sucesso.');
+    toast.success(i18n.t('settings.toasts.updated'));
     setLoadingEfiClientidType(false);
   }
 
@@ -325,7 +325,7 @@ export default function Options(props) {
       key: 'eficlientsecret',
       value,
     });
-    toast.success('Operação atualizada com sucesso.');
+    toast.success(i18n.t('settings.toasts.updated'));
     setLoadingEfiClientsecretType(false);
   }
 
@@ -336,7 +336,7 @@ export default function Options(props) {
       key: 'efichavepix',
       value,
     });
-    toast.success('Operação atualizada com sucesso.');
+    toast.success(i18n.t('settings.toasts.updated'));
     setLoadingEfiChavepixType(false);
   }
 
@@ -347,7 +347,7 @@ export default function Options(props) {
       key: 'mpaccesstoken',
       value,
     });
-    toast.success('Operação atualizada com sucesso.');
+    toast.success(i18n.t('settings.toasts.updated'));
     setLoadingmpaccesstokenType(false);
   }
 
@@ -358,7 +358,7 @@ export default function Options(props) {
       key: 'stripeprivatekey',
       value,
     });
-    toast.success('Operação atualizada com sucesso.');
+    toast.success(i18n.t('settings.toasts.updated'));
     setLoadingstripeprivatekeyType(false);
   }
 
@@ -369,7 +369,7 @@ export default function Options(props) {
       key: 'asaastoken',
       value,
     });
-    toast.success('Operação atualizada com sucesso.');
+    toast.success(i18n.t('settings.toasts.updated'));
     setLoadingasaastokenType(false);
   }
 
@@ -380,7 +380,7 @@ export default function Options(props) {
       key: 'openaikeyaudio',
       value,
     });
-    toast.success('Operação atualizada com sucesso.');
+    toast.success(i18n.t('settings.toasts.updated'));
     setLoadingopenaitokenType(false);
   }
 

@@ -156,7 +156,7 @@ const FlowBuilderSingleBlockModal = ({
         .querySelector(`.${newArrMessage[i]}`)
         .querySelector(".MuiInputBase-input").value;
       if (!value) {
-        toast.error("Campos de mensagem vazio!");
+        toast.error(i18n.t("flowBuilderSingleBlockModal.toasts.emptyMessage"));
         setLoading(false);
         throw "";
       }
@@ -173,7 +173,7 @@ const FlowBuilderSingleBlockModal = ({
         .querySelector(`.${newArrInterval[i]}`)
         .querySelector(".MuiInputBase-input").value;
       if (parseInt(value) === 0 || parseInt(value) > 120) {
-        toast.error("Intervalo não pode ser 0 ou maior que 120!");
+        toast.error(i18n.t("flowBuilderSingleBlockModal.toasts.invalidInterval"));
         setLoading(false);
         throw "";
       }
@@ -472,7 +472,7 @@ const FlowBuilderSingleBlockModal = ({
     }
 
     if (e.target.files[0].size > 2000000) {
-      toast.error("Arquivo é muito grande! 2MB máximo");
+      toast.error(i18n.t("flowBuilderSingleBlockModal.toasts.fileTooBig2"));
       return;
     }
     const imgBlob = URL.createObjectURL(e.target.files[0]);
@@ -497,7 +497,7 @@ const FlowBuilderSingleBlockModal = ({
     }
 
     if (e.target.files[0].size > 5000000) {
-      toast.error("Arquivo é muito grande! 5MB máximo");
+      toast.error(i18n.t("flowBuilderSingleBlockModal.toasts.fileTooBig5"));
       return;
     }
 
@@ -529,7 +529,7 @@ const FlowBuilderSingleBlockModal = ({
     }
 
     if (e.target.files[0].size > 20000000) {
-      toast.error("Arquivo é muito grande! 20MB máximo");
+      toast.error(i18n.t("flowBuilderSingleBlockModal.toasts.fileTooBig20"));
       return;
     }
     const videoBlob = URL.createObjectURL(e.target.files[0]);
@@ -1028,7 +1028,7 @@ const FlowBuilderSingleBlockModal = ({
               ...data,
               data: mountData,
             });
-            toast.success("Conteúdo adicionada com sucesso!");
+            toast.success(i18n.t("flowBuilderSingleBlockModal.toasts.success"));
             handleClose();
             setLoading(false);
 
@@ -1042,7 +1042,7 @@ const FlowBuilderSingleBlockModal = ({
         const verify = verifyButtonsUpload();
         if (verify) {
           setLoading(false);
-          return toast.error("Delete os cards vazios(Imagem, Audio e Video)");
+          return toast.error(i18n.t("flowBuilderSingleBlockModal.toasts.deleteEmptyCards"));
         }
         await api
           .post("/flowbuilder/content", formData)
@@ -1055,7 +1055,7 @@ const FlowBuilderSingleBlockModal = ({
               ...data,
               data: mountData,
             });
-            toast.success("Conteúdo adicionada com sucesso!");
+            toast.success(i18n.t("flowBuilderSingleBlockModal.toasts.success"));
             await handleClose();
             setLoading(false);
           })
@@ -1103,7 +1103,7 @@ const FlowBuilderSingleBlockModal = ({
             onSave({
               ...mountData,
             });
-            toast.success("Conteúdo adicionada com sucesso!");
+            toast.success(i18n.t("flowBuilderSingleBlockModal.toasts.success"));
             handleClose();
             setLoading(false);
 
@@ -1115,7 +1115,7 @@ const FlowBuilderSingleBlockModal = ({
         const verify = verifyButtonsUpload();
         if (verify) {
           setLoading(false);
-          return toast.error("Delete os cards vazios(Imagem, Audio e Video)");
+          return toast.error(i18n.t("flowBuilderSingleBlockModal.toasts.deleteEmptyCards"));
         }
         await api
           .post("/flowbuilder/content", formData)
@@ -1127,7 +1127,7 @@ const FlowBuilderSingleBlockModal = ({
             onSave({
               ...mountData,
             });
-            toast.success("Conteúdo adicionada com sucesso!");
+            toast.success(i18n.t("flowBuilderSingleBlockModal.toasts.success"));
             handleClose();
             setLoading(false);
           })

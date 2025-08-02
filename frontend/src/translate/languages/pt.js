@@ -1658,6 +1658,9 @@ const messages = {
       settings: {
         success: "Configurações salvas com sucesso.",
         title: "Configurações",
+        toasts: {
+          updated: "Operação atualizada com sucesso.",
+        },
         tabs: {
           options: "Opções",
           plans: "Planos",
@@ -1785,6 +1788,28 @@ const messages = {
       flowBuilderConfig: {
         messages: {
           rememberToSave: "Não se esqueça de salvar seu fluxo!",
+        },
+        toasts: {
+          saved: "Fluxo salvo com sucesso.",
+          exported: "Fluxo exportado com sucesso!",
+          imported: "Fluxo importado com sucesso!",
+        },
+      },
+      flowBuilderSingleBlockModal: {
+        toasts: {
+          emptyMessage: "Campos de mensagem vazio!",
+          invalidInterval: "Intervalo não pode ser 0 ou maior que 120!",
+          fileTooBig2: "Arquivo é muito grande! 2MB máximo",
+          fileTooBig5: "Arquivo é muito grande! 5MB máximo",
+          fileTooBig20: "Arquivo é muito grande! 20MB máximo",
+          success: "Conteúdo adicionada com sucesso!",
+          deleteEmptyCards: "Delete os cards vazios(Imagem, Audio e Video)",
+        },
+      },
+      flowBuilderAddImgModal: {
+        toasts: {
+          added: "Imagem adicionada com sucesso!",
+          fileTooBig2: "Arquivo é muito grande! 2MB máximo",
         },
       },
       messageVariablesPicker: {
