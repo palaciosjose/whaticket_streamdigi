@@ -5,6 +5,7 @@ import { faReply, faPhone, faExternalLink } from '@fortawesome/free-solid-svg-ic
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import api from "../../services/api";
 import copy from 'clipboard-copy'; // Biblioteca para copiar para área de transferência
+import { i18n } from "../../translate/i18n";
 
 const ButtonPreview = ({ titulo, descricao, textoBotao, secoes = [], rodape, ticketId, imagem }) => {
     const [openToast, setOpenToast] = useState(false);
@@ -30,9 +31,9 @@ const ButtonPreview = ({ titulo, descricao, textoBotao, secoes = [], rodape, tic
             case 'cta_copy':
                 if (conteudo) {
                     copy(conteudo);
-                    setToastMessage("Código copiado!");
+                    setToastMessage(i18n.t("buttonPreview.copied"));
                 } else {
-                    setToastMessage("Nenhum conteúdo para copiar.");
+                    setToastMessage(i18n.t("buttonPreview.noContent"));
                 }
                 setOpenToast(true);
                 break;
@@ -41,13 +42,13 @@ const ButtonPreview = ({ titulo, descricao, textoBotao, secoes = [], rodape, tic
                 if (conteudo) {
                     window.open(conteudo, '_blank');
                 } else {
-                    setToastMessage("Nenhum link disponível.");
+                    setToastMessage(i18n.t("buttonPreview.noLink"));
                     setOpenToast(true);
                 }
                 break;
 
             case 'cta_call':
-                setToastMessage("Não é possível realizar chamadas pelo sistema, tente pelo celular.");
+                setToastMessage(i18n.t("buttonPreview.noCall"));
                 setOpenToast(true);
                 break;
 
@@ -138,12 +139,12 @@ const ButtonPreview = ({ titulo, descricao, textoBotao, secoes = [], rodape, tic
                                 );
                             })
                         ) : (
-                            <Typography variant="body2">Sem botões nesta seção.</Typography>
+                            <Typography variant="body2">{i18n.t("buttonPreview.noButtons")}</Typography>
                         )}
                     </div>
                 ))
             ) : (
-                <Typography variant="body2">Nenhuma seção disponível.</Typography>
+                <Typography variant="body2">{i18n.t("buttonPreview.noSections")}</Typography>
             )}
     
             <Snackbar
