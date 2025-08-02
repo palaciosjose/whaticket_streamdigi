@@ -193,39 +193,39 @@ const Companies = () => {
     };
 
     const renderStatus = (row) => {
-        return row.status === false ? "Não" : "Sim";
+        return row.status === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes");
     };
 
     const renderPlanValue = (row) => {
-        return row.planId !== null ? row.plan.amount ? row.plan.amount.toLocaleString('pt-br', { minimumFractionDigits: 2 }) : '00.00' : "-";
+        return row.planId !== null ? row.plan.amount ? row.plan.amount.toLocaleString('es-ES', { minimumFractionDigits: 2 }) : '00.00' : "-";
     };
 
     const renderWhatsapp = (row) => {
-        return row.useWhatsapp === false ? "Não" : "Sim";
+        return row.useWhatsapp === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes");
     };
 
     const renderFacebook = (row) => {
-        return row.useFacebook === false ? "Não" : "Sim";
+        return row.useFacebook === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes");
     };
 
     const renderInstagram = (row) => {
-        return row.useInstagram === false ? "Não" : "Sim";
+        return row.useInstagram === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes");
     };
 
     const renderCampaigns = (row) => {
-        return row.useCampaigns === false ? "Não" : "Sim";
+        return row.useCampaigns === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes");
     };
 
     const renderSchedules = (row) => {
-        return row.useSchedules === false ? "Não" : "Sim";
+        return row.useSchedules === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes");
     };
 
     const renderInternalChat = (row) => {
-        return row.useInternalChat === false ? "Não" : "Sim";
+        return row.useInternalChat === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes");
     };
 
     const renderExternalApi = (row) => {
-        return row.useExternalApi === false ? "Não" : "Sim";
+        return row.useExternalApi === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes");
     };
 
     const rowStyle = (record) => {
