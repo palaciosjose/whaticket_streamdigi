@@ -32,6 +32,30 @@ const messages = {
           register: "¿No tienes cuenta? ¡Regístrate!",
         },
       },
+      forgetPassword: {
+        title: "Restablecer contraseña",
+        form: {
+          token: "Código de verificación",
+          newPassword: "Nueva contraseña",
+          confirmPassword: "Confirma la contraseña",
+        },
+        buttons: {
+          sendEmail: "Enviar correo",
+          reset: "Restablecer contraseña",
+        },
+        toasts: {
+          emailSent: "¡Correo enviado con éxito!",
+          emailNotFound: "Correo no encontrado",
+          passwordReset: "Contraseña restablecida con éxito.",
+        },
+        validation: {
+          invalidEmail: "Correo electrónico inválido",
+          required: "Campo obligatorio",
+          passwordLength:
+            "Tu contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula, una minúscula y un número.",
+          passwordMismatch: "Las contraseñas no coinciden",
+        },
+      },
       companies: {
         title: "Registrar Empresa",
         form: {
