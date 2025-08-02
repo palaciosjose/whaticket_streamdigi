@@ -106,7 +106,7 @@ export const createSubscription = async (
   } = req.body;
 
 
-const valor = Number(price.toLocaleString("pt-br", { minimumFractionDigits: 2 }).replace(",", "."));
+const valor = Number(price.toLocaleString("es-CO", { minimumFractionDigits: 2 }).replace(",", "."));
 const valorext = price;
 
 async function createMercadoPagoPreference() {
@@ -159,7 +159,7 @@ var optionsGetAsaas = {
     "name": `#Fatura:${invoiceId}`,
     "description": `#Fatura:${invoiceId}`,
     //"endDate": "2021-02-05",
-    "value": price.toLocaleString("pt-br", { minimumFractionDigits: 2 }).replace(",", "."),
+    "value": price.toLocaleString("es-CO", { minimumFractionDigits: 2 }).replace(",", "."),
     //"value": "50",
     "billingType": "UNDEFINED",
     "chargeType": "DETACHED",
@@ -209,7 +209,7 @@ const stripe = new Stripe(key_STRIPE_PRIVATE, {
             product_data: {
               name: `#Fatura:${invoiceId}`,
             },
-            unit_amount: price.toLocaleString("pt-br", { minimumFractionDigits: 2 }).replace(",", "").replace(".", ""), // Replace with the actual amount in cents
+            unit_amount: price.toLocaleString("es-CO", { minimumFractionDigits: 2 }).replace(",", "").replace(".", ""), // Replace with the actual amount in cents
           },
           quantity: 1,
         },
@@ -239,7 +239,7 @@ if(key_GERENCIANET_PIX_KEY){
       expiracao: 3600
     },
     valor: {
-      original: price.toLocaleString("pt-br", { minimumFractionDigits: 2 }).replace(",", ".")
+      original: price.toLocaleString("es-CO", { minimumFractionDigits: 2 }).replace(",", ".")
     },
     chave: key_GERENCIANET_PIX_KEY,
     solicitacaoPagador: `#Fatura:${invoiceId}`

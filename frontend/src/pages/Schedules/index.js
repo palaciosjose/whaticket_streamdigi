@@ -17,17 +17,19 @@ import ScheduleModal from "../../components/ScheduleModal";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import toastError from "../../errors/toastError";
 import moment from "moment";
+import "moment/locale/es";
 // import { SocketContext } from "../../context/Socket/SocketContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import usePlans from "../../hooks/usePlans";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import "moment/locale/pt-br";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import SearchIcon from "@material-ui/icons/Search";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from "@material-ui/icons/Edit";
 
 import "./Schedules.css"; // Importe o arquivo CSS
+
+moment.locale("es");
 
 // Defina a função getUrlParam antes de usá-la
 function getUrlParam(paramName) {
@@ -44,23 +46,23 @@ const eventTitleStyle = {
 
 const localizer = momentLocalizer(moment);
 var defaultMessages = {
-  date: "Data",
+  date: "Fecha",
   time: "Hora",
   event: "Evento",
-  allDay: "Dia Todo",
+  allDay: "Todo el día",
   week: "Semana",
-  work_week: "Agendamentos",
-  day: "Dia",
-  month: "Mês",
+  work_week: "Programaciones",
+  day: "Día",
+  month: "Mes",
   previous: "Anterior",
-  next: "Próximo",
-  yesterday: "Ontem",
-  tomorrow: "Amanhã",
-  today: "Hoje",
+  next: "Siguiente",
+  yesterday: "Ayer",
+  tomorrow: "Mañana",
+  today: "Hoy",
   agenda: "Agenda",
-  noEventsInRange: "Não há agendamentos no período.",
+  noEventsInRange: "No hay programaciones en el período.",
   showMore: function showMore(total) {
-    return "+" + total + " mais";
+    return "+" + total + " más";
   }
 };
 
@@ -163,7 +165,7 @@ const Schedules = () => {
       const companyId = user.companyId;
       const planConfigs = await getPlanCompany(undefined, companyId);
       if (!planConfigs.plan.useSchedules) {
-        toast.error("Esta empresa não possui permissão para acessar essa página! Estamos lhe redirecionando.");
+        toast.error("¡Esta empresa no tiene permiso para acceder a esta página! Te estamos redirigiendo.");
         setTimeout(() => {
           history.push(`/`)
         }, 1000);
