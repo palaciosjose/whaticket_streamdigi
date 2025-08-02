@@ -203,6 +203,27 @@ const messages = {
           import: "Seleccione el archivo de excel para importar los Contactos",
         },
       },
+      contactImport: {
+        errors: {
+          noNumberField: "No se seleccionó el campo de número del contacto",
+          noNameField: "No se seleccionó el campo de nombre del contacto",
+          noContactSelected: "Ningún contacto seleccionado",
+        },
+      },
+      listPreview: {
+        dialogTitle: "Lista de Botones",
+        input: {
+          placeholder: "Título Seleccionado",
+          ariaLabel: "título seleccionado",
+        },
+        errors: {
+          selectTitle: "Por favor, selecciona un título.",
+          ticketIdUndefined: "ticketId no está definido",
+          ticketIdNotFound: "Error: ticketId no encontrado.",
+          sendMessageError: "Error al enviar el mensaje:",
+          sendMessage: "Error al enviar el mensaje. Inténtalo nuevamente.",
+        },
+      },
       buttonPreview: {
         copied: "¡Código copiado!",
         noContent: "No hay contenido para copiar.",
@@ -673,6 +694,7 @@ const messages = {
           contact: "Contacto",
           sendAt: "Fecha del Programa",
           sentAt: "Fecha de Envío",
+          assinar: "Enviar Firma",
         },
         buttons: {
           okAdd: "Agregar",
@@ -680,6 +702,18 @@ const messages = {
           cancel: "Cancelar",
         },
         success: "Programa guardado satisfactoriamente.",
+      },
+      messageModal: {
+        title: {
+          add: "Nuevo Mensaje",
+          edit: "Editar Mensaje",
+        },
+        success: {
+          save: "Mensaje guardado con éxito.",
+        },
+        recurrenceTitle: "Recurrencia",
+        recurrenceInfo:
+          "Puedes elegir enviar el mensaje de forma recurrente y elegir el intervalo. Si es un mensaje que se enviará una única vez, no cambies nada en esta sección.",
       },
       tagModal: {
         title: {
@@ -1117,13 +1151,17 @@ const messages = {
           whatsapp: "Conexión",
           contactList: "Listado de Contactos",
           option: "Ninguna",
-          disabled: "Activada",
-          enabled: "Desactivada",
+          disabled: "Desactivada",
+          enabled: "Activada",
           status: "Status",
           scheduledAt: "Programa",
           completedAt: "Finalizada",
           confirmation: "Confirmación",
           actions: "Acciones",
+          noContactList: "No definida",
+          noWhatsapp: "No definido",
+          noSchedule: "Sin programación",
+          notFinished: "No finalizada",
         },
         dialog: {
           new: "Nueva Campaña",
@@ -1175,6 +1213,8 @@ const messages = {
           cancel: "Campaña cancelada",
           restart: "Campaña reiniciada",
           deleted: "Registro excluido",
+          noPermission:
+            "¡Esta empresa no tiene permiso para acceder a esta página! Te estamos redirigiendo.",
         },
       },
       campaignReport: {
@@ -1620,10 +1660,13 @@ const messages = {
             rating: "Enviar Evaluación",
             enableIntegration: "Activar/Desactivar integración",
             logTicket: "Logs del Ticket",
-            requiredTag:
-              "Opps! Debes asignar una tag antes de cerrar el ticket.",
+          requiredTag:
+            "Opps! Debes asignar una tag antes de cerrar el ticket.",
           },
         },
+        youReacted: "Reaccionaste...",
+        fbPolicyWarning:
+          "Tienes 24h para responder después de recibir un mensaje, de acuerdo con las políticas de Facebook.",
       },
       messagesInput: {
         placeholderPrivateMessage:
@@ -1643,6 +1686,19 @@ const messages = {
           unblock: "Desbloquear",
         },
         extraInfo: "Otras informaciones",
+        confirmationModal: {
+          blockTitle: "Bloquear contacto",
+          unblockTitle: "Desbloquear contacto",
+          blockMessage:
+            "¿Realmente deseas bloquear este contacto? No recibirás más mensajes de él.",
+          unblockMessage:
+            "¿Realmente deseas desbloquear este contacto? Volverás a recibir mensajes de él.",
+        },
+      },
+      flowBuilderConfig: {
+        messages: {
+          rememberToSave: "¡No te olvides de guardar tu flujo!",
+        },
       },
       messageVariablesPicker: {
         label: "Variables disponibles",

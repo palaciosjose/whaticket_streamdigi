@@ -18,6 +18,7 @@ import {
 } from "@material-ui/core";
 import api from "../../services/api";
 import upload from "../../assets/upload.gif";
+import { i18n } from "../../translate/i18n";
 import { useHistory } from "react-router-dom";
 import toastError from "../../errors/toastError";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
@@ -119,19 +120,19 @@ const ContactImport = () => {
     console.log(selection)
 
     if (!selection.number) {
-      toastError("Não foi selecionado o campo de número do contato");
+      toastError(i18n.t("contactImport.errors.noNumberField"));
       setUploading(false);
       return;
     }
 
     if (!selection.name) {
-      toastError("Não foi selecionado o campo de nome do contato");
+      toastError(i18n.t("contactImport.errors.noNameField"));
       setUploading(false);
       return;
     }
 
     if (Object.keys(selectedRows).length === 0) {
-      toastError("Nenhum contato selecionado");
+      toastError(i18n.t("contactImport.errors.noContactSelected"));
       setUploading(false);
       return;
     }

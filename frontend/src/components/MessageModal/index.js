@@ -445,11 +445,9 @@ const MessageModal = ({ open, onClose, messageId, reload }) => {
                   </Grid> */}
                 </Grid>
                 {/* <br /> */}
-                <h3>Recorrencia</h3>
+                <h3>{i18n.t("messageModal.recurrenceTitle")}</h3>
                 <p>
-                  Você pode escolher enviar a mensagem de forma recorrente e
-                  escolher o intervalo. Caso seja uma mensagem a ser enviada
-                  uma unica vez, não altere nada nessa seção.
+                  {i18n.t("messageModal.recurrenceInfo")}
                 </p>
                 <br />
                 <Grid container spacing={1}>

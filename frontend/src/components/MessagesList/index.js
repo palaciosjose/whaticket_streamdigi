@@ -1345,7 +1345,7 @@ const renderMessages = () => {
                   <>
                     <span style={{ marginLeft: "0px" }}>
                       <MarkdownWrapper>
-                        {"Você reagiu... " + message.body}
+                        {`${i18n.t("messagesList.youReacted")} ${message.body}`}
                       </MarkdownWrapper>
                     </span>
                   </>
@@ -1407,8 +1407,7 @@ return (
         )}
 
         <span>
-          Você tem 24h para responder após receber uma mensagem, de acordo
-          com as políticas do Facebook.
+          {i18n.t("messagesList.fbPolicyWarning")}
         </span>
       </div>
     )}

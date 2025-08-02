@@ -13,10 +13,6 @@ const SelectMessageCheckbox = ({ message }) => {
     const handleSelectMessage = (e, message) => {
         const list = selectedMessages;
         if (e.target.checked) {
-          // if (list.length >= 4) {
-          //   toastError("Não é possível selecionar mais de 4 mensagens para encaminhar.");
-          //   return;
-          // }
           setIsChecked(true);
           list.push(message);
         } else {

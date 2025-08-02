@@ -207,6 +207,27 @@ const messages = {
           import: "Selecione o arquivo do excel para importar Contatos",
         },
       },
+      contactImport: {
+        errors: {
+          noNumberField: "Não foi selecionado o campo de número do contato",
+          noNameField: "Não foi selecionado o campo de nome do contato",
+          noContactSelected: "Nenhum contato selecionado",
+        },
+      },
+      listPreview: {
+        dialogTitle: "Lista de Botões",
+        input: {
+          placeholder: "Título Selecionado",
+          ariaLabel: "título selecionado",
+        },
+        errors: {
+          selectTitle: "Por favor, selecione um título.",
+          ticketIdUndefined: "ticketId não está definido",
+          ticketIdNotFound: "Erro: ticketId não encontrado.",
+          sendMessageError: "Erro ao enviar a mensagem:",
+          sendMessage: "Erro ao enviar a mensagem. Tente novamente.",
+        },
+      },
       connections: {
         title: "Conexões",
         waitConnection: "Aguarde... Suas conexões serão reiniciadas!",
@@ -691,6 +712,18 @@ const messages = {
         },
         success: "Agendamento salvo com sucesso.",
       },
+      messageModal: {
+        title: {
+          add: "Nova Mensagem",
+          edit: "Editar Mensagem",
+        },
+        success: {
+          save: "Mensagem salva com sucesso.",
+        },
+        recurrenceTitle: "Recorrência",
+        recurrenceInfo:
+          "Você pode escolher enviar a mensagem de forma recorrente e escolher o intervalo. Caso seja uma mensagem a ser enviada uma unica vez, não altere nada nessa seção.",
+      },
       tagModal: {
         title: {
           add: "Nova Tag",
@@ -1144,6 +1177,10 @@ const messages = {
           completedAt: "Concluída",
           confirmation: "Confirmação",
           actions: "Ações",
+          noContactList: "Não definida",
+          noWhatsapp: "Não definido",
+          noSchedule: "Sem agendamento",
+          notFinished: "Não concluída",
         },
         dialog: {
           new: "Nova Campanha",
@@ -1196,6 +1233,8 @@ const messages = {
           cancel: "Campanha cancelada",
           restart: "Campanha reiniciada",
           deleted: "Registro excluído",
+          noPermission:
+            "Esta empresa não possui permissão para acessar essa página! Estamos lhe redirecionando.",
         },
       },
       campaignReport: {
@@ -1679,9 +1718,12 @@ const messages = {
             enableIntegration: "Habilitar integração",
             disableIntegration: "Desabilitar integração",
             logTicket: "Logs do Ticket",
-            requiredTag: "Você deve atribuir uma tag antes de fechar o ticket.",
+          requiredTag: "Você deve atribuir uma tag antes de fechar o ticket.",
           },
         },
+        youReacted: "Você reagiu...",
+        fbPolicyWarning:
+          "Você tem 24h para responder após receber uma mensagem, de acordo com as políticas do Facebook.",
       },
       messagesInput: {
         placeholderPrivateMessage:
@@ -1701,6 +1743,19 @@ const messages = {
           unblock: "Desbloquear",
         },
         extraInfo: "Outras informações",
+        confirmationModal: {
+          blockTitle: "Bloquear contato",
+          unblockTitle: "Desbloquear contato",
+          blockMessage:
+            "Você realmente deseja bloquear esse contato? Você não receberá mais nenhuma mensagem dele.",
+          unblockMessage:
+            "Você realmente deseja desbloquear esse contato? Você poderá começar a receber mensagem dele.",
+        },
+      },
+      flowBuilderConfig: {
+        messages: {
+          rememberToSave: "Não se esqueça de salvar seu fluxo!",
+        },
       },
       messageVariablesPicker: {
         label: "Variavéis disponíveis",
