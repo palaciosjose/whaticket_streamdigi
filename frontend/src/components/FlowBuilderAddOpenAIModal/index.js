@@ -69,7 +69,7 @@ const FlowBuilderOpenAIModal = ({ open, onSave, data, onUpdate, close }) => {
   const initialState = {
     name: "",
     prompt: "",
-    voice: "texto",
+    voice: "es-CO-SalomeNeural",
     voiceKey: "",
     voiceRegion: "",
     maxTokens: 100,
@@ -80,7 +80,7 @@ const FlowBuilderOpenAIModal = ({ open, onSave, data, onUpdate, close }) => {
   };
 
   const [showApiKey, setShowApiKey] = useState(false);
-  const [selectedVoice, setSelectedVoice] = useState("texto");
+  const [selectedVoice, setSelectedVoice] = useState("es-CO-SalomeNeural");
 
   const [activeModal, setActiveModal] = useState(false);
   const [integration, setIntegration] = useState();
@@ -117,6 +117,7 @@ const FlowBuilderOpenAIModal = ({ open, onSave, data, onUpdate, close }) => {
   const handleClose = () => {
     close(null);
     setActiveModal(false);
+    setSelectedVoice("es-CO-SalomeNeural");
   };
 
   const handleChangeVoice = (e) => {
@@ -229,94 +230,52 @@ const FlowBuilderOpenAIModal = ({ open, onSave, data, onUpdate, close }) => {
                         Texto
                       </MenuItem>
                       <MenuItem
-                        key={"pt-BR-FranciscaNeural"}
-                        value={"pt-BR-FranciscaNeural"}
+                        key={"es-CO-SalomeNeural"}
+                        value={"es-CO-SalomeNeural"}
                       >
-                        Francisa
+                        {i18n.t("voices.es-CO-SalomeNeural")}
                       </MenuItem>
                       <MenuItem
-                        key={"pt-BR-AntonioNeural"}
-                        value={"pt-BR-AntonioNeural"}
+                        key={"es-CO-GonzaloNeural"}
+                        value={"es-CO-GonzaloNeural"}
                       >
-                        Antônio
+                        {i18n.t("voices.es-CO-GonzaloNeural")}
                       </MenuItem>
                       <MenuItem
-                        key={"pt-BR-BrendaNeural"}
-                        value={"pt-BR-BrendaNeural"}
+                        key={"es-MX-DaliaNeural"}
+                        value={"es-MX-DaliaNeural"}
                       >
-                        Brenda
+                        {i18n.t("voices.es-MX-DaliaNeural")}
                       </MenuItem>
                       <MenuItem
-                        key={"pt-BR-DonatoNeural"}
-                        value={"pt-BR-DonatoNeural"}
+                        key={"es-MX-JorgeNeural"}
+                        value={"es-MX-JorgeNeural"}
                       >
-                        Donato
+                        {i18n.t("voices.es-MX-JorgeNeural")}
                       </MenuItem>
                       <MenuItem
-                        key={"pt-BR-ElzaNeural"}
-                        value={"pt-BR-ElzaNeural"}
+                        key={"es-ES-ElviraNeural"}
+                        value={"es-ES-ElviraNeural"}
                       >
-                        Elza
+                        {i18n.t("voices.es-ES-ElviraNeural")}
                       </MenuItem>
                       <MenuItem
-                        key={"pt-BR-FabioNeural"}
-                        value={"pt-BR-FabioNeural"}
+                        key={"es-ES-AlvaroNeural"}
+                        value={"es-ES-AlvaroNeural"}
                       >
-                        Fábio
+                        {i18n.t("voices.es-ES-AlvaroNeural")}
                       </MenuItem>
                       <MenuItem
-                        key={"pt-BR-GiovannaNeural"}
-                        value={"pt-BR-GiovannaNeural"}
+                        key={"es-US-JennyNeural"}
+                        value={"es-US-JennyNeural"}
                       >
-                        Giovanna
+                        {i18n.t("voices.es-US-JennyNeural")}
                       </MenuItem>
                       <MenuItem
-                        key={"pt-BR-HumbertoNeural"}
-                        value={"pt-BR-HumbertoNeural"}
+                        key={"es-US-GuyNeural"}
+                        value={"es-US-GuyNeural"}
                       >
-                        Humberto
-                      </MenuItem>
-                      <MenuItem
-                        key={"pt-BR-JulioNeural"}
-                        value={"pt-BR-JulioNeural"}
-                      >
-                        Julio
-                      </MenuItem>
-                      <MenuItem
-                        key={"pt-BR-LeilaNeural"}
-                        value={"pt-BR-LeilaNeural"}
-                      >
-                        Leila
-                      </MenuItem>
-                      <MenuItem
-                        key={"pt-BR-LeticiaNeural"}
-                        value={"pt-BR-LeticiaNeural"}
-                      >
-                        Letícia
-                      </MenuItem>
-                      <MenuItem
-                        key={"pt-BR-ManuelaNeural"}
-                        value={"pt-BR-ManuelaNeural"}
-                      >
-                        Manuela
-                      </MenuItem>
-                      <MenuItem
-                        key={"pt-BR-NicolauNeural"}
-                        value={"pt-BR-NicolauNeural"}
-                      >
-                        Nicolau
-                      </MenuItem>
-                      <MenuItem
-                        key={"pt-BR-ValerioNeural"}
-                        value={"pt-BR-ValerioNeural"}
-                      >
-                        Valério
-                      </MenuItem>
-                      <MenuItem
-                        key={"pt-BR-YaraNeural"}
-                        value={"pt-BR-YaraNeural"}
-                      >
-                        Yara
+                        {i18n.t("voices.es-US-GuyNeural")}
                       </MenuItem>
                     </Select>
                   </FormControl>

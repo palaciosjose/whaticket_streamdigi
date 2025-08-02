@@ -69,7 +69,7 @@ const PromptSchema = Yup.object().shape({
 
 const PromptModal = ({ open, onClose, promptId }) => {
     const classes = useStyles();
-    const [selectedVoice, setSelectedVoice] = useState("texto");
+    const [selectedVoice, setSelectedVoice] = useState("es-CO-SalomeNeural");
     const [showApiKey, setShowApiKey] = useState(false);
 
     const handleToggleApiKey = () => {
@@ -79,7 +79,7 @@ const PromptModal = ({ open, onClose, promptId }) => {
     const initialState = {
         name: "",
         prompt: "",
-        voice: "texto",
+        voice: "es-CO-SalomeNeural",
         voiceKey: "",
         voiceRegion: "",
         maxTokens: 100,
@@ -113,7 +113,7 @@ const PromptModal = ({ open, onClose, promptId }) => {
 
     const handleClose = () => {
         setPrompt(initialState);
-        setSelectedVoice("texto");
+        setSelectedVoice("es-CO-SalomeNeural");
         onClose();
     };
 
@@ -229,50 +229,29 @@ const PromptModal = ({ open, onClose, promptId }) => {
                                             <MenuItem key={"texto"} value={"texto"}>
                                                 Texto
                                             </MenuItem>
-                                            <MenuItem key={"pt-BR-FranciscaNeural"} value={"pt-BR-FranciscaNeural"}>
-                                                Francisa
+                                            <MenuItem key={"es-CO-SalomeNeural"} value={"es-CO-SalomeNeural"}>
+                                                {i18n.t("voices.es-CO-SalomeNeural")}
                                             </MenuItem>
-                                            <MenuItem key={"pt-BR-AntonioNeural"} value={"pt-BR-AntonioNeural"}>
-                                                Antônio
+                                            <MenuItem key={"es-CO-GonzaloNeural"} value={"es-CO-GonzaloNeural"}>
+                                                {i18n.t("voices.es-CO-GonzaloNeural")}
                                             </MenuItem>
-                                            <MenuItem key={"pt-BR-BrendaNeural"} value={"pt-BR-BrendaNeural"}>
-                                                Brenda
+                                            <MenuItem key={"es-MX-DaliaNeural"} value={"es-MX-DaliaNeural"}>
+                                                {i18n.t("voices.es-MX-DaliaNeural")}
                                             </MenuItem>
-                                            <MenuItem key={"pt-BR-DonatoNeural"} value={"pt-BR-DonatoNeural"}>
-                                                Donato
+                                            <MenuItem key={"es-MX-JorgeNeural"} value={"es-MX-JorgeNeural"}>
+                                                {i18n.t("voices.es-MX-JorgeNeural")}
                                             </MenuItem>
-                                            <MenuItem key={"pt-BR-ElzaNeural"} value={"pt-BR-ElzaNeural"}>
-                                                Elza
+                                            <MenuItem key={"es-ES-ElviraNeural"} value={"es-ES-ElviraNeural"}>
+                                                {i18n.t("voices.es-ES-ElviraNeural")}
                                             </MenuItem>
-                                            <MenuItem key={"pt-BR-FabioNeural"} value={"pt-BR-FabioNeural"}>
-                                                Fábio
+                                            <MenuItem key={"es-ES-AlvaroNeural"} value={"es-ES-AlvaroNeural"}>
+                                                {i18n.t("voices.es-ES-AlvaroNeural")}
                                             </MenuItem>
-                                            <MenuItem key={"pt-BR-GiovannaNeural"} value={"pt-BR-GiovannaNeural"}>
-                                                Giovanna
+                                            <MenuItem key={"es-US-JennyNeural"} value={"es-US-JennyNeural"}>
+                                                {i18n.t("voices.es-US-JennyNeural")}
                                             </MenuItem>
-                                            <MenuItem key={"pt-BR-HumbertoNeural"} value={"pt-BR-HumbertoNeural"}>
-                                                Humberto
-                                            </MenuItem>
-                                            <MenuItem key={"pt-BR-JulioNeural"} value={"pt-BR-JulioNeural"}>
-                                                Julio
-                                            </MenuItem>
-                                            <MenuItem key={"pt-BR-LeilaNeural"} value={"pt-BR-LeilaNeural"}>
-                                                Leila
-                                            </MenuItem>
-                                            <MenuItem key={"pt-BR-LeticiaNeural"} value={"pt-BR-LeticiaNeural"}>
-                                                Letícia
-                                            </MenuItem>
-                                            <MenuItem key={"pt-BR-ManuelaNeural"} value={"pt-BR-ManuelaNeural"}>
-                                                Manuela
-                                            </MenuItem>
-                                            <MenuItem key={"pt-BR-NicolauNeural"} value={"pt-BR-NicolauNeural"}>
-                                                Nicolau
-                                            </MenuItem>
-                                            <MenuItem key={"pt-BR-ValerioNeural"} value={"pt-BR-ValerioNeural"}>
-                                                Valério
-                                            </MenuItem>
-                                            <MenuItem key={"pt-BR-YaraNeural"} value={"pt-BR-YaraNeural"}>
-                                                Yara
+                                            <MenuItem key={"es-US-GuyNeural"} value={"es-US-GuyNeural"}>
+                                                {i18n.t("voices.es-US-GuyNeural")}
                                             </MenuItem>
                                         </Select>
                                     </FormControl>
