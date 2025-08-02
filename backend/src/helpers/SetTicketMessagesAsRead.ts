@@ -21,8 +21,8 @@ const SetTicketMessagesAsRead = async (ticket: Ticket): Promise<void> => {
     if (["open", "group"].includes(ticket.status) && whatsapp && whatsapp.status === 'CONNECTED' && ticket.unreadMessages > 0) {
       try {
         const wbot = await GetTicketWbot(ticket);
-        // no baileys temos que marcar cada mensagem como lida
-        // não o chat inteiro como é feito no legacy
+        // en Baileys debemos marcar cada mensaje como leído
+        // no el chat completo como se hace en el legacy
         const getJsonMessage = await Message.findAll({
           where: {
             ticketId: ticket.id,
