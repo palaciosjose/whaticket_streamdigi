@@ -18,6 +18,7 @@ import Button from "@material-ui/core/Button";
 
 import audioNode from "./nodes/audioNode";
 import typebotNode from "./nodes/typebotNode";
+import { i18n } from "../../translate/i18n";
 import openaiNode from "./nodes/openaiNode";
 import messageNode from "./nodes/messageNode.js";
 import startNode from "./nodes/startNode";
@@ -930,7 +931,7 @@ export const FlowBuilderConfig = () => {
             <Typography
               style={{ color: "#010101", textShadow: "#010101 1px 0 10px" }}
             >
-              Não se esqueça de salvar seu fluxo!
+              {i18n.t("flowBuilderConfig.messages.rememberToSave")}
             </Typography>
           </Stack>
           <Stack

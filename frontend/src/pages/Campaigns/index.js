@@ -123,7 +123,7 @@ const Campaigns = () => {
       const companyId = user.companyId;
       const planConfigs = await getPlanCompany(undefined, companyId);
       if (!planConfigs.plan.useCampaigns) {
-        toast.error("Esta empresa não possui permissão para acessar essa página! Estamos lhe redirecionando.");
+        toast.error(i18n.t("campaigns.toasts.noPermission"));
         setTimeout(() => {
           history.push(`/`)
         }, 1000);
@@ -373,25 +373,27 @@ const Campaigns = () => {
                         <TableCell align="center">
                           {campaign.contactListId
                             ? campaign.contactList.name
-                            : "Não definida"}
+                            : i18n.t("campaigns.table.noContactList")}
                         </TableCell>
                         <TableCell align="center">
                           {campaign.whatsappId
                             ? campaign.whatsapp.name
-                            : "Não definido"}
+                            : i18n.t("campaigns.table.noWhatsapp")}
                         </TableCell>
                         <TableCell align="center">
                           {campaign.scheduledAt
                             ? datetimeToClient(campaign.scheduledAt)
-                            : "Sem agendamento"}
+                            : i18n.t("campaigns.table.noSchedule")}
                         </TableCell>
                         <TableCell align="center">
                           {campaign.completedAt
                             ? datetimeToClient(campaign.completedAt)
-                            : "Não concluída"}
+                            : i18n.t("campaigns.table.notFinished")}
                         </TableCell>
                         <TableCell align="center">
-                          {campaign.confirmation ? "Habilitada" : "Desabilitada"}
+                          {campaign.confirmation
+                            ? i18n.t("campaigns.table.enabled")
+                            : i18n.t("campaigns.table.disabled")}
                         </TableCell>
                         <TableCell align="center">
                           {campaign.status === "EM_ANDAMENTO" && (

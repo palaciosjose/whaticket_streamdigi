@@ -649,12 +649,10 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
 										/>
 									</Grid>
 								</Grid>
-								<h3>Recorrência</h3>
-								<p>
-									Você pode escolher enviar a mensagem de forma recorrente e
-									escolher o intervalo. Caso seja uma mensagem a ser enviada
-									uma unica vez, não altere nada nesta seção.
-								</p>
+                                                                <h3>{i18n.t("messageModal.recurrenceTitle")}</h3>
+                                                                <p>
+                                                                        {i18n.t("messageModal.recurrenceInfo")}
+                                                                </p>
 								<br />
 								<Grid container spacing={1}>
 									<Grid item xs={12} md={4} xl={4}>

@@ -179,15 +179,15 @@ const ContactDrawer = ({ open, handleDrawerClose, contact, whatsapp, ticketId, l
 						</Button>
 					</Paper>
 					<Paper square variant="outlined" className={classes.contactDetails}>
-						<ConfirmationModal
-        					title={checkBlockedList() ? "Desbloquear contato" : "Bloquear contato"}
-        					open={blockModalOpen}
-        					onClose={setBlockModalOpen}
-       						onConfirm={handleBlockContact}
-      					>
-							{(!checkBlockedList()) && <>Você realmente deseja bloquear esse contato? Você não receberá mais nenhuma mensagem dele.</>}
-							{checkBlockedList() && <>Você realmente deseja desbloquear esse contato? Você poderá começar a receber mensagem dele.</>}
-      					</ConfirmationModal>
+                                                <ConfirmationModal
+                                                title={checkBlockedList() ? i18n.t("contactDrawer.confirmationModal.unblockTitle") : i18n.t("contactDrawer.confirmationModal.blockTitle")}
+                                                open={blockModalOpen}
+                                                onClose={setBlockModalOpen}
+                                                onConfirm={handleBlockContact}
+                                        >
+                                                        {!checkBlockedList() && <>{i18n.t("contactDrawer.confirmationModal.blockMessage")}</>}
+                                                        {checkBlockedList() && <>{i18n.t("contactDrawer.confirmationModal.unblockMessage")}</>}
+                                        </ConfirmationModal>
 						<ContactModal
 							open={modalOpen}
 							onClose={() => setModalOpen(false)}

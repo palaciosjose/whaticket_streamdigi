@@ -17,6 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import api from "../../services/api";
+import { i18n } from "../../translate/i18n";
 
 const CustomRadioLabel = ({ title, description }) => (
   <div>
@@ -49,14 +50,14 @@ const ListPreview = ({ titulo, descricao, textoBotao, secoes, rodape, ticketId }
   
     // Verifica se o título selecionado não está vazio
     if (tituloSelecionado.trim() === "") {
-      alert("Por favor, selecione um título.");
+      alert(i18n.t("listPreview.errors.selectTitle"));
       setLoading(false); // Desativa o carregamento
-      return; // Não continua se não houver título
+      return; // Do not proceed if no title is selected
     }
-  
+
     if (!ticketId) {
-      console.error("ticketId não está definido");
-      alert("Erro: ticketId não encontrado.");
+      console.error(i18n.t("listPreview.errors.ticketIdUndefined"));
+      alert(i18n.t("listPreview.errors.ticketIdNotFound"));
       setLoading(false);
       return;
     }
@@ -71,8 +72,8 @@ const ListPreview = ({ titulo, descricao, textoBotao, secoes, rodape, ticketId }
     try {
       await api.post(`/messages/${ticketId}`, message); // Envia a mensagem pela API
     } catch (err) {
-      console.error("Erro ao enviar a mensagem:", err);
-      alert("Erro ao enviar a mensagem. Tente novamente.");
+      console.error(i18n.t("listPreview.errors.sendMessageError"), err);
+      alert(i18n.t("listPreview.errors.sendMessage"));
     }
   
     setValorSelecionado('');
@@ -115,7 +116,7 @@ const ListPreview = ({ titulo, descricao, textoBotao, secoes, rodape, ticketId }
       {/* Modal para a lista (usando Dialog) */}
       <Dialog open={modalAberto} onClose={fecharModal}>
         <DialogTitle style={{ backgroundColor: '#4caf50', color: 'white' }}>
-          Lista de Botões
+          {i18n.t("listPreview.dialogTitle")}
         </DialogTitle>
         <DialogContent style={{ padding: "20px" }}>
           <h4>{secoes[0].titulo}</h4>
@@ -147,8 +148,8 @@ const ListPreview = ({ titulo, descricao, textoBotao, secoes, rodape, ticketId }
               style={{ padding: "10px", flex: 1 }}
               value={tituloSelecionado}
               onChange={(e) => setTituloSelecionado(e.target.value)} 
-              placeholder="Título Selecionado"
-              inputProps={{ "aria-label": "título selecionado" }}
+              placeholder={i18n.t("listPreview.input.placeholder")}
+              inputProps={{ "aria-label": i18n.t("listPreview.input.ariaLabel") }}
             />
             <IconButton color="primary" onClick={enviarSelecao}>
               <CheckCircleIcon style={{ width: "35px", height: "35px", color: '#00A884' }} />
