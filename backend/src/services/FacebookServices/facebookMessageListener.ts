@@ -642,7 +642,7 @@ export const handleMessage = async (
             } else {
 
               if (ticket.amountUsedBotQueuesNPS < getSession.maxUseBotQueuesNPS) {
-                let bodyErrorRating = `\u200eOpção inválida, tente novamente.\n`;
+                let bodyErrorRating = `\u200eOpción inválida, intente nuevamente.\n`;
                 const sentMessage = await sendText(
                   contact.number,
                   bodyErrorRating,
@@ -775,7 +775,7 @@ export const handleMessage = async (
               // await delay(1000);
 
               const bodyBot = formatBody(
-                `\u200eEstou ciente sobre o tratamento dos meus dados pessoais. \n\n[1] Sim\n[2] Não`,
+                `\u200eEstoy al tanto sobre el tratamiento de mis datos personales. \n\n[1] Sí\n[2] No`,
                 ticket
               );
 

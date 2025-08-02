@@ -132,14 +132,14 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
     try {
       const _email = {
         to: email,
-        subject: `Login e senha da Empresa ${companyName}`,
-        text: `Olá ${name}, este é um email sobre o cadastro da ${companyName}!<br><br>
-        Segue os dados da sua empresa:<br><br>Nome: ${companyName}<br>Email: ${email}<br>Senha: ${password}<br>Data Vencimento Trial: ${dateToClient(date)}`
+        subject: `Login y contraseña de la Empresa ${companyName}`,
+        text: `Hola ${name}, este es un correo sobre el registro de ${companyName}!<br><br>
+        Sigue los datos de tu empresa:<br><br>Nombre: ${companyName}<br>Email: ${email}<br>Contraseña: ${password}<br>Fecha de vencimiento del trial: ${dateToClient(date)}`
       }
 
       await SendMail(_email)
     } catch (error) {
-      console.log('Não consegui enviar o email')
+      console.log('No pude enviar el email')
     }
 
     try {
@@ -150,12 +150,12 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
         const whatsappId = whatsappCompany.whatsapps[0].id
         const wbot = getWbot(whatsappId);
 
-        const body = `Olá ${name}, este é uma mensagem sobre o cadastro da ${companyName}!\n\nSegue os dados da sua empresa:\n\nNome: ${companyName}\nEmail: ${email}\nSenha: ${password}\nData Vencimento Trial: ${dateToClient(date)}`
+        const body = `Hola ${name}, este es un mensaje sobre el registro de ${companyName}!\n\nSigue los datos de tu empresa:\n\nNombre: ${companyName}\nEmail: ${email}\nContraseña: ${password}\nFecha de vencimiento del trial: ${dateToClient(date)}`
 
         await wbot.sendMessage(`55${phone}@s.whatsapp.net`, { text: body });
       }
     } catch (error) {
-      console.log('Não consegui enviar a mensagem')
+      console.log('No pude enviar el mensaje')
     }
 
     return res.status(200).json(user);

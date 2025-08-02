@@ -56,10 +56,10 @@ const UpdateCompanyService = async (
  }
  const plan = await Plan.findByPk(planId);
  
- if (!plan) {
-   throw new Error("Plano Não Encontrado.");
- }
- // 5. Atualizar a única invoice com status "open" existente, baseada no companyId.
+if (!plan) {
+  throw new Error("Plan no encontrado.");
+}
+// 5. Actualizar la única factura con estado "open" existente, basada en el companyId.
  const openInvoice = openInvoices[0];
  const valuePlan = plan.amount.replace(",", ".");
  if (openInvoice) {
@@ -73,7 +73,7 @@ const UpdateCompanyService = async (
    });
  
  } else {
-   throw new Error("Nenhuma fatura em aberto para este cliente!");
+   throw new Error("No hay ninguna factura abierta para este cliente!");
  }
 
   const existUser = await User.findOne({
@@ -84,7 +84,7 @@ const UpdateCompanyService = async (
   });
 
   if (existUser && existUser.email !== company.email) {
-    throw new AppError("Usuário já existe com esse e-mail!", 404)
+    throw new AppError("Ya existe un usuario con ese correo electrónico!", 404)
   }
 
   const user = await User.findOne({

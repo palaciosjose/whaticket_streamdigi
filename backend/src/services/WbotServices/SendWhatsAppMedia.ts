@@ -166,7 +166,7 @@ const SendWhatsAppMedia = async ({
         fileName: media.originalname.replace('/', '-'),
         contextInfo: { forwardingScore: isForwarded ? 2 : 0, isForwarded: isForwarded },
       };
-      bodyTicket = "🎥 Arquivo de vídeo"
+      bodyTicket = "🎥 Archivo de video"
     } else if (typeMessage === "audio") {
       
       const typeAudio = true; //media.originalname.includes("audio-record-site");
@@ -190,7 +190,7 @@ const SendWhatsAppMedia = async ({
         };
         unlinkSync(convert);
       }
-      bodyTicket = "🎵 Arquivo de áudio"
+      bodyTicket = "🎵 Archivo de audio"
     } else if (typeMessage === "document" || typeMessage === "text") {
       options = {
         document: fs.readFileSync(pathMedia),

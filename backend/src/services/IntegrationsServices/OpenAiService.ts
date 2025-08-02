@@ -57,7 +57,7 @@ const deleteFileSync = (path: string): void => {
   try {
     fs.unlinkSync(path);
   } catch (error) {
-    console.error("Erro ao deletar o arquivo:", error);
+    console.error("Error al eliminar el archivo:", error);
   }
 };
 
@@ -77,18 +77,18 @@ export const handleOpenAi = async (
   ticketTraking: TicketTraking
 ): Promise<void> => {
   try {
-    // Validações iniciais mais robustas
+    // Validaciones iniciales más robustas
     if (!openAiSettings) {
-      console.error("OpenAiService: Configurações ausentes");
+      console.error("OpenAiService: Configuraciones ausentes");
       return;
     }
 
-    // Validação específica para cada campo obrigatório
+    // Validación específica para cada campo obligatorio
     const requiredFields = ['name', 'apiKey', 'prompt'];
     const missingFields = requiredFields.filter(field => !openAiSettings[field]);
     
     if (missingFields.length > 0) {
-      console.error("OpenAiService: Campos obrigatórios ausentes:", missingFields);
+      console.error("OpenAiService: Campos obligatorios ausentes:", missingFields);
       return;
     }
 
@@ -99,16 +99,16 @@ export const handleOpenAi = async (
 
     const bodyMessage = getBodyMessage(msg);
     if (!bodyMessage) {
-      console.log("OpenAiService: Mensagem vazia");
+      console.log("OpenAiService: Mensaje vacío");
       return;
     }
 
     if (msg.messageStubType) {
-      console.log("OpenAiService: Mensagem do tipo stub");
+      console.log("OpenAiService: Mensaje del tipo stub");
       return;
     }
 
-    // Validação do ticket
+    // Validación del ticket
     if (!ticket || !ticket.id) {
       console.error("OpenAiService: Ticket inválido");
       return;
@@ -127,7 +127,7 @@ export const handleOpenAi = async (
     const openAiIndex = sessionsOpenAi.findIndex(s => s.id === ticket.id);
 
     if (openAiIndex === -1) {
-      console.log("OpenAiService: Criando nova sessão OpenAI");
+      console.log("OpenAiService: Creando nueva sesión OpenAI");
       openai = new OpenAI({
         apiKey: openAiSettings.apiKey
       });
@@ -137,9 +137,9 @@ export const handleOpenAi = async (
       openai = sessionsOpenAi[openAiIndex];
     }
 
-    // Validação da sessão OpenAI
+    // Validación de la sesión OpenAI
     if (!openai) {
-      console.error("OpenAiService: Falha ao criar sessão OpenAI");
+      console.error("OpenAiService: Error al crear la sesión OpenAI");
       return;
     }
 
@@ -149,13 +149,13 @@ export const handleOpenAi = async (
       limit: openAiSettings.maxMessages || 10
     });
 
-    // Validação do nome do contato
+    // Validación del nombre del contacto
     const contactName = contact?.name || "Amigo(a)";
     const sanitizedName = sanitizeName(contactName);
 
-    const promptSystem = `Nas respostas utilize o nome ${sanitizedName} para identificar o cliente.\nSua resposta deve usar no máximo ${
+    const promptSystem = `En las respuestas utilice el nombre ${sanitizedName} para identificar al cliente.\nSu respuesta debe usar como máximo ${
       openAiSettings.maxTokens || 100
-    } tokens e cuide para não truncar o final.\nSempre que possível, mencione o nome dele para ser mais personalizado o atendimento e mais educado. Quando a resposta requer uma transferência para o setor de atendimento, comece sua resposta com 'Ação: Transferir para o setor de atendimento'.\n
+    } tokens y cuide de no truncar el final.\nSiempre que sea posible, mencione su nombre para que la atención sea más personalizada y educada. Cuando la respuesta requiera una transferencia al sector de atención, comience su respuesta con 'Acción: Transferir al sector de atención'.\n
                 ${openAiSettings.prompt}\n`;
 
     let messagesOpenAi = [];
@@ -190,14 +190,14 @@ export const handleOpenAi = async (
         let response = chat.choices[0].message?.content;
 
         if (!response) {
-          console.error("OpenAiService: Resposta vazia da OpenAI");
+          console.error("OpenAiService: Respuesta vacía de OpenAI");
           return;
         }
 
-        if (response.includes("Ação: Transferir para o setor de atendimento")) {
-          console.log("OpenAiService: Transferindo para fila");
+        if (response.includes("Acción: Transferir al sector de atención")) {
+          console.log("OpenAiService: Transfiriendo a la fila");
           await transferQueue(openAiSettings.queueId, ticket, contact);
-          response = response.replace("Ação: Transferir para o setor de atendimento", "").trim();
+          response = response.replace("Acción: Transferir al sector de atención", "").trim();
         }
 
         if (openAiSettings.voice === "texto") {
@@ -207,7 +207,7 @@ export const handleOpenAi = async (
           });
           await verifyMessage(sentMessage!, ticket, contact);
         } else {
-          console.log("OpenAiService: Enviando resposta em áudio");
+      console.log("OpenAiService: Enviando respuesta en audio");
           const fileNameWithOutExtension = `${ticket.id}_${Date.now()}`;
           await convertTextToSpeechAndSaveToFile(
             keepOnlySpecifiedChars(response),
@@ -228,11 +228,11 @@ export const handleOpenAi = async (
             deleteFileSync(`${publicFolder}/${fileNameWithOutExtension}.mp3`);
             deleteFileSync(`${publicFolder}/${fileNameWithOutExtension}.wav`);
           } catch (error) {
-            console.error(`Erro ao enviar áudio: ${error}`);
+            console.error(`Error al enviar audio: ${error}`);
           }
         }
       } catch (error) {
-        console.error("OpenAiService: Erro ao processar mensagem:", error);
+        console.error("OpenAiService: Error al procesar el mensaje:", error);
       }
     } else if (msg.message?.audioMessage) {
       console.log(201, "OpenAiService");
@@ -274,10 +274,10 @@ export const handleOpenAi = async (
       });
       let response = chat.choices[0].message?.content;
 
-      if (response?.includes("Ação: Transferir para o setor de atendimento")) {
+      if (response?.includes("Acción: Transferir al sector de atención")) {
         await transferQueue(openAiSettings.queueId, ticket, contact);
         response = response
-          .replace("Ação: Transferir para o setor de atendimento", "")
+          .replace("Acción: Transferir al sector de atención", "")
           .trim();
       }
       if (openAiSettings.voice === "texto") {
@@ -313,13 +313,13 @@ export const handleOpenAi = async (
             deleteFileSync(`${publicFolder}/${fileNameWithOutExtension}.mp3`);
             deleteFileSync(`${publicFolder}/${fileNameWithOutExtension}.wav`);
           } catch (error) {
-            console.log(`Erro para responder com audio: ${error}`);
+            console.log(`Error al responder con audio: ${error}`);
           }
         });
       }
     }
     messagesOpenAi = [];
   } catch (error) {
-    console.error("OpenAiService: Erro geral:", error);
+    console.error("OpenAiService: Error general:", error);
   }
 };

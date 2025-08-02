@@ -12,7 +12,7 @@ interface Request {
 const query = `
   select label, qtd,  ROUND(100.0*(qtd/sum(qtd) over ()), 2) pertentual from (
   select
-  coalesce(q.queue, 'Não informado') as label,
+  coalesce(q.queue, 'No informado') as label,
   count(1) as qtd
   from "Tickets" t
   left join "Queues" q on (t."queueId" = q.id)
@@ -26,7 +26,7 @@ const query = `
 const queryAdmin = `
   select label, qtd,  ROUND(100.0*(qtd/sum(qtd) over ()), 2) pertentual from (
   select
-  coalesce(q.queue, 'Não informado') as label,
+  coalesce(q.queue, 'No informado') as label,
   count(1) as qtd
   from "Tickets" t
   left join "Queues" q on (t."queueId" = q.id)
