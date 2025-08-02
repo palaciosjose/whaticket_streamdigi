@@ -331,20 +331,47 @@ const messages = {
 						"All user data will be lost. Users' open tickets will be moved to queue.",
 				},
 			},
-			settings: {
-				success: "Settings saved successfully.",
-				title: "Settings",
-				settings: {
-					userCreation: {
-						name: "User creation",
-						options: {
-							enabled: "Enabled",
-							disabled: "Disabled",
-						},
-					},
-				},
-			},
-			messagesList: {
+                        settings: {
+                                success: "Settings saved successfully.",
+                                title: "Settings",
+                                toasts: {
+                                        updated: "Operation updated successfully.",
+                                },
+                                settings: {
+                                        userCreation: {
+                                                name: "User creation",
+                                                options: {
+                                                        enabled: "Enabled",
+                                                        disabled: "Disabled",
+                                                },
+                                        },
+                                },
+                        },
+                        flowBuilderConfig: {
+                                toasts: {
+                                        saved: "Flow saved successfully.",
+                                        exported: "Flow exported successfully.",
+                                        imported: "Flow imported successfully.",
+                                },
+                        },
+                        flowBuilderSingleBlockModal: {
+                                toasts: {
+                                        emptyMessage: "Message field empty!",
+                                        invalidInterval: "Interval cannot be 0 or greater than 120!",
+                                        fileTooBig2: "File is too big! 2MB max",
+                                        fileTooBig5: "File is too big! 5MB max",
+                                        fileTooBig20: "File is too big! 20MB max",
+                                        success: "Content added successfully!",
+                                        deleteEmptyCards: "Delete empty cards (Image, Audio and Video)",
+                                },
+                        },
+                        flowBuilderAddImgModal: {
+                                toasts: {
+                                        added: "Image added successfully!",
+                                        fileTooBig2: "File is too big! 2MB max",
+                                },
+                        },
+                        messagesList: {
 				header: {
 					assignedTo: "Assigned to:",
 					buttons: {

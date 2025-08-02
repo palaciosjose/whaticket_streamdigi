@@ -520,7 +520,7 @@ export const FlowBuilderConfig = () => {
         connections: edges,
       })
       .then((res) => {
-        toast.success("Fluxo salvo com sucesso");
+        toast.success(i18n.t("flowBuilderConfig.toasts.saved"));
       });
   };
 
@@ -767,8 +767,8 @@ export const FlowBuilderConfig = () => {
       document.body.appendChild(link);
       link.click();
       link.remove();
-      
-      toast.success("Fluxo exportado com sucesso!");
+
+      toast.success(i18n.t("flowBuilderConfig.toasts.exported"));
     } catch (err) {
       toastError(err);
     }
@@ -781,7 +781,7 @@ export const FlowBuilderConfig = () => {
         const flowData = JSON.parse(e.target.result);
         setNodes(flowData.nodes);
         setEdges(flowData.edges);
-        toast.success("Fluxo importado com sucesso!");
+        toast.success(i18n.t("flowBuilderConfig.toasts.imported"));
       };
       reader.readAsText(file);
     } catch (err) {
