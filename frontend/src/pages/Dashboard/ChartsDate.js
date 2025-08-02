@@ -10,7 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import brLocale from 'date-fns/locale/pt-BR';
+import esLocale from 'date-fns/locale/es';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { Button, Grid, TextField } from '@material-ui/core';
 import Typography from "@material-ui/core/Typography";
@@ -106,7 +106,7 @@ export const ChartsDate = () => {
 
             <Grid container spacing={2}>
                 <Grid item>
-                    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={esLocale}>
                         <DatePicker
                             value={initialDate}
                             onChange={(newValue) => { setInitialDate(newValue) }}
@@ -117,7 +117,7 @@ export const ChartsDate = () => {
                     </LocalizationProvider>
                 </Grid>
                 <Grid item>
-                    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={esLocale}>
                         <DatePicker
                             value={finalDate}
                             onChange={(newValue) => { setFinalDate(newValue) }}

@@ -32,13 +32,13 @@ const EventPreview = ({ name, startTime, endTime, location, joinLink, linkType }
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
     const year = date.getFullYear();
-    const time = date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    const time = date.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
     return `${day}/${month}/${year}, ${time}`;
   };
 
   const formatDateTime1 = (timestamp) => {
     const date = new Date(timestamp * 1000);
-    const time = date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    const time = date.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
     return `${time}`;
   };
 
