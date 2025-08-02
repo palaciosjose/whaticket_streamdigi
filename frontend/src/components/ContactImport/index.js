@@ -104,10 +104,10 @@ const ContactImport = () => {
   const [selectedRows, setSelectedRows] = useState({});
   const [validateContact, setValidateContact] = useState(false);
   const contactFields = [
-    { id: "name", label: "Nome", required: true },
-    { id: "number", label: "Número", required: true },
-    { id: "email", label: "E-mail", required: false },
-    { id: "tags", label: "Tags", required: false },
+    { id: "name", label: i18n.t("contactImport.fields.name"), required: true },
+    { id: "number", label: i18n.t("contactImport.fields.number"), required: true },
+    { id: "email", label: i18n.t("contactImport.fields.email"), required: false },
+    { id: "tags", label: i18n.t("contactImport.fields.tags"), required: false },
   ];
 
   useEffect(() => {
@@ -180,13 +180,13 @@ const ContactImport = () => {
       setImported(true);
       setUploading(false);
       
-      if (countIgnored === 0) {
-        toast.success("Importação realizada com sucesso");
-      } else {
-        toast.alert("Importação realizada com sucesso, mas houveram alguns erros");
+        if (countIgnored === 0) {
+          toast.success(i18n.t("contactImport.toasts.success"));
+        } else {
+          toast.warning(i18n.t("contactImport.toasts.partial"));
+        }
       }
-    }
-  };
+    };
 
   const onChangeFile = (acceptedFiles) => {
     if (acceptedFiles.length === 0) return;
@@ -248,10 +248,10 @@ const ContactImport = () => {
     }
   
     // Verificar se o novo valor já foi selecionado
-    if (selectedFields[newValue]) {
-      toastError(`O campo ${newValue} já foi selecionado.`);
-      return;
-    }
+      if (selectedFields[newValue]) {
+        toastError(i18n.t("contactImport.errors.fieldAlreadySelected", { field: newValue }));
+        return;
+      }
   
     // Atualizar seleção
     setSelection((selection) => ({ ...selection, [newValue]: columnKey }));
@@ -353,13 +353,13 @@ const ContactImport = () => {
               control={
                 <Switch checked={validateContact} onChange={(event) => setValidateContact(event.target.checked)} color="primary" />
               }
-              label="Validar contatos no WhatsApp"
-            />
+                label={i18n.t("contactImport.validateContact")}
+              />
           </FormGroup>
         </div>
         {renderXls()}
         <div className={classes.actions}>
-          {uploading && <div>Importando... Aguarde</div>}
+          {uploading && <div>{i18n.t("contactImport.messages.importing")}</div>}
           <Button
             variant="contained"
             color="primary"
@@ -367,7 +367,7 @@ const ContactImport = () => {
             className={classes.buttonImport}
             onClick={() => processImport()}
           >
-            Importar contatos
+            {i18n.t("contactImport.buttons.import")}
           </Button>
           <Button
             variant="contained"
@@ -378,7 +378,7 @@ const ContactImport = () => {
               setColumns(null);
             }}
           >
-            Cancelar
+            {i18n.t("contactImport.buttons.cancel")}
           </Button>
           {error && <div className={classes.error}>{error}</div>}
         </div>
@@ -396,13 +396,13 @@ const ContactImport = () => {
       {imported && (
         <div>
           <ul>
-            <li>{countCreated} contatos criados</li>
-            <li>{countIgnored} contatos ignorados (número inválido ou não marcados para atualizar)</li>
+            <li>{i18n.t("contactImport.messages.created", { count: countCreated })}</li>
+            <li>{i18n.t("contactImport.messages.ignored", { count: countIgnored })}</li>
           </ul>
         </div>
       )}
-      {openingFile && <div>Processando arquivo...</div>}
-      {invalidFile && <div>Arquivo inválido!</div>}
+      {openingFile && <div>{i18n.t("contactImport.messages.processing")}</div>}
+      {invalidFile && <div>{i18n.t("contactImport.messages.invalidFile")}</div>}
       {!imported && rows && columns ? renderContent() : (
         <>
           <div
@@ -421,9 +421,9 @@ const ContactImport = () => {
             }}
           >
             <img src={upload} height={200} alt="Upload" />
-            <h5>Clique ou arraste um arquivo</h5>
+            <h5>{i18n.t("contactImport.messages.clickOrDrag")}</h5>
             <p style={{ color: "#e74c3c", fontWeight: "bold", textAlign: "center" }}>
-              * Importante: Arquivos somente com extensões são aceitas: xls, xslx, csv, txt
+              {i18n.t("contactImport.messages.info")}
             </p>
           </div>
 
@@ -431,7 +431,7 @@ const ContactImport = () => {
 
           <div className={classes.backButtonContainer}>
             <Button variant="contained" color="secondary" disabled={uploading} onClick={handleCloseImport}>
-              Voltar
+              {i18n.t("contactImport.buttons.back")}
             </Button>
           </div>
         </>

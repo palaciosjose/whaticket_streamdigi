@@ -5,6 +5,7 @@ import ContactImport from "../../components/ContactImport";
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import Title from "../../components/Title";
+import { i18n } from "../../translate/i18n";
 
 const useStyles = makeStyles(theme => ({
     mainPaper: {
@@ -21,7 +22,7 @@ const ContactImportPage = () => {
     const classes = useStyles();
     return <MainContainer className={classes.mainContainer}>
         <MainHeader>
-            <Title>Importar contatos de arquivo</Title>
+            <Title>{i18n.t("contactImport.title")}</Title>
         </MainHeader>
         <Paper
             className={classes.mainPaper}

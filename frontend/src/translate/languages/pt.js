@@ -208,10 +208,40 @@ const messages = {
         },
       },
       contactImport: {
+        title: "Importar contatos de arquivo",
+        validateContact: "Validar contatos no WhatsApp",
+        buttons: {
+          import: "Importar contatos",
+          cancel: "Cancelar",
+          back: "Voltar",
+        },
+        messages: {
+          importing: "Importando... Aguarde",
+          created: "{{count}} contatos criados",
+          ignored:
+            "{{count}} contatos ignorados (número inválido ou não marcados para atualizar)",
+          processing: "Processando arquivo...",
+          invalidFile: "Arquivo inválido!",
+          clickOrDrag: "Clique ou arraste um arquivo",
+          info:
+            "* Importante: Arquivos somente com extensões são aceitas: xls, xlsx, csv, txt",
+        },
+        toasts: {
+          success: "Importação realizada com sucesso",
+          partial:
+            "Importação realizada com sucesso, mas houveram alguns erros",
+        },
         errors: {
           noNumberField: "Não foi selecionado o campo de número do contato",
           noNameField: "Não foi selecionado o campo de nome do contato",
           noContactSelected: "Nenhum contato selecionado",
+          fieldAlreadySelected: "O campo {{field}} já foi selecionado.",
+        },
+        fields: {
+          name: "Nome",
+          number: "Número",
+          email: "E-mail",
+          tags: "Tags",
         },
       },
       listPreview: {
