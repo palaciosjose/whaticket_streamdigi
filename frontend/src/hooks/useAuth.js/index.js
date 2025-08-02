@@ -10,6 +10,7 @@ import toastError from "../../errors/toastError";
 import { socketConnection } from "../../services/socket";
 // import { useDate } from "../../hooks/useDate";
 import moment from "moment";
+import "moment/locale/es";
 
 const useAuth = () => {
   const history = useHistory();
@@ -131,7 +132,7 @@ const useAuth = () => {
       }
       localStorage.setItem("profileImage", data.user.profileImage); //regra pra exibir imagem contato
 
-      moment.locale('pt-br');
+      moment.locale('es');
       let dueDate;
       if (data.user.company.id === 1) {
         dueDate = '2999-12-31T00:00:00.000Z'
