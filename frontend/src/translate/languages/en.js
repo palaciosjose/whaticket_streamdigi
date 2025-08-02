@@ -17,22 +17,46 @@ const messages = {
 					login: "Already have an account? Log in!",
 				},
 			},
-			login: {
-				title: "Login",
-				form: {
-					email: "Email",
-					password: "Password",
-				},
-				buttons: {
-					submit: "Enter",
-					register: "Don't have an account? Register!",
-				},
-			},
-			auth: {
-				toasts: {
-					success: "Login successfully!",
-				},
-			},
+                        login: {
+                                title: "Login",
+                                form: {
+                                        email: "Email",
+                                        password: "Password",
+                                },
+                                buttons: {
+                                        submit: "Enter",
+                                        register: "Don't have an account? Register!",
+                                },
+                        },
+                        forgetPassword: {
+                                title: "Reset password",
+                                form: {
+                                        token: "Verification code",
+                                        newPassword: "New password",
+                                        confirmPassword: "Confirm password",
+                                },
+                                buttons: {
+                                        sendEmail: "Send Email",
+                                        reset: "Reset password",
+                                },
+                                toasts: {
+                                        emailSent: "Email sent successfully!",
+                                        emailNotFound: "Email not found",
+                                        passwordReset: "Password reset successfully.",
+                                },
+                                validation: {
+                                        invalidEmail: "Invalid email",
+                                        required: "Required",
+                                        passwordLength:
+                                                "Your password must be at least 8 characters long, including an uppercase letter, a lowercase letter and a number.",
+                                        passwordMismatch: "Passwords do not match",
+                                },
+                        },
+                        auth: {
+                                toasts: {
+                                        success: "Login successfully!",
+                                },
+                        },
 			dashboard: {
 				charts: {
 					perDay: {

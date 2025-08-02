@@ -31,6 +31,30 @@ const messages = {
           register: "Não tem um conta? Cadastre-se!",
         },
       },
+      forgetPassword: {
+        title: "Redefinir senha",
+        form: {
+          token: "Código de Verificação",
+          newPassword: "Nova senha",
+          confirmPassword: "Confirme a senha",
+        },
+        buttons: {
+          sendEmail: "Enviar Email",
+          reset: "Redefinir Senha",
+        },
+        toasts: {
+          emailSent: "Email enviado com sucesso!",
+          emailNotFound: "Email não encontrado",
+          passwordReset: "Senha redefinida com sucesso.",
+        },
+        validation: {
+          invalidEmail: "Email inválido",
+          required: "Campo obrigatório",
+          passwordLength:
+            "Sua senha precisa ter no mínimo 8 caracteres, sendo uma letra maiúscula, uma minúscula e um número.",
+          passwordMismatch: "As senhas não correspondem",
+        },
+      },
       companies: {
         title: "Cadastrar Empresa",
         form: {

@@ -54,6 +54,30 @@ const messages = {
           recovery: "Şifremi Unuttum?"
         }
       },
+      forgetPassword: {
+        title: "Şifre Sıfırlama",
+        form: {
+          token: "Doğrulama Kodu",
+          newPassword: "Yeni Şifre",
+          confirmPassword: "Şifreyi Onayla",
+        },
+        buttons: {
+          sendEmail: "Eposta Gönder",
+          reset: "Şifreyi Sıfırla",
+        },
+        toasts: {
+          emailSent: "Eposta başarıyla gönderildi!",
+          emailNotFound: "Eposta bulunamadı",
+          passwordReset: "Şifre başarıyla güncellendi.",
+        },
+        validation: {
+          invalidEmail: "Geçersiz eposta",
+          required: "Zorunlu alan",
+          passwordLength:
+            "Şifreniz en az 8 karakter olmalı, bir büyük harf, bir küçük harf ve bir sayı içermelidir.",
+          passwordMismatch: "Şifreler eşleşmiyor",
+        },
+      },
       auth: {
         toasts: {
           success: "Giriş Başarılı!",
