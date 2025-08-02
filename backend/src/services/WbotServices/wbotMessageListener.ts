@@ -3403,7 +3403,7 @@ export const convertTextToSpeechAndSaveToFile = (
   filename: string,
   subscriptionKey: string,
   serviceRegion: string,
-  voice: string = "pt-BR-FabioNeural",
+  voice: string = "es-CO-SalomeNeural",
   audioToFormat: string = "mp3"
 ): Promise<void> => {
   return new Promise((resolve, reject) => {
