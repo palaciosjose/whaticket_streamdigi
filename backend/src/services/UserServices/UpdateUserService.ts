@@ -4,6 +4,7 @@ import AppError from "../../errors/AppError";
 import ShowUserService from "./ShowUserService";
 import Company from "../../models/Company";
 import User from "../../models/User";
+import messages from "../../locales/messages";
 
 interface UserData {
   email?: string;
@@ -55,7 +56,7 @@ const UpdateUserService = async ({
   const requestUser = await User.findByPk(requestUserId);
 
   if (requestUser.super === false && userData.companyId !== companyId) {
-    throw new AppError("O usuário não pertence à esta empresa");
+    throw new AppError(messages.USER_NOT_FROM_COMPANY);
   }
 
   const schema = Yup.object().shape({

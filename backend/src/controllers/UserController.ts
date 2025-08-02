@@ -17,6 +17,7 @@ import ShowCompanyService from "../services/CompanyService/ShowCompanyService";
 import { getWbot } from "../libs/wbot";
 import FindCompaniesWhatsappService from "../services/CompanyService/FindCompaniesWhatsappService";
 import User from "../models/User";
+import messages from "../locales/messages";
 
 import { head } from "lodash";
 import ToggleChangeWidthService from "../services/UserServices/ToggleChangeWidthService";
@@ -311,7 +312,7 @@ export const remove = async (
   });
 
   if (companyId !== user.companyId) {
-    return res.status(400).json({ error: "Você não possui permissão para acessar este recurso!" });
+    return res.status(400).json({ error: messages.UNAUTHORIZED_RESOURCE });
   } else {
     await DeleteUserService(userId, companyId);
 
@@ -322,7 +323,7 @@ export const remove = async (
         userId
       });
 
-    return res.status(200).json({ message: "User deleted" });
+    return res.status(200).json({ message: messages.USER_DELETED });
   }
 
 };

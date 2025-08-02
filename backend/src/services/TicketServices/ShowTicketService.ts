@@ -1,5 +1,6 @@
 import Ticket from "../../models/Ticket";
 import AppError from "../../errors/AppError";
+import messages from "../../locales/messages";
 import Contact from "../../models/Contact";
 import User from "../../models/User";
 import Queue from "../../models/Queue";
@@ -112,7 +113,7 @@ const ShowTicketService = async (
   });
 
   if (ticket?.companyId !== companyId) {
-    throw new AppError("Não é possível consultar registros de outra empresa");
+    throw new AppError(messages.NOT_POSSIBLE_QUERY_OTHER_COMPANY);
   }
 
   if (!ticket) {

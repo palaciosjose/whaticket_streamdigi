@@ -21,6 +21,7 @@ import UpdateWhatsAppServiceAdmin from "../services/WhatsappService/UpdateWhatsA
 import ListAllWhatsAppsService from "../services/WhatsappService/ListAllWhatsAppService";
 import ListFilterWhatsAppsService from "../services/WhatsappService/ListFilterWhatsAppsService";
 import User from "../models/User";
+import messages from "../locales/messages";
 
 interface WhatsappData {
   name: string;
@@ -128,7 +129,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   if (!plan.useWhatsapp) {
     return res.status(400).json({
-      error: "Você não possui permissão para acessar este recurso!"
+      error: messages.UNAUTHORIZED_RESOURCE
     });
   }
 
@@ -217,7 +218,7 @@ export const storeFacebook = async (
 
     // if (!plan.useFacebook) {
     //   return res.status(400).json({
-    //     error: "Você não possui permissão para acessar este recurso!"
+    //     error: "No tienes permiso para acceder a este recurso!"
     //   });
     // }
 
@@ -225,7 +226,7 @@ export const storeFacebook = async (
 
     if (data.length === 0) {
       return res.status(400).json({
-        error: "Facebook page not found 1"
+        error: messages.FACEBOOK_PAGE_NOT_FOUND
       });
     }
     const io = getIO();
@@ -322,13 +323,13 @@ export const storeFacebook = async (
       }
     }
     return res.status(200);
-  } catch (error) {
-    console.log(error);
-    return res.status(400).json({
-      error: "Facebook page not found 2"
-    });
-  }
-};
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        error: messages.FACEBOOK_PAGE_NOT_FOUND
+      });
+    }
+  };
 
 export const show = async (req: Request, res: Response): Promise<Response> => {
   const { whatsappId } = req.params;
@@ -395,7 +396,7 @@ export const remove = async (
   if (profile !== "admin") {
     throw new AppError("ERR_NO_PERMISSION", 403);
   }
-  console.log("REMOVING WHATSAPP", whatsappId)
+  console.log("ELIMINANDO WHATSAPP", whatsappId)
   const whatsapp = await ShowWhatsAppService(whatsappId, companyId);
 
 
@@ -505,7 +506,7 @@ export const removeAdmin = async (
   const { whatsappId } = req.params;
   const { companyId } = req.user;
   const io = getIO();
-  console.log("REMOVING WHATSAPP ADMIN", whatsappId)
+  console.log("ELIMINANDO WHATSAPP ADMIN", whatsappId)
   const whatsapp = await ShowWhatsAppService(whatsappId, companyId);
 
 

@@ -41,6 +41,7 @@ import EditWhatsAppMessage from "../services/MessageServices/EditWhatsAppMessage
 import CheckContactNumber from "../services/WbotServices/CheckNumber";
 import TranscribeAudioMessageToText from "../services/MessageServices/TranscribeAudioMessageService";
 import { generateWAMessageFromContent, generateWAMessageContent } from "@whiskeysockets/baileys";
+import messages from "../locales/messages";
 
 type IndexQuery = {
   pageNumber: string;
@@ -68,7 +69,7 @@ type MessageData = {
   vCard?: Contact;
 };
 
-// adicionar funções de botões, pix, etc.
+// agregar funciones de botones, pix, etc.
 export const sendListMessage = async (req: Request, res: Response): Promise<Response> => {
   const { ticketId } = req.params;
   const { title, text, buttonText, footer, sections } = req.body;
@@ -77,13 +78,13 @@ export const sendListMessage = async (req: Request, res: Response): Promise<Resp
     const ticket = await Ticket.findByPk(ticketId);
 
     if (!ticket) {
-      throw new AppError("Ticket not found", 404);
+      throw new AppError(messages.TICKET_NOT_FOUND, 404);
     }
 
     const contact = await Contact.findByPk(ticket.contactId);
 
     if (!contact) {
-      throw new AppError("Contact not found", 404);
+      throw new AppError(messages.CONTACT_NOT_FOUND, 404);
     }
     const wbot = await GetTicketWbot(ticket);
     const listMessage = {
@@ -95,15 +96,15 @@ export const sendListMessage = async (req: Request, res: Response): Promise<Resp
     };
 
     const number = `${contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`;
-    console.log('Numero do cliente:', number);
+    console.log('Número del cliente:', number);
 
     const sendMsg = await wbot.sendMessage(number, listMessage);
     await verifyMessage(sendMsg, ticket, contact);
 
-    return res.status(200).json({ message: "List message sent successfully", sendMsg });
+    return res.status(200).json({ message: messages.LIST_MESSAGE_SENT, sendMsg });
   } catch (err) {
-    console.error("Error sending list message: ", err);
-    throw new AppError("Error sending list message", 500);
+    console.error(`${messages.ERROR_SENDING_LIST_MESSAGE}:`, err);
+    throw new AppError(messages.ERROR_SENDING_LIST_MESSAGE, 500);
   }
 };
 
@@ -114,16 +115,16 @@ export const sendCopyMessage = async (req: Request, res: Response): Promise<Resp
   try {
     const ticket = await Ticket.findByPk(ticketId);
     if (!ticket) {
-      throw new AppError("Ticket not found", 404);
+      throw new AppError(messages.TICKET_NOT_FOUND, 404);
     }
     const contact = await Contact.findByPk(ticket.contactId);
     if (!contact) {
-      throw new AppError("Contact not found", 404);
+      throw new AppError(messages.CONTACT_NOT_FOUND, 404);
     }
     const whatsapp = await Whatsapp.findOne({ where: { id: ticket.whatsappId } });
     if (!whatsapp || !whatsapp.number) {
-      console.error('Número de WhatsApp não encontrado para o ticket:', ticket.whatsappId);
-      throw new Error('Número de WhatsApp não encontrado');
+      console.error(`${messages.WHATSAPP_NUMBER_NOT_FOUND} para el ticket:`, ticket.whatsappId);
+      throw new Error(messages.WHATSAPP_NUMBER_NOT_FOUND);
     }
 
     const botNumber = whatsapp.number;
@@ -133,18 +134,18 @@ export const sendCopyMessage = async (req: Request, res: Response): Promise<Resp
         message: {
           interactiveMessage: {
             body: {
-              text: title || 'Botão copiar',  
+              text: title || messages.BUTTON_COPY,
             },
             footer: {
-              text: description || 'Botão copiar',  
+              text: description || messages.BUTTON_COPY,
             },
             nativeFlowMessage: {
               buttons: [
                 {
                   name: 'cta_copy',
                   buttonParamsJson: JSON.stringify({
-                    display_text: buttonText || 'Botão copiar',  
-                    copy_code: copyText || 'Botão copiar',  
+                    display_text: buttonText || messages.BUTTON_COPY,
+                    copy_code: copyText || messages.BUTTON_COPY,
                   }),
                 },
               ],
@@ -165,11 +166,11 @@ export const sendCopyMessage = async (req: Request, res: Response): Promise<Resp
     if (newMsg) {
       await wbot.upsertMessage(newMsg, 'notify');
     }
-    return res.status(200).json({ message: "Copy message sent successfully", newMsg });
+    return res.status(200).json({ message: messages.COPY_MESSAGE_SENT, newMsg });
 
   } catch (error) {
-    console.error('Erro ao enviar a mensagem de cópia:', error);
-    throw new AppError("Error sending copy message", 500);
+    console.error(`${messages.ERROR_SENDING_COPY_MESSAGE}:`, error);
+    throw new AppError(messages.ERROR_SENDING_COPY_MESSAGE, 500);
   }
 };
 
@@ -180,16 +181,16 @@ export const sendCALLMessage = async (req: Request, res: Response): Promise<Resp
   try {
     const ticket = await Ticket.findByPk(ticketId);
     if (!ticket) {
-      throw new AppError("Ticket not found", 404);
+      throw new AppError(messages.TICKET_NOT_FOUND, 404);
     }
     const contact = await Contact.findByPk(ticket.contactId);
     if (!contact) {
-      throw new AppError("Contact not found", 404);
+      throw new AppError(messages.CONTACT_NOT_FOUND, 404);
     }
     const whatsapp = await Whatsapp.findOne({ where: { id: ticket.whatsappId } });
     if (!whatsapp || !whatsapp.number) {
-      console.error('Número de WhatsApp não encontrado para o ticket:', ticket.whatsappId);
-      throw new Error('Número de WhatsApp não encontrado');
+      console.error(`${messages.WHATSAPP_NUMBER_NOT_FOUND} para el ticket:`, ticket.whatsappId);
+      throw new Error(messages.WHATSAPP_NUMBER_NOT_FOUND);
     }
 
     const botNumber = whatsapp.number;
@@ -199,18 +200,18 @@ export const sendCALLMessage = async (req: Request, res: Response): Promise<Resp
         message: {
           interactiveMessage: {
             body: {
-              text: title || 'Botão copiar', 
+              text: title || messages.BUTTON_COPY,
             },
             footer: {
-              text: description || 'Botão copiar',  
+              text: description || messages.BUTTON_COPY,
             },
             nativeFlowMessage: {
               buttons: [
                 {
                   name: 'cta_call',
                   buttonParamsJson: JSON.stringify({
-                    display_text:  buttonText || 'Botão copiar',
-                    phoneNumber: copyText || 'Botão copiar',
+                    display_text:  buttonText || messages.BUTTON_COPY,
+                    phoneNumber: copyText || messages.BUTTON_COPY,
                   })
                 },
               ],
@@ -231,11 +232,11 @@ export const sendCALLMessage = async (req: Request, res: Response): Promise<Resp
     if (newMsg) {
       await wbot.upsertMessage(newMsg, 'notify');
     }
-    return res.status(200).json({ message: "Copy message sent successfully", newMsg });
+    return res.status(200).json({ message: messages.COPY_MESSAGE_SENT, newMsg });
 
   } catch (error) {
-    console.error('Erro ao enviar a mensagem de cópia:', error);
-    throw new AppError("Error sending copy message", 500);
+    console.error(`${messages.ERROR_SENDING_COPY_MESSAGE}:`, error);
+    throw new AppError(messages.ERROR_SENDING_COPY_MESSAGE, 500);
   }
 };
 
@@ -245,16 +246,16 @@ export const sendURLMessage = async (req: Request, res: Response): Promise<Respo
   try {
     const ticket = await Ticket.findByPk(ticketId);
     if (!ticket) {
-      throw new AppError("Ticket not found", 404);
+      throw new AppError(messages.TICKET_NOT_FOUND, 404);
     }
     const contact = await Contact.findByPk(ticket.contactId);
     if (!contact) {
-      throw new AppError("Contact not found", 404);
+      throw new AppError(messages.CONTACT_NOT_FOUND, 404);
     }
     const whatsapp = await Whatsapp.findOne({ where: { id: ticket.whatsappId } });
     if (!whatsapp || !whatsapp.number) {
-      console.error('Número de WhatsApp não encontrado para o ticket:', ticket.whatsappId);
-      throw new Error('Número de WhatsApp não encontrado');
+      console.error(`${messages.WHATSAPP_NUMBER_NOT_FOUND} para el ticket:`, ticket.whatsappId);
+      throw new Error(messages.WHATSAPP_NUMBER_NOT_FOUND);
     }
 
     const botNumber = whatsapp.number;
@@ -278,10 +279,10 @@ export const sendURLMessage = async (req: Request, res: Response): Promise<Respo
           message: {
             interactiveMessage: {
               body: {
-                text: title || 'Botão copiar',  // Título da mensagem
+                text: title || messages.BUTTON_COPY,  // Título de la mensaje
               },
               footer: {
-                text: description || 'Botão copiar',  // Descrição da mensagem
+                text: description || messages.BUTTON_COPY,  // Descripción de la mensaje
               },
               header: {
                 imageMessage: imageMessageContent,
@@ -292,8 +293,8 @@ export const sendURLMessage = async (req: Request, res: Response): Promise<Respo
                   {
                     name: 'cta_url',
                     buttonParamsJson: JSON.stringify({
-                      display_text: buttonText || 'Botão copiar',
-                      url: copyText || 'Botão copiar',
+                      display_text: buttonText || messages.BUTTON_COPY,
+                      url: copyText || messages.BUTTON_COPY,
                     })
                   },
                 ],
@@ -313,18 +314,18 @@ export const sendURLMessage = async (req: Request, res: Response): Promise<Respo
           message: {
             interactiveMessage: {
               body: {
-                text: title || 'Botão copiar', 
+                text: title || messages.BUTTON_COPY,
               },
               footer: {
-                text: description || 'Botão copiar',  
+                text: description || messages.BUTTON_COPY,
               },
               nativeFlowMessage: {
                 buttons: [
                   {
                     name: 'cta_url',
                     buttonParamsJson: JSON.stringify({
-                      display_text: buttonText || 'Botão copiar',
-                      url: copyText || 'Botão copiar',
+                      display_text: buttonText || messages.BUTTON_COPY,
+                      url: copyText || messages.BUTTON_COPY,
                     })
                   },
                 ],
@@ -346,11 +347,11 @@ export const sendURLMessage = async (req: Request, res: Response): Promise<Respo
     if (newMsg) {
       await wbot.upsertMessage(newMsg, 'notify');
     }
-    return res.status(200).json({ message: "Copy message sent successfully", newMsg });
+    return res.status(200).json({ message: messages.COPY_MESSAGE_SENT, newMsg });
 
   } catch (error) {
-    console.error('Erro ao enviar a mensagem de cópia:', error);
-    throw new AppError("Error sending copy message", 500);
+    console.error(`${messages.ERROR_SENDING_COPY_MESSAGE}:`, error);
+    throw new AppError(messages.ERROR_SENDING_COPY_MESSAGE, 500);
   }
 };
 
@@ -371,19 +372,19 @@ export const sendPIXMessage = async (req: Request, res: Response): Promise<Respo
   } = req.body;
 
   try {
-       const ticket = await Ticket.findByPk(ticketId);
+    const ticket = await Ticket.findByPk(ticketId);
     if (!ticket) {
-      throw new AppError("Ticket not found", 404);
+      throw new AppError(messages.TICKET_NOT_FOUND, 404);
     }
 
     const contact = await Contact.findByPk(ticket.contactId);
     if (!contact) {
-      throw new AppError("Contact not found", 404);
+      throw new AppError(messages.CONTACT_NOT_FOUND, 404);
     }
 
     const whatsapp = await Whatsapp.findOne({ where: { id: ticket.whatsappId } });
     if (!whatsapp || !whatsapp.number) {
-      throw new Error('Número de WhatsApp não encontrado');
+      throw new Error(messages.WHATSAPP_NUMBER_NOT_FOUND);
     }
 
     const number = `${contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`;
@@ -458,10 +459,10 @@ export const sendPIXMessage = async (req: Request, res: Response): Promise<Respo
     await wbot.relayMessage(number, newMsg.message!,{ messageId: newMsg.key.id });
     await wbot.upsertMessage(newMsg, 'notify');
 
-    return res.status(200).json({ message: "Mensagem enviada com sucesso", newMsg });
+    return res.status(200).json({ message: messages.MESSAGE_SENT_SUCCESS, newMsg });
   } catch (error) {
-    console.error('Erro ao enviar a mensagem:', error);
-    return res.status(500).json({ message: "Erro ao enviar a mensagem" });
+    console.error(`${messages.ERROR_SENDING_MESSAGE}:`, error);
+    return res.status(500).json({ message: messages.ERROR_SENDING_MESSAGE });
   }
 };
 
@@ -475,7 +476,7 @@ const generateRandomCode = (length: number = 11): string => {
   return code;
 };
 
-//Transcrição de Audio
+//Transcripción de audio
 export const transcribeAudioMessage = async (req: Request, res: Response): Promise<Response> => {
   const { fileName } = req.params;
   const { companyId } = req.user;
@@ -487,7 +488,7 @@ export const transcribeAudioMessage = async (req: Request, res: Response): Promi
     return res.send(transcribedText);
   } catch (error) {
     console.error(error);
-    return res.status(500).send({ error: 'Erro ao transcrever a mensagem de áudio.' });
+    return res.status(500).send({ error: messages.ERROR_TRANSCRIBING_AUDIO });
   }
 };
 
@@ -573,7 +574,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
             }
           }
 
-          //limpar arquivo nao utilizado mais após envio
+          //limpiar archivo no utilizado después del envío
           const filePath = path.resolve("public", `company${companyId}`, media.filename);
           const fileExists = fs.existsSync(filePath);
 
@@ -639,7 +640,7 @@ export const forwardMessage = async (
     return res.status(404).send("Message not found");
   }
   if (!contact) {
-    return res.status(404).send("Contact not found");
+    return res.status(404).send(messages.CONTACT_NOT_FOUND);
   }
 
   const settings = await CompaniesSettings.findOne({
@@ -649,7 +650,7 @@ export const forwardMessage = async (
 
   const whatsAppConnectionId = await GetWhatsAppFromMessage(message);
   if (!whatsAppConnectionId) {
-    return res.status(404).send('Whatsapp from message not found');
+    return res.status(404).send(messages.WHATSAPP_FROM_MESSAGE_NOT_FOUND);
   }
 
   const ticket = await ShowTicketService(message.ticketId, message.companyId);
@@ -797,11 +798,11 @@ export const send = async (req: Request, res: Response): Promise<Response> => {
     if (sendMessageWithExternalApi) {
 
       if (!whatsapp) {
-        throw new Error("Não foi possível realizar a operação");
+        throw new Error(messages.OPERATION_NOT_POSSIBLE);
       }
 
       if (messageData.number === undefined) {
-        throw new Error("O número é obrigatório");
+        throw new Error(messages.NUMBER_REQUIRED);
       }
 
       const number = messageData.number;
@@ -837,16 +838,16 @@ export const send = async (req: Request, res: Response): Promise<Response> => {
           { removeOnComplete: true, attempts: 3 }
         );
       }
-      return res.send({ mensagem: "Mensagem enviada!" });
+      return res.send({ mensagem: messages.MESSAGE_SENT_SUCCESS });
     }
-    return res.status(400).json({ error: 'Essa empresa não tem permissão para usar a API Externa. Entre em contato com o Suporte para verificar nossos planos!' });
+    return res.status(400).json({ error: messages.API_EXTERNAL_FORBIDDEN });
 
   } catch (err: any) {
 
     console.log(err);
     if (Object.keys(err).length === 0) {
       throw new AppError(
-        "Não foi possível enviar a mensagem, tente novamente em alguns instantes"
+        messages.MESSAGE_NOT_SENT_TRY_AGAIN
       );
     } else {
       throw new AppError(err.message);
@@ -893,11 +894,11 @@ export const sendMessageFlow = async (
     const whatsapp = await Whatsapp.findByPk(whatsappId);
 
     if (!whatsapp) {
-      throw new Error("Não foi possível realizar a operação");
+      throw new Error(messages.OPERATION_NOT_POSSIBLE);
     }
 
     if (messageData.number === undefined) {
-      throw new Error("O número é obrigatório");
+      throw new Error(messages.NUMBER_REQUIRED);
     }
 
     const numberToTest = messageData.number;
@@ -940,11 +941,11 @@ export const sendMessageFlow = async (
       );
     }
 
-    return "Mensagem enviada";
+    return messages.MESSAGE_SENT_SUCCESS;
   } catch (err: any) {
     if (Object.keys(err).length === 0) {
       throw new AppError(
-        "Não foi possível enviar a mensagem, tente novamente em alguns instantes"
+        messages.MESSAGE_NOT_SENT_TRY_AGAIN
       );
     } else {
       throw new AppError(err.message);

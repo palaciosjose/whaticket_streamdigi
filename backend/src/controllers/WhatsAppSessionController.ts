@@ -9,17 +9,18 @@ import DeleteBaileysService from "../services/BaileysServices/DeleteBaileysServi
 import cacheLayer from "../libs/cache";
 import Whatsapp from "../models/Whatsapp";
 import Userverify from "../models/User";
+import messages from "../locales/messages";
 
 const store = async (req: Request, res: Response): Promise<Response> => {
   const { whatsappId } = req.params;
   const { companyId } = req.user;
 
-  // console.log("STARTING SESSION", whatsappId)
+  // console.log("INICIANDO SESIÓN", whatsappId)
   const whatsapp = await ShowWhatsAppService(whatsappId, companyId);
   await StartWhatsAppSession(whatsapp, companyId);
 
 
-  return res.status(200).json({ message: "Starting session." });
+  return res.status(200).json({ message: messages.SESSION_STARTING });
 };
 
 const update = async (req: Request, res: Response): Promise<Response> => {
@@ -39,13 +40,13 @@ const update = async (req: Request, res: Response): Promise<Response> => {
     await StartWhatsAppSession(whatsapp, companyId);
   }
 
-  return res.status(200).json({ message: "Starting session." });
+  return res.status(200).json({ message: messages.SESSION_STARTING });
 };
 
 const remove = async (req: Request, res: Response): Promise<Response> => {
   const { whatsappId } = req.params;
   const { companyId } = req.user;
-  console.log("DISCONNECTING SESSION", whatsappId)
+  console.log("DESCONECTANDO SESIÓN", whatsappId)
   const whatsapp = await ShowWhatsAppService(whatsappId, companyId);
 
 
@@ -58,7 +59,7 @@ const remove = async (req: Request, res: Response): Promise<Response> => {
     wbot.ws.close();
   }
 
-  return res.status(200).json({ message: "Session disconnected." });
+  return res.status(200).json({ message: messages.SESSION_DISCONNECTED });
 };
 
 const removeadmin = async (req: Request, res: Response): Promise<Response> => {
@@ -67,9 +68,9 @@ const removeadmin = async (req: Request, res: Response): Promise<Response> => {
   const userId = req.user.id;
     const requestUser = await Userverify.findByPk(userId);
     if (requestUser.super === false) {
-    throw new AppError("Você nao tem permissão para esta ação!");
+    throw new AppError(messages.UNAUTHORIZED_ACTION);
   }
-  console.log("DISCONNECTING SESSION", whatsappId)
+  console.log("DESCONECTANDO SESIÓN", whatsappId)
   const whatsapp = await ShowWhatsAppServiceAdmin(whatsappId);
   if (whatsapp.channel === "whatsapp") {
     await DeleteBaileysService(whatsappId);
@@ -77,6 +78,6 @@ const removeadmin = async (req: Request, res: Response): Promise<Response> => {
     wbot.logout();
     wbot.ws.close();
   }
-  return res.status(200).json({ message: "Session disconnected." });
+  return res.status(200).json({ message: messages.SESSION_DISCONNECTED });
 };
 export default { store, remove, update, removeadmin };

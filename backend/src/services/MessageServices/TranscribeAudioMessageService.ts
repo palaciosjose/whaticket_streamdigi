@@ -4,6 +4,7 @@ import FormData from 'form-data';
 import axios from 'axios';
 import OpenAI from 'openai';
 import Setting from "../../models/Setting";
+import messages from "../../locales/messages";
 // import Configuration from 'openai';
 
 type Response = { transcribedText: string } | string;
@@ -41,8 +42,8 @@ const TranscribeAudioMessageToText = async (fileName: string, companyId: number)
   const filePath = `${publicFolder}/company${companyId}/${fileName}`;
   
   if (!fs.existsSync(filePath)) {
-    console.error(`Arquivo não encontrado: ${filePath}`);
-    return 'Arquivo não encontrado';
+    console.error(`${messages.FILE_NOT_FOUND}: ${filePath}`);
+    return messages.FILE_NOT_FOUND;
   }
 
   try { 
@@ -63,7 +64,7 @@ const TranscribeAudioMessageToText = async (fileName: string, companyId: number)
     return { transcribedText: response.data };
   } catch (error) {
     console.error(error);
-    return 'Conversão pra texto falhou';
+    return messages.AUDIO_CONVERSION_FAILED;
   }
 };
 
