@@ -1,15 +1,15 @@
 #!/bin/bash
 # 
-# system management
+# gestión del sistema
 
 #######################################
-# creates user
-# Arguments:
-#   None
+# crea usuario
+# Argumentos:
+#   Ninguno
 #######################################
 system_create_user() {
   print_banner
-  printf "${WHITE} 💻 Agora, vamos criar o usuário para a instancia...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Ahora vamos crear el usuario para la instancia...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -23,13 +23,13 @@ EOF
 }
 
 #######################################
-# clones repostories using git
-# Arguments:
-#   None
+# clona repositorios usando git
+# Argumentos:
+#   Ninguno
 #######################################
 system_mv_folder() {
   print_banner
-  printf "${WHITE} 💻 Fazendo download do código Whaticket...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Descargando el código de Whaticket...${GRAY_LIGHT}"
   printf "\n\n"
 
 
@@ -44,13 +44,13 @@ EOF
 }
 
 #######################################
-# creates folder
-# Arguments:
-#   None
+# crea carpeta
+# Argumentos:
+#   Ninguno
 #######################################
 system_create_folder() {
   print_banner
-  printf "${WHITE} 💻 Agora, vamos criar a nova pasta...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Ahora vamos crear la nueva carpeta...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -63,13 +63,13 @@ EOF
 }
 
 #######################################
-# unzip whaticket
-# Arguments:
-#   None
+# descomprime whaticket
+# Argumentos:
+#   Ninguno
 #######################################
 system_unzip_whaticket() {
   print_banner
-  printf "${WHITE} 💻 Fazendo unzip whaticket...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Descomprimiendo Whaticket...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -82,13 +82,13 @@ EOF
 }
 
 #######################################
-# updates system
-# Arguments:
-#   None
+# actualiza sistema
+# Argumentos:
+#   Ninguno
 #######################################
 system_update() {
   print_banner
-  printf "${WHITE} 💻 Vamos atualizar o sistema Whaticket...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos actualizar el sistema Whaticket...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -104,13 +104,13 @@ EOF
 
 
 #######################################
-# delete system
-# Arguments:
-#   None
+# elimina sistema
+# Argumentos:
+#   Ninguno
 #######################################
 deletar_tudo() {
   print_banner
-  printf "${WHITE} 💻 Vamos deletar o Whaticket...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos eliminar Whaticket...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -141,7 +141,7 @@ EOF
   sleep 2
 
   print_banner
-  printf "${WHITE} 💻 Remoção da Instancia/Empresa ${empresa_delete} realizado com sucesso ...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Eliminación de la Instancia/Empresa ${empresa_delete} realizada con éxito ...${GRAY_LIGHT}"
   printf "\n\n"
 
 
@@ -150,13 +150,13 @@ EOF
 }
 
 #######################################
-# bloquear system
-# Arguments:
-#   None
+# bloquea sistema
+# Argumentos:
+#   Ninguno
 #######################################
 configurar_bloqueio() {
   print_banner
-  printf "${WHITE} 💻 Vamos bloquear o Whaticket...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos bloquear Whaticket...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -169,7 +169,7 @@ EOF
   sleep 2
 
   print_banner
-  printf "${WHITE} 💻 Bloqueio da Instancia/Empresa ${empresa_bloquear} realizado com sucesso ...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Bloqueo de la Instancia/Empresa ${empresa_bloquear} realizado con éxito ...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -177,13 +177,13 @@ EOF
 
 
 #######################################
-# desbloquear system
-# Arguments:
-#   None
+# desbloquea sistema
+# Argumentos:
+#   Ninguno
 #######################################
 configurar_desbloqueio() {
   print_banner
-  printf "${WHITE} 💻 Vamos Desbloquear o Whaticket...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos desbloquear Whaticket...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -196,20 +196,20 @@ EOF
   sleep 2
 
   print_banner
-  printf "${WHITE} 💻 Desbloqueio da Instancia/Empresa ${empresa_desbloquear} realizado com sucesso ...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Desbloqueo de la Instancia/Empresa ${empresa_desbloquear} realizado con éxito ...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
 }
 
 #######################################
-# alter dominio system
-# Arguments:
-#   None
+# cambia dominio del sistema
+# Argumentos:
+#   Ninguno
 #######################################
 configurar_dominio() {
   print_banner
-  printf "${WHITE} 💻 Vamos Alterar os Dominios do Whaticket...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos cambiar los dominios de Whaticket...${GRAY_LIGHT}"
   printf "\n\n"
 
 sleep 2
@@ -301,16 +301,16 @@ EOF
   sleep 2
 
   print_banner
-  printf "${WHITE} 💻 Alteração de dominio da Instancia/Empresa ${empresa_dominio} realizado com sucesso ...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Cambio de dominio de la Instancia/Empresa ${empresa_dominio} realizado con éxito ...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
 }
 
 #######################################
-# installs node
-# Arguments:
-#   None
+# instala node
+# Argumentos:
+#   Ninguno
 #######################################
 system_node_install() {
   print_banner
@@ -336,9 +336,9 @@ EOF
   sleep 2
 }
 #######################################
-# installs docker
-# Arguments:
-#   None
+# instala docker
+# Argumentos:
+#   Ninguno
 #######################################
 system_docker_install() {
   print_banner
@@ -363,19 +363,19 @@ EOF
 }
 
 #######################################
-# Ask for file location containing
-# multiple URL for streaming.
-# Globals:
+# solicita la ubicación del archivo que contiene
+# múltiples URL para streaming.
+# Globales:
 #   WHITE
 #   GRAY_LIGHT
 #   BATCH_DIR
 #   PROJECT_ROOT
-# Arguments:
-#   None
+# Argumentos:
+#   Ninguno
 #######################################
 system_puppeteer_dependencies() {
   print_banner
-  printf "${WHITE} 💻 Instalando puppeteer dependencies...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Instalando dependencias de Puppeteer...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -430,9 +430,9 @@ EOF
 }
 
 #######################################
-# installs pm2
-# Arguments:
-#   None
+# instala pm2
+# Argumentos:
+#   Ninguno
 #######################################
 system_pm2_install() {
   print_banner
@@ -450,9 +450,9 @@ EOF
 }
 
 #######################################
-# installs snapd
-# Arguments:
-#   None
+# instala snapd
+# Argumentos:
+#   Ninguno
 #######################################
 system_snapd_install() {
   print_banner
@@ -471,9 +471,9 @@ EOF
 }
 
 #######################################
-# installs certbot
-# Arguments:
-#   None
+# instala certbot
+# Argumentos:
+#   Ninguno
 #######################################
 system_certbot_install() {
   print_banner
@@ -492,9 +492,9 @@ EOF
 }
 
 #######################################
-# installs nginx
-# Arguments:
-#   None
+# instala nginx
+# Argumentos:
+#   Ninguno
 #######################################
 system_nginx_install() {
   print_banner
@@ -512,13 +512,13 @@ EOF
 }
 
 #######################################
-# restarts nginx
-# Arguments:
-#   None
+# reinicia nginx
+# Argumentos:
+#   Ninguno
 #######################################
 system_nginx_restart() {
   print_banner
-  printf "${WHITE} 💻 reiniciando nginx...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Reiniciando nginx...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -531,13 +531,13 @@ EOF
 }
 
 #######################################
-# setup for nginx.conf
-# Arguments:
-#   None
+# configura nginx.conf
+# Argumentos:
+#   Ninguno
 #######################################
 system_nginx_conf() {
   print_banner
-  printf "${WHITE} 💻 configurando nginx...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Configurando nginx...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -554,9 +554,9 @@ EOF
 }
 
 #######################################
-# installs nginx
-# Arguments:
-#   None
+# configura certbot
+# Argumentos:
+#   Ninguno
 #######################################
 system_certbot_setup() {
   print_banner
