@@ -179,6 +179,14 @@ const messages = {
           import: "Seleccione el archivo de excel para importar los Contactos",
         },
       },
+      buttonPreview: {
+        copied: "¡Código copiado!",
+        noContent: "No hay contenido para copiar.",
+        noLink: "Ningún enlace disponible.",
+        noCall: "No es posible realizar llamadas por el sistema, inténtalo por el celular.",
+        noButtons: "Sin botones en esta sección.",
+        noSections: "Ninguna sección disponible.",
+      },
       connections: {
         title: "Conexiones",
         waitConnection: "Espere... Las conexiones serán reiniciadas!",
