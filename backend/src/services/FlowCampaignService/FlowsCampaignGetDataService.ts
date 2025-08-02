@@ -33,7 +33,7 @@ const FlowsCampaignGetDataService = async ({
             flow: flowResult
         }
       } catch (error) {
-        console.error('Erro ao consultar Fluxo:', error);
+        console.error('Error al consultar flujo:', error);
       }
 };
 

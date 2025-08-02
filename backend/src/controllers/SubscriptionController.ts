@@ -87,9 +87,9 @@ export const createSubscription = async (
   });
 
   if (!(await schema.isValid(req.body))) {
-    console.log("Erro linha 32")
-    throw new AppError("Dados Incorretos - Contate o Suporte!", 400);
-  }  
+    console.log("Error línea 32")
+    throw new AppError("Datos incorrectos - contacte al soporte!", 400);
+  }
 
   const {
     firstName,
@@ -121,7 +121,7 @@ async function createMercadoPagoPreference() {
       notification_url: String(process.env.MP_NOTIFICATION_URL),
       items: [
         {
-          title: `#Fatura:${invoiceId}`,
+          title: `#Factura:${invoiceId}`,
           unit_price: valor,
           quantity: 1
         }
@@ -134,10 +134,10 @@ async function createMercadoPagoPreference() {
       let mercadopagoURLb = response.body.init_point;
       //console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
       //console.log(mercadopagoURLb);
-      return mercadopagoURLb; // Retorna o valor para uso externo
+      return mercadopagoURLb; // Retorna el valor para uso externo
     } catch (error) {
       console.log(error);
-      return null; // Em caso de erro, retorna null ou um valor padrão adequado
+      return null; // En caso de error, retorna null o un valor por defecto adecuado
     }
   }
 }
@@ -156,8 +156,8 @@ var optionsGetAsaas = {
     'access_token': key_ASAAS_TOKEN
   },
   data: {
-    "name": `#Fatura:${invoiceId}`,
-    "description": `#Fatura:${invoiceId}`,
+    "name": `#Factura:${invoiceId}`,
+    "description": `#Factura:${invoiceId}`,
     //"endDate": "2021-02-05",
     "value": price.toLocaleString("es-CO", { minimumFractionDigits: 2 }).replace(",", "."),
     //"value": "50",
@@ -207,7 +207,7 @@ const stripe = new Stripe(key_STRIPE_PRIVATE, {
           price_data: {
             currency: 'brl',
             product_data: {
-              name: `#Fatura:${invoiceId}`,
+              name: `#Factura:${invoiceId}`,
             },
             unit_amount: price.toLocaleString("es-CO", { minimumFractionDigits: 2 }).replace(",", "").replace(".", ""), // Replace with the actual amount in cents
           },
@@ -242,7 +242,7 @@ if(key_GERENCIANET_PIX_KEY){
       original: price.toLocaleString("es-CO", { minimumFractionDigits: 2 }).replace(",", ".")
     },
     chave: key_GERENCIANET_PIX_KEY,
-    solicitacaoPagador: `#Fatura:${invoiceId}`
+    solicitacaoPagador: `#Factura:${invoiceId}`
     };
 
   try {
@@ -343,7 +343,7 @@ export const webhook = async (
 
       if (detahe.status === "CONCLUIDA") {
         const { solicitacaoPagador } = detahe;
-        const invoiceID = solicitacaoPagador.replace("#Fatura:", "");
+        const invoiceID = solicitacaoPagador.replace("#Factura:", "");
         const invoices = await Invoices.findByPk(invoiceID);
         const companyId =invoices.companyId;
         const company = await Company.findByPk(companyId);
@@ -510,11 +510,11 @@ export const mercadopagowebhook = async (
   	try {
     	const payment = await mercadopago.payment.get(req.body.data.id);
     
-    	console.log('DETALHES DO PAGAMENTO:', payment.body);
-        console.log('ID DA FATURA:', payment.body.external_reference);
+        console.log('DETALLES DEL PAGO:', payment.body);
+        console.log('ID DE LA FACTURA:', payment.body.external_reference);
     
     	if(!payment.body.transaction_details.transaction_id){
-        	console.log('SEM PAGAMENTO:', payment.body.external_reference);
+                console.log('SIN PAGO:', payment.body.external_reference);
         	return;
         }
 
@@ -522,7 +522,7 @@ export const mercadopagowebhook = async (
 		const invoiceID = invoices.id;
     
     	if (invoices && invoices.status === "paid") {
-        	console.log('FATURA JÁ PAGA');
+                console.log('FACTURA YA PAGADA');
             return;
         }
       
@@ -571,8 +571,8 @@ export const mercadopagowebhook = async (
 
     	res.status(200).json(payment.body);
   	} catch (error) {
-    	console.error('Erro ao tentar ler o pagamento:', error);
-    	res.status(500).json({ error: 'Erro ao identificar o pagamento' });
+        console.error('Error al intentar leer el pago:', error);
+        res.status(500).json({ error: 'Error al identificar el pago' });
   	}  
   
   

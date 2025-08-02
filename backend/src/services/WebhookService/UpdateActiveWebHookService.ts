@@ -18,7 +18,7 @@ const UpdateActiveWebHookService = async ({
 
     return 'ok';
   } catch (error) {
-    console.error("Erro ao inserir o usuário:", error);
+    console.error("Error al insertar el usuario:", error);
 
     return error
   }

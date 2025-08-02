@@ -151,7 +151,7 @@ export const certUpload = async (
   const requestUser = await User.findByPk(userId);
 
   if (requestUser.super === false) {
-    throw new AppError("você nao tem permissão para esta ação!");
+    throw new AppError("No tiene permiso para esta acción!");
   }
 
   if (req.user.profile !== "admin") {
@@ -165,7 +165,7 @@ export const certUpload = async (
   const files = req.files as Express.Multer.File[];
   const file = head(files);
   console.log(file);
-  return res.send({ mensagem: "Arquivo Anexado" });
+  return res.send({ message: "Archivo adjunto" });
 };
 
 export const storePrivateFile = async (req: Request, res: Response): Promise<Response> => {

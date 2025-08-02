@@ -31,7 +31,7 @@ const FlowsGetDataService = async ({
             flow: flow
         }
       } catch (error) {
-        console.error('Erro ao consultar Fluxo:', error);
+        console.error('Error al consultar flujo:', error);
       }
 };
 

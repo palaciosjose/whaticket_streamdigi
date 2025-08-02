@@ -80,13 +80,14 @@ const ImportWhatsAppMessageService = async (whatsappId: number | string) => {
     let dateRecentLimit = new Date(whatsApp.importRecentMessages).getTime();
 
     addLogs({
-      fileName: `processImportMessagesWppId${whatsappId}.txt`, forceNewFile: true,
-      text: `Aguardando conexão para iniciar a importação de mensagens:
-    Whatsapp nome: ${whatsApp.name}
-    Whatsapp Id: ${whatsApp.id}
-    Criação do arquivo de logs: ${moment().format("DD/MM/YYYY HH:mm:ss")}
-    Selecionado Data de inicio de importação: ${moment(dateOldLimit).format("DD/MM/YYYY HH:mm:ss")} 
-    Selecionado Data final da importação: ${moment(dateRecentLimit).format("DD/MM/YYYY HH:mm:ss")} 
+      fileName: `processImportMessagesWppId${whatsappId}.txt`,
+      forceNewFile: true,
+      text: `Esperando la conexión para iniciar la importación de mensajes:
+    Nombre de WhatsApp: ${whatsApp.name}
+    Id de WhatsApp: ${whatsApp.id}
+    Creación del archivo de logs: ${moment().format("DD/MM/YYYY HH:mm:ss")}
+    Fecha de inicio seleccionada para la importación: ${moment(dateOldLimit).format("DD/MM/YYYY HH:mm:ss")}
+    Fecha final seleccionada para la importación: ${moment(dateRecentLimit).format("DD/MM/YYYY HH:mm:ss")}
     `
     })
 

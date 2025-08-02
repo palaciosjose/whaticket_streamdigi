@@ -110,7 +110,7 @@ export const importXls = async (req: Request, res: Response): Promise<Response> 
           }
         });
       } catch (error) {
-        logger.info("Erro ao criar Tags", error)
+        logger.info("Error al crear Tags", error)
       }
     }
   }

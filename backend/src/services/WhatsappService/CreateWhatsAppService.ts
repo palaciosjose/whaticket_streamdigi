@@ -119,7 +119,7 @@ const CreateWhatsAppService = async ({
 
     if (whatsappCount >= company.plan.connections) {
       throw new AppError(
-        `Número máximo de conexões já alcançado: ${whatsappCount}`
+        `Número máximo de conexiones ya alcanzado: ${whatsappCount}`
       );
     }
   }
@@ -130,7 +130,7 @@ const CreateWhatsAppService = async ({
       .min(2)
       .test(
         "Check-name",
-        "Esse nome já está sendo utilizado por outra conexão",
+        "Ese nombre ya está siendo utilizado por otra conexión",
         async value => {
           if (!value) return false;
           const nameExists = await Whatsapp.findOne({

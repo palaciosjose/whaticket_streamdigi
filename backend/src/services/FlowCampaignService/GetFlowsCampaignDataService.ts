@@ -32,7 +32,7 @@ const GetFlowsCampaignDataService = async ({
             details: hook
         }
       } catch (error) {
-        console.error('Erro ao consultar Fluxo:', error);
+        console.error('Error al consultar flujo:', error);
       }
 };
 

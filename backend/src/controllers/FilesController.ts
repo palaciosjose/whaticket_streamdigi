@@ -88,7 +88,7 @@ export const uploadMedias = async (req: Request, res: Response): Promise<Respons
       }
     }
 
-    return res.send({ mensagem: "Arquivos atualizados" });
+    return res.send({ message: "Archivos actualizados" });
   } catch (err: any) {
     throw new AppError(err.message);
   }
