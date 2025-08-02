@@ -964,8 +964,8 @@ const messages = {
         "es-MX": "Español (México)",
         "es-US": "Español (Estados Unidos)",
         es: "Español",
-        en: "English",
-        tr: "Türkçe",
+        en: "Inglés",
+        tr: "Turco",
       },
       voices: {
         "es-CO-SalomeNeural": "Salomé",
