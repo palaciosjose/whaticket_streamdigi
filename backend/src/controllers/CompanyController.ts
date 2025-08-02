@@ -5,6 +5,7 @@ import { Request, Response } from "express";
 // import { getIO } from "../libs/socket";
 import AppError from "../errors/AppError";
 import Company from "../models/Company";
+import messages from "../locales/messages";
 
 import ListCompaniesService from "../services/CompanyService/ListCompaniesService";
 import CreateCompanyService from "../services/CompanyService/CreateCompanyService";
@@ -111,7 +112,7 @@ export const show = async (req: Request, res: Response): Promise<Response> => {
     const company = await ShowCompanyService(id);
     return res.status(200).json(company);
   } else if (id !== companyId.toString()) {
-    return res.status(400).json({ error: "Você não possui permissão para acessar este recurso!" });
+    return res.status(400).json({ error: messages.UNAUTHORIZED_RESOURCE });
   } else if (id === companyId.toString()) {
     const company = await ShowCompanyService(id);
     return res.status(200).json(company);
@@ -174,7 +175,7 @@ export const update = async (
     const company = await UpdateCompanyService({ id, ...companyData });
     return res.status(200).json(company);
   } else if (String(companyData?.id) !== id || String(companyId) !== id) {
-    return res.status(400).json({ error: "Você não possui permissão para acessar este recurso!" });
+    return res.status(400).json({ error: messages.UNAUTHORIZED_RESOURCE });
   } else {
     const company = await UpdateCompanyService({ id, ...companyData });
     return res.status(200).json(company);
@@ -199,7 +200,7 @@ export const updateSchedules = async (
     const company = await UpdateSchedulesService({ id, schedules });
     return res.status(200).json(company);
   } else if (companyId.toString() !== id) {
-    return res.status(400).json({ error: "Você não possui permissão para acessar este recurso!" });
+    return res.status(400).json({ error: messages.UNAUTHORIZED_RESOURCE });
   } else {
     const company = await UpdateSchedulesService({ id, schedules });
     return res.status(200).json(company);
@@ -222,7 +223,7 @@ export const remove = async (
     const company = await DeleteCompanyService(id);
     return res.status(200).json(company);
   } else {
-    return res.status(400).json({ error: "Você não possui permissão para acessar este recurso!" });
+    return res.status(400).json({ error: messages.UNAUTHORIZED_RESOURCE });
   }
 
 };
@@ -240,7 +241,7 @@ export const listPlan = async (req: Request, res: Response): Promise<Response> =
     const company = await ShowPlanCompanyService(id);
     return res.status(200).json(company);
   } else if (companyId.toString() !== id) {
-    return res.status(400).json({ error: "Você não possui permissão para acessar este recurso!" });
+    return res.status(400).json({ error: messages.UNAUTHORIZED_RESOURCE });
   } else {
     const company = await ShowPlanCompanyService(id);
     return res.status(200).json(company);
@@ -262,7 +263,7 @@ export const indexPlan = async (req: Request, res: Response): Promise<Response> 
     const companies = await ListCompaniesPlanService();
     return res.json({ companies });
   } else {
-    return res.status(400).json({ error: "Você não possui permissão para acessar este recurso!" });
+    return res.status(400).json({ error: messages.UNAUTHORIZED_RESOURCE });
   }
 
 };

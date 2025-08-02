@@ -4,6 +4,7 @@ import { MessageData, SendMessage } from "./helpers/SendMessage";
 import Whatsapp from "./models/Whatsapp";
 import logger from "./utils/logger";
 import moment from "moment";
+import messages from "./locales/messages";
 import Schedule from "./models/Schedule";
 import { Op, QueryTypes, Sequelize } from "sequelize";
 import GetDefaultWhatsApp from "./helpers/GetDefaultWhatsApp";
@@ -95,7 +96,7 @@ async function handleSendMessage(job) {
     const whatsapp = await Whatsapp.findByPk(data.whatsappId);
 
     if (whatsapp === null) {
-      throw Error("Whatsapp não identificado");
+      throw Error(messages.WHATSAPP_NOT_IDENTIFIED);
     }
 
     const messageData: MessageData = data.data;
@@ -134,7 +135,7 @@ async function handleVerifySchedules(job) {
           { schedule },
           { delay: 40000 }
         );
-        logger.info(`Disparo agendado para: ${schedule.contact.name}`);
+        logger.info(messages.SCHEDULED_SHOT(schedule.contact.name));
       });
     }
   } catch (e: any) {
@@ -154,7 +155,7 @@ async function handleSendScheduledMessage(job) {
     scheduleRecord = await Schedule.findByPk(schedule.id);
   } catch (e) {
     Sentry.captureException(e);
-    logger.info(`Erro ao tentar consultar agendamento: ${schedule.id}`);
+    logger.info(messages.SCHEDULE_QUERY_ERROR(schedule.id));
   }
 
   try {
@@ -261,12 +262,12 @@ async function handleSendScheduledMessage(job) {
           unidadeIntervalo = 'minuts';
           break;
         default:
-          throw new Error('Intervalo inválido');
+          throw new Error(messages.INVALID_INTERVAL);
       }
 
       function isDiaUtil(date) {
         const dayOfWeek = date.day();
-        return dayOfWeek >= 1 && dayOfWeek <= 5; // 1 é segunda-feira, 5 é sexta-feira
+        return dayOfWeek >= 1 && dayOfWeek <= 5; // 1 es lunes, 5 es viernes
       }
 
       function proximoDiaUtil(date) {
@@ -277,7 +278,7 @@ async function handleSendScheduledMessage(job) {
         return proximoDia;
       }
 
-      // Função para encontrar o dia útil anterior
+      // Función para encontrar el día hábil anterior
       function diaUtilAnterior(date) {
         let diaAnterior = date.clone();
         do {
@@ -291,7 +292,7 @@ async function handleSendScheduledMessage(job) {
       const fusoHorario = dataExistente.getTimezoneOffset();
 
       // Realizar a soma da data com base no intervalo e valor do intervalo
-      let novaData = new Date(dataExistente); // Clone da data existente para não modificar a original
+      let novaData = new Date(dataExistente); // Clon de la fecha existente para no modificar la original
 
       console.log(unidadeIntervalo)
       if (unidadeIntervalo !== "minuts") {
@@ -321,7 +322,7 @@ async function handleSendScheduledMessage(job) {
         status: "ENVIADA"
       });
     }
-    logger.info(`Mensagem agendada enviada para: ${schedule.contact.name}`);
+    logger.info(messages.SCHEDULE_MESSAGE_SENT(schedule.contact.name));
     sendScheduledMessages.clean(15000, "completed");
   } catch (e: any) {
     Sentry.captureException(e);
@@ -351,7 +352,7 @@ async function handleVerifyCampaigns(job) {
       );
 
     if (campaigns.length > 0) {
-      logger.info(`Campanhas encontradas: ${campaigns.length}`);
+      logger.info(messages.CAMPAIGNS_FOUND(campaigns.length));
 
       const promises = campaigns.map(async (campaign) => {
         try {
@@ -363,7 +364,7 @@ async function handleVerifyCampaigns(job) {
           const scheduledAt = moment(campaign.scheduledAt);
           const delay = scheduledAt.diff(now, "milliseconds");
           logger.info(
-            `Campanha enviada para a fila de processamento: Campanha=${campaign.id}, Delay Inicial=${delay}`
+            messages.CAMPAIGN_QUEUE_PROCESS(campaign.id, delay)
           );
 
           return campaignQueue.add(
@@ -379,7 +380,7 @@ async function handleVerifyCampaigns(job) {
 
       await Promise.all(promises);
 
-      logger.info('Todas as campanhas foram processadas e adicionadas à fila.');
+      logger.info(messages.CAMPAIGNS_PROCESSED);
     }
   } catch (err) {
     Sentry.captureException(err);
@@ -473,14 +474,14 @@ export function parseToMilliseconds(seconds) {
 
 async function sleep(seconds) {
   logger.info(
-    `Sleep de ${seconds} segundos iniciado: ${moment().format("HH:mm:ss")}`
+    messages.SLEEP_START(seconds, moment().format("HH:mm:ss"))
   );
   return new Promise(resolve => {
     setTimeout(() => {
       logger.info(
-        `Sleep de ${seconds} segundos finalizado: ${moment().format(
+        messages.SLEEP_END(seconds, moment().format(
           "HH:mm:ss"
-        )}`
+        ))
       );
       resolve(true);
     }, parseToMilliseconds(seconds));
@@ -633,7 +634,7 @@ const checkTime = async () => {
 
 
   logger.info(
-    `Envio inicia as ${hour} e termina as ${endHours}, hora atual ${timeNow} não está dentro do horário`
+    messages.LOG_SEND_WINDOW(hour, endHours, timeNow)
   );
   messageQueue.clean(0, "delayed");
   messageQueue.clean(0, "wait");
@@ -691,7 +692,7 @@ const checkTime = async () => {
 //     // sendMassMessage.pause();
 //     return false;
 //   } catch (error) {
-//     logger.error("conexão não tem configuração de envio.");
+//     logger.error("conexión no tiene configuración de envío.");
 //   }
 // };
 
@@ -764,7 +765,7 @@ async function handleProcessCampaign(job) {
             { removeOnComplete: true }
           );
           queuePromises.push(queuePromise);
-          logger.info(`Registro enviado pra fila de disparo: Campanha=${campaign.id};Contato=${contacts[i].name};delay=${delay}`);
+          logger.info(messages.RECORD_QUEUE(campaign.id, contacts[i].name, delay));
           // }
         }
         await Promise.all(queuePromises);
@@ -887,7 +888,7 @@ async function handleDispatchCampaign(job) {
     }
 
     logger.info(
-      `Disparo de campanha solicitado: Campanha=${campaignId};Registro=${campaignShippingId}`
+      messages.CAMPAIGN_DISPATCH_REQUEST(campaignId, campaignShippingId)
     );
 
     const campaignShipping = await CampaignShipping.findByPk(
@@ -1039,7 +1040,7 @@ async function handleDispatchCampaign(job) {
       });
 
     logger.info(
-      `Campanha enviada para: Campanha=${campaignId};Contato=${campaignShipping.contact.name}`
+      messages.CAMPAIGN_SENT_TO(campaignId, campaignShipping.contact.name)
     );
   } catch (err: any) {
     Sentry.captureException(err);
@@ -1154,11 +1155,11 @@ async function handleResumeTicketsOutOfHour(job) {
                   //   ticket,
                   // });
 
-                  logger.info(`Atendimento Perdido: ${ticket.id} - Empresa: ${companyId}`);
+                  logger.info(messages.LOST_TICKET(ticket.id, companyId));
                 });
               }
             } else {
-              logger.info(`Condição não respeitada - Empresa: ${companyId}`);
+              logger.info(messages.CONDITION_NOT_MET(companyId));
             }
           }
         }
@@ -1269,11 +1270,11 @@ async function handleVerifyQueue(job) {
                   //   ticket,
                   // });
 
-                  logger.info(`Atendimento Perdido: ${ticket.id} - Empresa: ${companyId}`);
+                  logger.info(messages.LOST_TICKET(ticket.id, companyId));
                 });
               }
             } else {
-              logger.info(`Condição não respeitada - Empresa: ${companyId}`);
+              logger.info(messages.CONDITION_NOT_MET(companyId));
             }
           }
         }
@@ -1287,7 +1288,7 @@ async function handleVerifyQueue(job) {
 };
 
 async function handleRandomUser() {
-  // logger.info("Iniciando a randomização dos atendimentos...");
+// logger.info("Iniciando la aleatorización de las atenciones...");
 
   const jobR = new CronJob('0 */2 * * * *', async () => {
 
@@ -1322,7 +1323,7 @@ async function handleRandomUser() {
               },
             });
 
-            //logger.info(`Localizado: ${count} filas para randomização.`);
+//logger.info(`Localizado: ${count} colas para aleatorización.`);
 
             const getRandomUserId = (userIds) => {
               const randomIndex = Math.floor(Math.random() * userIds.length);
@@ -1397,7 +1398,7 @@ async function handleRandomUser() {
                     if (sendGreetingMessageOneQueues) {
                       const ticketToSend = await ShowTicketService(ticket.id, ticket.companyId);
 
-                      await SendWhatsAppMessage({ body: `\u200e *Assistente Virtual*:\nAguarde enquanto localizamos um atendente... Você será atendido em breve!`, ticket: ticketToSend });
+                      await SendWhatsAppMessage({ body: messages.VIRTUAL_ASSISTANT_WAIT, ticket: ticketToSend });
 
                     }
 
@@ -1409,7 +1410,7 @@ async function handleRandomUser() {
                     });
 
                     //await ticket.reload();
-                    logger.info(`Ticket ID ${ticket.id} atualizado para UserId ${randomUserId} - ${ticket.updatedAt}`);
+                    logger.info(messages.TICKET_UPDATED(ticket.id, randomUserId, ticket.updatedAt));
                   } else {
                     //logger.info(`Ticket ID ${ticket.id} NOT updated with UserId ${randomUserId} - ${ticket.updatedAt}`);            
                   }
@@ -1431,7 +1432,7 @@ async function handleRandomUser() {
                         if (sendGreetingMessageOneQueues) {
 
                           const ticketToSend = await ShowTicketService(ticket.id, ticket.companyId);
-                          await SendWhatsAppMessage({ body: "*Assistente Virtual*:\nAguarde enquanto localizamos um atendente... Você será atendido em breve!", ticket: ticketToSend });
+                          await SendWhatsAppMessage({ body: messages.VIRTUAL_ASSISTANT_WAIT, ticket: ticketToSend });
                         };
 
                         await UpdateTicketService({
@@ -1441,7 +1442,7 @@ async function handleRandomUser() {
 
                         });
 
-                        logger.info(`Ticket ID ${ticket.id} atualizado para UserId ${randomUserId} - ${ticket.updatedAt}`);
+                        logger.info(messages.TICKET_UPDATED(ticket.id, randomUserId, ticket.updatedAt));
                       } else {
                         //logger.info(`Ticket ID ${ticket.id} NOT updated with UserId ${randomUserId} - ${ticket.updatedAt}`);            
                       }
@@ -1583,7 +1584,7 @@ async function handleWhatsapp() {
 }
 
 async function handleInvoiceCreate() {
-  logger.info("GERANDO RECEITA...");
+  logger.info(messages.GENERATING_INVOICES);
   const job = new CronJob('*/30 * * * * *', async () => {
     const companies = await Company.findAll();
     companies.map(async c => {
@@ -1604,11 +1605,11 @@ async function handleInvoiceCreate() {
         
         if(dias <= -3){
        
-          logger.info(`EMPRESA: ${c.id} está VENCIDA A MAIS DE 3 DIAS... INATIVANDO... ${dias}`);
+          logger.info(messages.COMPANY_OVERDUE(c.id, dias));
           c.status = false;
           await c.save(); // Save the updated company record
-          logger.info(`EMPRESA: ${c.id} foi INATIVADA.`);
-          logger.info(`EMPRESA: ${c.id} Desativando conexões com o WhatsApp...`);
+          logger.info(messages.COMPANY_INACTIVATED(c.id));
+          logger.info(messages.COMPANY_DISCONNECTING(c.id));
           
           try {
     		const whatsapps = await Whatsapp.findAll({
@@ -1622,14 +1623,14 @@ async function handleInvoiceCreate() {
     				await whatsapp.update({ status: "DISCONNECTED", session: "" });
     				const wbot = getWbot(whatsapp.id);
     				await wbot.logout();
-                	logger.info(`EMPRESA: ${c.id} teve o WhatsApp ${whatsapp.id} desconectado...`);
+                        logger.info(messages.WHATSAPP_DISCONNECTED(c.id, whatsapp.id));
   				}
     		}
           
   		  } catch (error) {
     		// Lidar com erros, se houver
-    		console.error('Erro ao buscar os IDs de WhatsApp:', error);
-    		throw error;
+                console.error(messages.ERROR_FETCH_WHATSAPP_IDS, error);
+                throw error;
   		  }
         
         }else{ // ELSE if(dias <= -3){
@@ -1648,7 +1649,7 @@ async function handleInvoiceCreate() {
             const updateSql = `UPDATE "Invoices" SET "dueDate" = '${date}' WHERE "id" = ${openInvoices[0].id};`;
             await sequelize.query(updateSql, { type: QueryTypes.UPDATE });
         
-            logger.info(`Fatura Atualizada ID: ${openInvoices[0].id}`);
+            logger.info(messages.INVOICE_UPDATED(openInvoices[0].id));
         
           } else {
             const valuePlan = plan.amount.replace(",", ".");
@@ -1656,7 +1657,7 @@ async function handleInvoiceCreate() {
             VALUES (${c.id}, '${date}', '${plan.name}', 'open', ${valuePlan}, ${plan.users}, ${plan.connections}, ${plan.queues}, '${timestamp}', '${timestamp}');`
             const invoiceInsert = await sequelize.query(sql, { type: QueryTypes.INSERT });
         
-            logger.info(`Fatura Gerada para o cliente: ${c.id}`);
+            logger.info(messages.INVOICE_GENERATED(c.id));
             // Rest of the code for sending email
           }
         
@@ -1683,7 +1684,7 @@ handleCloseTicketsAutomatic();
 handleRandomUser();
 
 export async function startQueueProcess() {
-  logger.info("Iniciando processamento de filas");
+  logger.info(messages.QUEUE_PROCESSING_START);
 
   messageQueue.process("SendMessage", handleSendMessage);
 
