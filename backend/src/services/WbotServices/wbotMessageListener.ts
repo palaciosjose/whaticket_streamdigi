@@ -97,7 +97,7 @@ import { IOpenAi } from "../../@types/openai";
 
 const os = require("os");
 
-const request = require("request");
+// removed deprecated request library
 
 let i = 0;
 
@@ -3856,18 +3856,13 @@ export const handleMessageIntegration = async (
         headers: {
           "Content-Type": "application/json"
         },
-        json: msg
+        data: msg
       };
       try {
-        request(options, function (error, response) {
-          if (error) {
-            throw new Error(error);
-          } else {
-            console.log(response.body);
-          }
-        });
+        const response = await axios.request(options);
+        console.log(response.data);
       } catch (error) {
-        throw new Error(error);
+        throw new Error(error as any);
       }
     }
   } else if (queueIntegration.type === "dialogflow") {
