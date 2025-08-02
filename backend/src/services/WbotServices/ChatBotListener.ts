@@ -18,6 +18,7 @@ import Chatbot from "../../models/Chatbot";
 import User from "../../models/User";
 import ShowFileService from "../FileServices/ShowService";
 import { isNil, isNull } from "lodash";
+import messages from "../../locales/messages";
 
 import SendWhatsAppMedia, { getMessageOptions } from "./SendWhatsAppMedia";
 import CompaniesSettings from "../../models/CompaniesSettings";
@@ -91,7 +92,7 @@ const sendMessageLink = async (
     sentMessage = await wbot.sendMessage(
       `${contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`,
       {
-        text: formatBody('\u200eNão consegui enviar o PDF, tente novamente!', ticket)
+        text: formatBody(messages.PDF_SEND_ERROR, ticket)
       }
     );
   }
@@ -121,7 +122,7 @@ const sendMessageImage = async (
     sentMessage = await wbot.sendMessage(
       `${contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`,
       {
-        text: formatBody('Não consegui enviar o PDF, tente novamente!', ticket)
+        text: formatBody(messages.PDF_SEND_ERROR, ticket)
       }
     );
   }
@@ -368,14 +369,14 @@ const sendDialog = async (
       if (sectionsRows.length > 0) {
         const sections = [
           {
-            title: "Menu",
+            title: messages.MENU,
             rows: sectionsRows
           }
         ];
 
         const listMessage = {
           text: formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket),
-          buttonText: "Escolha uma opção",
+          buttonText: messages.CHOOSE_OPTION,
           sections
         };
 
