@@ -1,0 +1,1755 @@
+const messages = {
+  pt: {
+    translations: {
+      signup: {
+        title: "Regístrate",
+        toasts: {
+          success: "¡Usuario creado con éxito! ¡Inicia sesión!",
+          fail: "Error al crear usuario. Verifica los datos ingresados.",
+        },
+        form: {
+          name: "Nombre",
+          email: "Email",
+          password: "Contraseña",
+          company: "Nombre de la Organización",
+          phone: "WhatsApp (CÓDIGO + NÚMERO)",
+        },
+        buttons: {
+          submit: "Registrar",
+          login: "¿Ya tienes una cuenta? ¡Entra!",
+        },
+      },
+      login: {
+        title: "Iniciar Sesión",
+        form: {
+          email: "Email",
+          password: "Contraseña",
+          button: "Acceder",
+        },
+        buttons: {
+          submit: "Entrar",
+          register: "¿No tienes una cuenta? ¡Regístrate!",
+        },
+      },
+      companies: {
+        title: "Registrar Empresa",
+        form: {
+          name: "Nombre de la Empresa",
+          plan: "Plan",
+          token: "Token",
+          submit: "Registrar",
+          success: "¡Empresa creada con éxito!",
+        },
+      },
+      auth: {
+        toasts: {
+          success: "¡Inicio de sesión exitoso!",
+        },
+        dueDate: {
+          expiration: "Tu suscripción expira en",
+          days: "días!",
+          day: "día!",
+          expirationToday: "¡Tu suscripción expira hoy!",
+        },
+        token: "Token",
+      },
+      dashboard: {
+        tabs: {
+          indicators: "Indicadores",
+          assessments: "NPS",
+          attendants: "Agentes",
+        },
+        charts: {
+          perDay: {
+            title: "Atenciones hoy: ",
+          },
+        },
+        cards: {
+          inAttendance: "En Atención",
+          waiting: "Esperando",
+          activeAttendants: "Agentes Activos",
+          finalized: "Finalizados",
+          newContacts: "Nuevos Contactos",
+          totalReceivedMessages: "Mensajes Recibidos",
+          totalSentMessages: "Mensajes Enviados",
+          averageServiceTime: "T.M. de Atención",
+          averageWaitingTime: "T.M. de Espera",
+          status: "Estado (Actual)",
+          activeTickets: "Tickets Activos",
+          passiveTickets: "Tickets Pasivos",
+          groups: "Grupos",
+        },
+        users: {
+
+
+          name: "Nombre",
+          numberAppointments: "Cantidad de Atenciones",
+          statusNow: "Actual",
+          totalCallsUser: "Total de atenciones por usuario",
+          totalAttendances: "Total de atenciones",
+        },
+        date: {
+          initialDate: "Fecha Inicial",
+          finalDate: "Fecha Final",
+        },
+        licence: {
+          available: "Disponible hasta",
+        },
+        assessments: {
+          totalCalls: "Total de Atenciones",
+          callsWaitRating: "Atenciones esperando evaluación",
+          callsWithoutRating: "Atenciones sin evaluación",
+          ratedCalls: "Atenciones evaluadas",
+          evaluationIndex: "Índice de evaluación",
+          score: "Puntuación",
+          prosecutors: "Promotores",
+          neutral: "Neutrales",
+          detractors: "Detractores",
+        },
+      },
+      reports: {
+        title: "Informe de Encuestas Realizadas",
+        operator: "Operador",
+        period: "Período",
+        until: "Hasta",
+        date: "Fecha",
+        reportTitle: "Informes",
+        calls: "Atenciones",
+        search: "Encuestas",
+        durationCalls: "Duración de las atenciones",
+        grupoSessions: "Atenciones en grupos",
+        groupTicketsReports: {
+          timezone: "America/Sao_Paulo",
+          msgToast: "Generando informe comprimido, por favor espera.",
+          errorToast: "Error al generar el informe",
+          back: "Volver",
+          groupServiceReport: "Informe de Atención en Grupos",
+          loading: "Cargando...",
+          contact: "Contacto",
+          dateOpen: "Fecha apertura",
+          dateLastUpdated: "Fecha Última Actualización",
+          agent: "Quién atendió",
+          agentClosed: "Quién cerró",
+          waitingAssistance: "Esperando atención",
+          process: "En atención",
+        },
+        researchReports: {
+          response: "respuesta",
+          active: "(Activa)",
+          inactive: "(Inactiva)",
+          quantity: "Cantidad",
+          percentage: "porcentaje",
+          title: "Informe de Encuestas Realizadas",
+          activeSearch: "Encuesta activa",
+          inactiveSearch: "Encuesta inactiva",
+        },
+        ticketDurationDetail: {
+          msgToast: "Generando informe comprimido, por favor espera.",
+          title: "Informe de Duración de la Atención",
+          startService: "Inicio de la atención",
+          lastUpdated: "Última actualización",
+          lastAgent: "Último agente",
+          durationFinished: "Duración después de finalizado",
+        },
+        ticketDuration: {
+          title: "Informe de Duración de las Atenciones",
+          contact: "Contacto",
+          open: "Abiertos",
+          pending: "Pendientes",
+          finished: "Finalizados",
+          durationFinished: "Duración de los finalizados",
+          durationAfterFinished: "Duración después de finalizado",
+          actions: "Acciones",
+        },
+        ticketReports: {
+          msgToast: "Generando informe comprimido, por favor espera.",
+          title: "Informe de Atención",
+        },
+        pdf: {
+          title: "Relación de Atenciones Realizadas",
+          exportTitle: "Relación de Atenciones en Grupos Realizadas",
+        },
+      },
+      todo: {
+        newTask: "Nueva Tarea",
+        add: "Agregar",
+        task: "Tareas",
+      },
+      contactImportWpModal: {
+        title: "Exportar Contactos a Excel",
+        buttons: {
+          downloadModel: "Descargar modelo de excel para importación",
+          closed: "Cerrar",
+          import: "Selecciona el archivo de excel para importar Contactos",
+        },
+      },
+      connections: {
+        title: "Conexiones",
+        waitConnection: "Espera... ¡Tus conexiones serán reiniciadas!",
+        newConnection: "Nueva Conexión",
+        restartConnections: "Reiniciar Conexiones",
+        callSupport: "Llamar Soporte",
+        toasts: {
+          deleted: "¡Conexión eliminada con éxito!",
+          disconnected: "¡Conexión desconectada con éxito!",
+          closedimported:
+            "Estamos cerrando los tickets importados, por favor espera unos momentos",
+        },
+        confirmationModal: {
+          closedImportedTitle: "Cerrar tickets importados",
+          closedImportedMessage:
+            "¿Estás seguro? Esta acción cerrará todos los tickets importados y no se puede deshacer.",
+          deleteTitle: "Eliminar Conexión",
+          deleteMessage:
+            "¿Estás seguro? Esta acción no se puede deshacer.",
+          disconnectTitle: "Desconectar",
+          disconnectMessage:
+            "¿Estás seguro? Tendrás que escanear el código QR nuevamente.",
+        },
+        buttons: {
+          add: "Agregar WhatsApp",
+          disconnect: "desconectar",
+          tryAgain: "Intentar de nuevo",
+          qrcode: "CÓDIGO QR",
+          newQr: "Nuevo CÓDIGO QR",
+          closedImported: "Cerrar todos los tickets Importados",
+          preparing: "Preparando mensajes para importación",
+          importing: "Importando Mensajes de WhatsApp",
+          processed: "Procesado",
+          in: "de",
+          connecting: "Conectando",
+        },
+        typography: {
+          processed: "Procesado",
+          in: "de",
+          date: "Fecha del mensaje",
+        },
+        toolTips: {
+          disconnected: {
+            title: "Error al iniciar sesión de WhatsApp",
+            content:
+              "Asegúrate de que tu celular esté conectado a internet e intenta nuevamente, o solicita un nuevo código QR",
+          },
+          qrcode: {
+            title: "Esperando lectura del código QR",
+            content:
+              "Haz clic en el botón 'CÓDIGO QR' y lee el código QR con tu celular para iniciar la sesión",
+          },
+          connected: {
+            title: "¡Conexión establecida!",
+          },
+          timeout: {
+            title: "Se perdió la conexión con el celular",
+            content:
+              "Asegúrate de que tu celular esté conectado a internet y WhatsApp esté abierto, o haz clic en el botón 'Desconectar' para obtener un nuevo código QR",
+          },
+        },
+        table: {
+          name: "Nombre",
+          status: "Estado",
+          lastUpdate: "Última actualización",
+          default: "Predeterminado",
+          actions: "Acciones",
+          session: "Sesión",
+          number: "Número de WhatsApp",
+        },
+      },
+      showTicketOpenModal: {
+        title: {
+          header: "Atención Existente",
+        },
+        form: {
+          message: "Este contacto ya está en atención:",
+          user: "Agente",
+          queue: "Cola",
+          messageWait:
+            "Este contacto ya está esperando atención. ¡Mira en la pestaña Esperando!",
+        },
+      },
+      showTicketLogModal: {
+        title: {
+          header: "Registros",
+        },
+        options: {
+          create: "Ticket creado.",
+          chatBot: "ChatBot iniciado.",
+          queue: " - Cola definida.",
+          open: " inició la atención.",
+          access: "accedió al ticket.",
+          transfered: "transfirió el ticket.",
+          receivedTransfer: "recibió el ticket transferido.",
+          pending: "devolvió a la cola.",
+          closed: "cerró el ticket",
+          reopen: "reabrió el ticket",
+          redirect: "- redirigido"
+        },
+      },
+      whatsappModal: {
+        title: {
+          add: "Agregar Conexión",
+          edit: "Editar Conexión",
+        },
+        tabs: {
+          general: "General",
+          messages: "Mensajes",
+          assessments: "NPS",
+          integrations: "Integraciones",
+          schedules: "Horario de trabajo",
+        },
+        form: {
+          importOldMessagesEnable: "Importar mensajes del dispositivo",
+          importOldMessages: "Fecha de inicio de la importación",
+          importRecentMessages: "Fecha de término de la importación",
+          importOldMessagesGroups: "Importar mensajes de grupo",
+          closedTicketsPostImported: "Cerrar tickets después de la importación",
+          name: "Nombre",
+          queueRedirection: "Redirección de Cola",
+          queueRedirectionDesc:
+            "Selecciona una cola para que los contactos que no tienen cola sean redirigidos",
+          default: "Predeterminado",
+          group: "Permitir grupos",
+          timeSendQueue: "Tiempo en minutos para redirigir a la cola",
+          importAlert:
+            "ATENCIÓN: Al guardar, tu conexión será cerrada, será necesario leer nuevamente el código QR para importar los mensajes",
+          groupAsTicket: "Tratar grupos como ticket",
+          timeCreateNewTicket: "Crear nuevo ticket en x minutos",
+          maxUseBotQueues: "Enviar bot x veces",
+          timeUseBotQueues: "Enviar bot en x minutos",
+          expiresTicket: "Cerrar chats abiertos después de x minutos",
+          expiresTicketNPS:
+            "Cerrar chats esperando evaluación después de x minutos",
+          maxUseBotQueuesNPS:
+            "Cantidad máxima de veces que la evaluación será enviada",
+          closeLastMessageOptions1: "Del agente/Cliente",
+          closeLastMessageOptions2: "Del agente",
+          outOfHoursMessage: "Mensaje fuera de horario",
+          greetingMessage: "Mensaje de saludo",
+          complationMessage: "Mensaje de conclusión",
+          lgpdLinkPrivacy: "Enlace para política de privacidad",
+          lgpdMessage: "Mensaje de saludo LGPD",
+          lgpdDeletedMessages: "Ocultar mensaje eliminado por el contacto",
+          lgpdSendMessage: "Siempre solicitar confirmación del contacto",
+          ratingMessage: "Mensaje de evaluación - La escala debe ser de 0 a 10",
+          token: "Token para integración externa",
+          sendIdQueue: "Cola",
+          inactiveMessage: "Mensaje de inactividad",
+          timeInactiveMessage:
+            "Tiempo en minutos para envío del aviso de inactividad",
+          whenExpiresTicket:
+            "Cerrar chats abiertos cuando el último mensaje sea",
+          expiresInactiveMessage: "Mensaje de cierre por inactividad",
+          prompt: "Prompt",
+          collectiveVacationEnd: "Fecha final",
+          collectiveVacationStart: "Fecha inicial",
+          collectiveVacationMessage: "Mensaje de vacaciones colectivas",
+          queueIdImportMessages: "Cola para importar los mensajes"
+        },
+        buttons: {
+          okAdd: "Agregar",
+          okEdit: "Guardar",
+          cancel: "Cancelar",
+        },
+        menuItem: {
+          enabled: "Habilitado",
+          disabled: "Deshabilitado",
+          minutes: "minutos",
+        },
+        success: "Conexión guardada con éxito.",
+        errorSendQueue:
+          "Se informó tiempo para redirigir cola, pero no se seleccionó cola para redirigir. Los dos campos necesitan estar completados",
+        errorExpiresNPS:
+          "Es obligatorio informar un tiempo para evaluación cuando se utiliza el NPS.",
+        errorRatingMessage:
+          "Es obligatorio informar un mensaje de evaluación cuando se utiliza el NPS.",
+      },
+      qrCode: {
+        message: "Lee el código QR para iniciar la sesión",
+      },
+      contacts: {
+        title: "Contactos",
+        toasts: {
+          deleted: "¡Contacto eliminado con éxito!",
+        },
+        searchPlaceholder: "Buscar...",
+        confirmationModal: {
+          deleteTitle: "Eliminar ",
+          importTitlte: "Importar contactos",
+          exportContact: "Exportar contactos",
+          deleteMessage:
+            "¿Estás seguro de que deseas eliminar este contacto? Todas las atenciones relacionadas se perderán.",
+          blockContact: "¿Estás seguro de que deseas bloquear este contacto?",
+          unblockContact: "¿Estás seguro de que deseas desbloquear este contacto?",
+          importMessage: "¿Deseas importar todos los contactos del teléfono?",
+          importChat: "Importar Conversaciones",
+          wantImport: "¿Deseas importar todas las conversaciones del teléfono?",
+        },
+        buttons: {
+          import: "Importar Contactos",
+          add: "Agregar Contacto",
+          export: "Exportar Contacto",
+        },
+        table: {
+          name: "Nombre",
+          whatsapp: "Conexión",
+          email: "Email",
+          actions: "Acciones",
+          lastMessage: "Último Mensaje",
+        },
+        menu: {
+          importYourPhone: "Importar del dispositivo predeterminado",
+          importToExcel: "Importar / Exportar desde Excel",
+        },
+      },
+      forwardMessage: {
+        text: "Reenviada",
+      },
+      forwardMessageModal: {
+        title: "Reenviar mensaje",
+        buttons: {
+          ok: "Reenviar",
+        },
+      },
+      promptModal: {
+        form: {
+          name: "Nombre",
+          prompt: "Prompt",
+          voice: "Voz",
+          max_tokens: "Máximo de Tokens en la respuesta",
+          temperature: "Temperatura",
+          apikey: "API Key",
+          max_messages: "Máximo de mensajes en el Historial",
+          voiceKey: "Clave de la API de Voz",
+          voiceRegion: "Región de Voz",
+        },
+        success: "¡Prompt guardado con éxito!",
+        title: {
+          add: "Agregar Prompt",
+          edit: "Editar Prompt",
+        },
+        buttons: {
+          okAdd: "Agregar",
+          okEdit: "Guardar",
+          cancel: "Cancelar",
+        },
+      },
+      prompts: {
+        title: "Prompts",
+        table: {
+          name: "Nombre",
+          queue: "Sector/Cola",
+          max_tokens: "Máximo Tokens Respuesta",
+          actions: "Acciones",
+        },
+        confirmationModal: {
+          deleteTitle: "Eliminar",
+          deleteMessage: "¿Estás seguro? ¡Esta acción no se puede deshacer!",
+        },
+        buttons: {
+          add: "Agregar Prompt",
+        },
+      },
+      contactModal: {
+        title: {
+          add: "Agregar contacto",
+          edit: "Editar contacto",
+        },
+        form: {
+          mainInfo: "Datos del contacto",
+          extraInfo: "Información adicional",
+          name: "Nombre",
+          number: "Número de WhatsApp",
+          email: "Email",
+          extraName: "Nombre del campo",
+          extraValue: "Valor",
+          chatBotContact: "Deshabilitar chatbot",
+          termsLGDP: "Términos LGPD aceptados en:",
+          whatsapp: "Conexión Origen: "
+        },
+        buttons: {
+          addExtraInfo: "Agregar información",
+          okAdd: "Agregar",
+          okEdit: "Guardar",
+          cancel: "Cancelar",
+        },
+        success: "Contacto guardado con éxito.",
+      },
+      flowbuilderModal: {
+        flowNotIdPhrase: "Flujo predeterminado",
+      },
+      queueModal: {
+        title: {
+          queueData: "Datos de la cola",
+          text: "Horarios de atención",
+          add: "Agregar cola",
+          edit: "Editar cola",
+          confirmationDelete:
+            "¿Estás seguro? Todas las opciones de integraciones serán eliminadas.",
+        },
+        form: {
+          name: "Nombre",
+          color: "Color",
+          orderQueue: "Orden de la cola (Bot)",
+          rotate: "Rotación",
+          timeRotate: "Tiempo de Rotación",
+          greetingMessage: "Mensaje de saludo",
+          complationMessage: "Mensaje de conclusión",
+          outOfHoursMessage: "Mensaje fuera de horario",
+          token: "Token",
+          integrationId: "Integración",
+          fileListId: "Lista de archivos",
+          closeTicket: "Cerrar ticket",
+          queueType: "Tipo de menú",
+          message: "Mensaje de retorno",
+          queue: "Cola para transferencia",
+          integration: "Integración",
+          file: "Lista de archivos",
+        },
+        buttons: {
+          okAdd: "Agregar",
+          okEdit: "Guardar",
+          cancel: "Cancelar",
+        },
+        bot: {
+          title: "Opciones",
+          toolTipTitle: "Agrega opciones para construir un chatbot",
+          toolTip:
+            "Si hay solo una opción, será elegida automáticamente, haciendo que el bot responda con el mensaje de la opción y siga adelante",
+          selectOption: "Selecciona una opción",
+          text: "Texto",
+          attendent: "Agente",
+          queue: "Cola",
+          integration: "Integración",
+          file: "Archivo",
+          toolTipMessageTitle:
+            "El mensaje es obligatorio para seguir al próximo nivel",
+          toolTipMessageContent:
+            "El mensaje es obligatorio para seguir al próximo nivel",
+          selectUser: "Selecciona un Usuario",
+          selectQueue: "Selecciona una Cola",
+          selectIntegration: "Selecciona una Integración",
+          addOptions: "Agregar opciones",
+        },
+        serviceHours: {
+          dayWeek: "Día de la semana",
+          startTimeA: "Hora Inicial - Turno A",
+          endTimeA: "Hora Final - Turno A",
+          startTimeB: "Hora Inicial - Turno B",
+          endTimeB: "Hora Final - Turno B",
+          monday: "Lunes",
+          tuesday: "Martes",
+          wednesday: "Miércoles",
+          thursday: "Jueves",
+          friday: "Viernes",
+          saturday: "Sábado",
+          sunday: "Domingo",
+        },
+      },
+      queueIntegrationModal: {
+        title: {
+          add: "Agregar proyecto",
+          edit: "Editar proyecto",
+        },
+        form: {
+          id: "ID",
+          type: "Tipo",
+          name: "Nombre",
+          projectName: "Nombre del Proyecto",
+          language: "Lenguaje",
+          jsonContent: "JsonContent",
+          urlN8N: "URL",
+          typebotSlug: "Typebot - Slug",
+          typebotExpires: "Tiempo en minutos para expirar una conversación",
+          typebotKeywordFinish: "Palabra para finalizar el ticket",
+          typebotKeywordRestart: "Palabra para reiniciar el flujo",
+          typebotRestartMessage: "Mensaje al reiniciar la conversación",
+          typebotUnknownMessage: "Mensaje de opción inválida",
+          typebotDelayMessage: "Intervalo (ms) entre mensajes",
+        },
+        buttons: {
+          okAdd: "Agregar",
+          okEdit: "Guardar",
+          cancel: "Cancelar",
+          test: "Probar Bot",
+        },
+        messages: {
+          testSuccess: "¡Integración probada con éxito!",
+          addSuccess: "Integración agregada con éxito.",
+          editSuccess: "Integración editada con éxito.",
+        },
+      },
+      userModal: {
+        warning:
+          "¡Para hacer la importación de los mensajes es necesario leer el código QR nuevamente!",
+        title: {
+          add: "Agregar usuario",
+          edit: "Editar usuario",
+          updateImage: "Actualizar imagen",
+          removeImage: "Eliminar imagen",
+        },
+        form: {
+          name: "Nombre",
+          email: "Email",
+          password: "Contraseña",
+          farewellMessage: "Mensaje de despedida",
+          profile: "Perfil",
+          startWork: "Inicio de trabajo",
+          endWork: "Fin de trabajo",
+          whatsapp: "Conexión Predeterminada",
+          allTicketEnable: "Habilitado",
+          allTicketDisable: "Deshabilitado",
+          allTicket: "Visualizar tickets sin cola",
+          allowGroup: "Permitir Grupos",
+          defaultMenuOpen: "Abierto",
+          defaultMenuClosed: "Cerrado",
+          defaultMenu: "Menú predeterminado",
+          defaultTheme: "Tema Predeterminado",
+          defaultThemeDark: "Oscuro",
+          defaultThemeLight: "Claro",
+          allHistoric: "Ver conversaciones de otras colas",
+          allHistoricEnabled: "Habilitado",
+          allHistoricDisabled: "Deshabilitado",
+          allUserChat: "Ver conversaciones de otros usuarios",
+          userClosePendingTicket: "Permitir cerrar tickets pendientes",
+          showDashboard: "Ver Dashboard",
+          allowRealTime: "Ver Panel de Atenciones",
+          allowConnections: "Permitir acciones en las conexiones",
+        },
+        tabs: {
+          general: "General",
+          permissions: "Permisos",
+        },
+        buttons: {
+          okAdd: "Agregar",
+          okEdit: "Guardar",
+          cancel: "Cancelar",
+          addImage: "Agregar Imagen",
+          editImage: "Editar Imagen",
+        },
+        success: "Usuario guardado con éxito.",
+      },
+      companyModal: {
+        title: {
+          add: "Agregar empresa",
+          edit: "Editar empresa",
+        },
+        form: {
+          name: "Nombre",
+          email: "Email",
+          passwordDefault: "Contraseña",
+          numberAttendants: "Usuarios",
+          numberConections: "Conexiones",
+        },
+        buttons: {
+          okAdd: "Agregar",
+          okEdit: "Guardar",
+          cancel: "Cancelar",
+        },
+        success: "Empresa guardada con éxito.",
+      },
+      scheduleModal: {
+        title: {
+          add: "Nueva Programación",
+          edit: "Editar Programación",
+        },
+        form: {
+          body: "Mensaje",
+          contact: "Contacto",
+          sendAt: "Fecha de Programación",
+          sentAt: "Fecha de Envío",
+          assinar: "Enviar Firma"
+        },
+        buttons: {
+          okAdd: "Agregar",
+          okEdit: "Guardar",
+          cancel: "Cancelar",
+          addSchedule: "Agregar programación"
+        },
+        success: "Programación guardada con éxito.",
+      },
+      tagModal: {
+        title: {
+          add: "Nueva Etiqueta",
+          edit: "Editar Etiqueta",
+          addKanban: "Nuevo Carril",
+          editKanban: "Editar Carril",
+        },
+        form: {
+          name: "Nombre",
+          color: "Color",
+          timeLane: "Tiempo en horas para redirigir al carril",
+          nextLaneId: "Carril",
+          greetingMessageLane: "Mensaje de saludo del carril",
+          rollbackLaneId: "Volver al Carril después de retomar atención"
+        },
+        buttons: {
+          okAdd: "Agregar",
+          okEdit: "Guardar",
+          cancel: "Cancelar",
+        },
+        success: "Etiqueta guardada con éxito.",
+        successKanban: "Carril guardado con éxito.",
+      },
+      fileModal: {
+        title: {
+          add: "Agregar lista de archivos",
+          edit: "Editar lista de archivos",
+        },
+        buttons: {
+          okAdd: "Guardar",
+          okEdit: "Editar",
+          cancel: "Cancelar",
+          fileOptions: "Agregar archivo",
+        },
+        form: {
+          name: "Nombre de la lista de archivos",
+          message: "Detalles de la lista",
+          fileOptions: "Lista de archivos",
+          extraName: "Mensaje para enviar con archivo",
+          extraValue: "Valor de la opción",
+        },
+        success: "¡Lista de archivos guardada con éxito!",
+      },
+      chat: {
+        noTicketMessage: "Selecciona un ticket para comenzar a conversar.",
+      },
+      uploads: {
+        titles: {
+          titleUploadMsgDragDrop:
+            "⬇️ ARRASTRA Y SUELTA ARCHIVOS EN EL CAMPO DE ABAJO ⬇️",
+          titleFileList: "Lista de archivo(s)",
+        },
+      },
+      chatInternal: {
+        new: "Nueva",
+        modal: {
+          conversation: "Conversación",
+          title: "Título",
+          filterUsers: "Filtro por Usuarios",
+          cancel: "Cerrar",
+          save: "Guardar",
+        },
+        modalDelete: {
+          title: "Eliminar Conversación",
+          message: "Esta acción no se puede revertir, ¿confirmar?",
+        },
+      },
+      ticketsManager: {
+        questionCloseTicket: "¿DESEAS CERRAR TODOS LOS TICKETS?",
+        yes: "SÍ",
+        not: "NO",
+        buttons: {
+          newTicket: "Nuevo",
+          resolveAll: "Resolver Todos",
+          close: "Cerrar",
+          new: "Nuevo",
+        },
+      },
+      ticketsQueueSelect: {
+        placeholder: "Colas",
+      },
+      tickets: {
+        inbox: {
+          closedAllTickets: "¿Cerrar todos los tickets?",
+          closedAll: "Cerrar Todos",
+          newTicket: "Nuevo Ticket",
+          yes: "SÍ",
+          no: "NO",
+          open: "Abiertos",
+          resolverd: "Resueltos",
+        },
+        toasts: {
+          deleted: "La atención en la que estabas fue eliminada.",
+        },
+        notification: {
+          message: "Mensaje de",
+        },
+        tabs: {
+          open: { title: "Abiertas" },
+          closed: { title: "Resueltos" },
+          search: { title: "Búsqueda" },
+        },
+        search: {
+          placeholder: "Buscar atención y mensajes",
+          filterConections: "Filtro por Conexión",
+          filterConectionsOptions: {
+            open: "Abierto",
+            closed: "Cerrado",
+            pending: "Pendiente",
+          },
+          filterUsers: "Filtro por Usuarios",
+          filterContacts: "Filtro por Contactos",
+          ticketsPerPage: "Tickets por página",
+        },
+        buttons: {
+          showAll: "Todos",
+          returnQueue: "Devolver a Cola",
+          scredule: "Programación",
+          deleteTicket: "Eliminar Ticket",
+          quickmessageflash: "Mensaje Rápido",
+        },
+        closedTicket: {
+          closedMessage: "Cerrar Ticket Con Mensaje de Despedida",
+          closedNotMessage: "Cerrar Ticket Sin Mensaje de Despedida",
+        },
+      },
+      transferTicketModal: {
+        title: "Transferir Ticket",
+        fieldLabel: "Escribe para buscar usuarios",
+        fieldQueueLabel: "Transferir a cola",
+        fieldQueuePlaceholder: "Selecciona una cola",
+        fieldWhatsapp: "Selecciona un whatsapp",
+        noOptions: "Ningún usuario encontrado con ese nombre",
+        msgTransfer: "Observaciones - mensaje interno, no va al cliente",
+        buttons: {
+          ok: "Transferir",
+          cancel: "Cancelar",
+        },
+      },
+      chatInternal: {
+        new: "Nueva",
+        modal: {
+          conversation: "Conversación",
+          title: "Título",
+          filterUsers: "Filtro por Usuarios",
+          cancel: "Cerrar",
+          save: "Guardar",
+        },
+        modalDelete: {
+          title: "Eliminar Conversación",
+          message: "Esta acción no se puede revertir, ¿confirmar?",
+        },
+      },
+      ticketsList: {
+        called: "Llamada",
+        today: "Hoy",
+        missedCall: "Llamada de voz/video perdida a las",
+        pendingHeader: "Esperando",
+        assignedHeader: "Atendiendo",
+        groupingHeader: "Grupos",
+        noTicketsTitle: "¡Nada aquí!",
+        noTicketsMessage:
+          "Ninguna atención encontrada con ese estado o término buscado",
+        noQueue: "Sin Cola",
+        buttons: {
+          accept: "Aceptar",
+          cancel: "Cancelar",
+          start: "iniciar",
+          closed: "Cerrar",
+          reopen: "Reabrir",
+          transfer: "Transferir",
+          ignore: "Ignorar",
+          exportAsPDF: "Exportar a PDF",
+          kanbanActions: "Opciones de Kanban"
+        },
+        acceptModal: {
+          title: "Aceptar Chat",
+          queue: "Seleccionar sector",
+        },
+      },
+      newTicketModal: {
+        title: "Crear Ticket",
+        fieldLabel: "Escribe para buscar el contacto",
+        add: "Agregar",
+        buttons: {
+          ok: "Guardar",
+          cancel: "Cancelar",
+        },
+      },
+      SendContactModal: {
+        title: "Enviar contacto",
+        fieldLabel: "Escribe para buscar el contacto",
+        add: "Agregar",
+        buttons: {
+          ok: "Enviar",
+          cancel: "Cancelar",
+        },
+      },
+      mainDrawer: {
+        listItems: {
+          dashboard: "Dashboard",
+          connections: "Conexiones",
+          chatsTempoReal: "Panel",
+          tickets: "Atenciones",
+          quickMessages: "Respuestas rápidas",
+          contacts: "Contactos",
+          queues: "Colas & Chatbot",
+          tags: "Etiquetas",
+          administration: "Administración",
+          companies: "Empresas",
+          users: "Usuarios",
+          settings: "Configuraciones",
+          files: "Lista de archivos",
+          helps: "Ayuda",
+          messagesAPI: "API",
+          schedules: "Programaciones",
+          campaigns: "Campañas",
+          annoucements: "Informativos",
+          chats: "Chat Interno",
+          financeiro: "Financiero",
+          queueIntegration: "Integraciones",
+          version: "Versión",
+          kanban: "Kanban",
+          prompts: "Talk.Ai",
+          allConnections: "Gestionar conexiones",
+          reports: "Reportes",
+          management: "Gerencia"
+        },
+        appBar: {
+          user: {
+            profile: "Perfil",
+            logout: "Salir",
+            message: "Hola",
+            messageEnd: "bienvenido a",
+            active: "Activo hasta",
+            goodMorning: "Hola,",
+            myName: "mi nombre es",
+            continuity: "y daré continuidad a su atención.",
+            virtualAssistant: "Asistente Virtual",
+            token:
+              "Token inválido, por favor contacte al administrador de la plataforma.",
+          },
+          message: {
+            location: "Ubicación",
+            contact: "Contacto",
+          },
+          notRegister: "Ningún registro",
+          refresh: "Actualizar",
+        },
+      },
+      languages: {
+        undefined: "Idioma",
+        "pt-BR": "Português",
+        es: "Español",
+        en: "English",
+        tr: "Türkçe",
+      },
+      messagesAPI: {
+        title: "API",
+        textMessage: {
+          number: "Número",
+          body: "Mensaje",
+          token: "Token registrado",
+          userId: "ID del usuario/agente",
+          queueId: "ID de la Cola",
+        },
+        mediaMessage: {
+          number: "Número",
+          body: "Nombre del archivo",
+          media: "Archivo",
+          token: "Token registrado",
+        },
+        API: {
+          title: "Documentación para envío de mensajes",
+          methods: {
+            title: "Métodos de Envío",
+            messagesText: "Mensajes de Texto",
+            messagesMidia: "Mensajes de Media",
+          },
+          instructions: {
+            title: "Instrucciones",
+            comments: "Observaciones Importantes",
+            comments1:
+              "Antes de enviar mensajes, es necesario el registro del token vinculado a la conexión que enviará los mensajes. <br />Para realizar el registro accede al menú 'Conexiones', haz clic en el botón editar de la conexión e inserta el token en el campo correspondiente.",
+            comments2:
+              "El número para envío no debe tener máscara o caracteres especiales y debe estar compuesto por:",
+            codeCountry: "Código del País",
+            code: "Código de área",
+            number: "Número",
+          },
+          text: {
+            title: "1. Mensajes de Texto",
+            instructions:
+              "A continuación se muestra la lista de información necesaria para el envío de mensajes de texto:",
+          },
+          media: {
+            title: "2. Mensajes de Media",
+            instructions:
+              "A continuación se muestra la lista de información necesaria para el envío de mensajes de media:",
+          },
+        },
+      },
+      notifications: {
+        noTickets: "Ninguna notificación.",
+      },
+      quickMessages: {
+        title: "Respuestas Rápidas",
+        searchPlaceholder: "Buscar...",
+        noAttachment: "Sin adjunto",
+        confirmationModal: {
+          deleteTitle: "Eliminación",
+          deleteMessage: "¡Esta acción es irreversible! ¿Deseas continuar?",
+        },
+        buttons: {
+          add: "Agregar",
+          attach: "Adjuntar Archivo",
+          cancel: "Cancelar",
+          edit: "Editar",
+        },
+        toasts: {
+          success: "¡Atajo agregado con éxito!",
+          deleted: "¡Atajo eliminado con éxito!",
+        },
+        dialog: {
+          title: "Mensaje Rápido",
+          shortcode: "Atajo",
+          message: "Respuesta",
+          save: "Guardar",
+          cancel: "Cancelar",
+          geral: "Permitir editar",
+          add: "Agregar",
+          edit: "Editar",
+          visao: "Permitir vista",
+        },
+        table: {
+          shortcode: "Atajo",
+          message: "Mensaje",
+          actions: "Acciones",
+          mediaName: "Nombre del Archivo",
+          status: "Estado",
+        },
+      },
+      contactLists: {
+        title: "Listas de Contactos",
+        table: {
+          name: "Nombre",
+          contacts: "Contactos",
+          actions: "Acciones",
+        },
+        buttons: {
+          add: "Nueva Lista",
+        },
+        dialog: {
+          name: "Nombre",
+          company: "Empresa",
+          okEdit: "Editar",
+          okAdd: "Agregar",
+          add: "Agregar",
+          edit: "Editar",
+          cancel: "Cancelar",
+        },
+        confirmationModal: {
+          deleteTitle: "Eliminar",
+          deleteMessage: "Esta acción no se puede revertir.",
+        },
+        toasts: {
+          deleted: "Registro eliminado",
+        },
+      },
+      contactListItems: {
+        title: "Contactos",
+        searchPlaceholder: "Búsqueda",
+        buttons: {
+          add: "Nuevo",
+          lists: "Listas",
+          import: "Importar",
+        },
+        dialog: {
+          name: "Nombre",
+          number: "Número",
+          whatsapp: "Whatsapp",
+          email: "E-mail",
+          okEdit: "Editar",
+          okAdd: "Agregar",
+          add: "Agregar",
+          edit: "Editar",
+          cancel: "Cancelar",
+        },
+        table: {
+          name: "Nombre",
+          number: "Número",
+          whatsapp: "Whatsapp",
+          email: "E-mail",
+          actions: "Acciones",
+        },
+        confirmationModal: {
+          deleteTitle: "Eliminar",
+          deleteMessage: "Esta acción no se puede revertir.",
+          importMessage: "¿Deseas importar los contactos de esta planilla? ",
+          importTitlte: "Importar",
+        },
+        toasts: {
+          deleted: "Registro eliminado",
+        },
+      },
+
+      kanban: {
+        title: "Kanban",
+        searchPlaceholder: "Búsqueda",
+        subMenus: {
+          list: "Panel",
+          tags: "Carriles",
+        },
+      },
+
+      campaigns: {
+        title: "Campañas",
+        searchPlaceholder: "Búsqueda",
+        subMenus: {
+          list: "Listado",
+          listContacts: "Lista de contactos",
+          settings: "Configuraciones",
+        },
+        settings: {
+          randomInterval: "Intervalo Aleatorio de Disparo",
+          noBreak: "Sin Intervalo",
+          intervalGapAfter: "Intervalo mayor después",
+          undefined: "No definido",
+          messages: "mensajes",
+          laggerTriggerRange: "Intervalo de disparo mayor",
+          addVar: "Agregar variable",
+          save: "Guardar",
+          close: "Cerrar",
+          add: "Agregar",
+          shortcut: "Atajo",
+          content: "Contenido",
+        },
+        buttons: {
+          add: "Nueva Campaña",
+          contactLists: "Listas de Contactos",
+        },
+        table: {
+          name: "Nombre",
+          whatsapp: "Conexión",
+          contactList: "Lista de Contactos",
+          option: "Ninguna",
+          disabled: "Deshabilitada",
+          enabled: "Habilitada",
+          status: "Estado",
+          scheduledAt: "Programación",
+          completedAt: "Completada",
+          confirmation: "Confirmación",
+          actions: "Acciones",
+        },
+        dialog: {
+          new: "Nueva Campaña",
+          update: "Editar Campaña",
+          readonly: "Solo Visualización",
+          help: "Utiliza variables como {nombre}, {numero}, {email} o define variables personalizadas.",
+          form: {
+            name: "Nombre",
+            message1: "Mensaje 1",
+            message2: "Mensaje 2",
+            message3: "Mensaje 3",
+            message4: "Mensaje 4",
+            message5: "Mensaje 5",
+            confirmationMessage1: "Mensaje de Confirmación 1",
+            confirmationMessage2: "Mensaje de Confirmación 2",
+            confirmationMessage3: "Mensaje de Confirmación 3",
+            confirmationMessage4: "Mensaje de Confirmación 4",
+            confirmationMessage5: "Mensaje de Confirmación 5",
+            messagePlaceholder: "Contenido del mensaje",
+            whatsapp: "Conexión",
+            status: "Estado",
+            scheduledAt: "Programación",
+            confirmation: "Confirmación",
+            contactList: "Lista de Contacto",
+            tagList: "Etiquetas",
+            statusTicket: "Estado del Ticket",
+            openTicketStatus: "Abierto",
+            pendingTicketStatus: "Pendiente",
+            closedTicketStatus: "Cerrado",
+            enabledOpenTicket: "Habilitado",
+            disabledOpenTicket: "Deshabilitado",
+            openTicket: "Abrir ticket",
+          },
+          buttons: {
+            add: "Agregar",
+            edit: "Actualizar",
+            okadd: "Ok",
+            cancel: "Cancelar Envíos",
+            restart: "Reiniciar Envíos",
+            close: "Cerrar",
+            attach: "Adjuntar Archivo",
+          },
+        },
+        confirmationModal: {
+          deleteTitle: "Eliminar",
+          deleteMessage: "Esta acción no se puede revertir.",
+        },
+        toasts: {
+          success: "Operación realizada con éxito",
+          cancel: "Campaña cancelada",
+          restart: "Campaña reiniciada",
+          deleted: "Registro eliminado",
+        },
+      },
+      campaignReport: {
+        title: "Reporte de",
+        inactive: "Inactiva",
+        scheduled: "Programada",
+        process: "En Progreso",
+        cancelled: "Cancelada",
+        finished: "Finalizada",
+        campaign: "Campaña",
+        validContacts: "Contactos Válidos",
+        confirmationsRequested: "Confirmaciones Solicitadas",
+        confirmations: "Confirmaciones",
+        deliver: "Entregados",
+        connection: "Conexión",
+        contactLists: "Lista de Contactos",
+        schedule: "Programación",
+        conclusion: "Conclusión",
+      },
+      announcements: {
+        title: "Informativos",
+        searchPlaceholder: "Búsqueda",
+        active: "Activo",
+        inactive: "Inactivo",
+        buttons: {
+          add: "Nuevo Informativo",
+          contactLists: "Listas de Informativos",
+        },
+        table: {
+          priority: "Prioridad",
+          title: "Título",
+          text: "Texto",
+          mediaName: "Archivo",
+          status: "Estado",
+          actions: "Acciones",
+        },
+        dialog: {
+          edit: "Edición de Informativo",
+          add: "Nuevo Informativo",
+          update: "Editar Informativo",
+          readonly: "Solo Visualización",
+          form: {
+            priority: "Prioridad",
+            title: "Título",
+            text: "Texto",
+            mediaPath: "Archivo",
+            status: "Estado",
+            high: "Alta",
+            medium: "Media",
+            low: "Baja",
+            active: "Activo",
+            inactive: "Inactivo",
+          },
+          buttons: {
+            add: "Agregar",
+            edit: "Actualizar",
+            okadd: "Ok",
+            cancel: "Cancelar",
+            close: "Cerrar",
+            attach: "Adjuntar Archivo",
+          },
+        },
+        confirmationModal: {
+          deleteTitle: "Eliminar",
+          deleteMessage: "Esta acción no se puede revertir.",
+        },
+        toasts: {
+          success: "Operación realizada con éxito",
+          deleted: "Registro eliminado",
+        },
+      },
+      campaignsConfig: {
+        title: "Configuraciones de Campañas",
+      },
+      queues: {
+        title: "Colas & Chatbot",
+        table: {
+          name: "Nombre",
+          color: "Color",
+          greeting: "Mensaje de saludo",
+          orderQueue: "Ordenación de la cola (bot)",
+          actions: "Acciones",
+          ID: "ID",
+        },
+        buttons: {
+          add: "Agregar cola",
+        },
+        toasts: {
+          success: "Cola guardada con éxito",
+          deleted: "Cola eliminada con éxito",
+        },
+        confirmationModal: {
+          deleteTitle: "Eliminar",
+          deleteMessage:
+            "¿Estás seguro? ¡Esta acción no se puede deshacer! Las atenciones de esta cola seguirán existiendo, pero ya no tendrán ninguna cola asignada.",
+        },
+      },
+      queue: {
+        queueData: "Datos",
+      },
+      queueSelect: {
+        inputLabel: "Colas",
+        inputLabelRO: "Colas solo lectura",
+        withoutQueue: "Sin cola",
+      },
+      reports: {
+        title: "Informes de Atenciones",
+        table: {
+          id: "Ticket",
+          user: "Usuario",
+          dateOpen: "Fecha Apertura",
+          dateClose: "Fecha Cierre",
+          NPS: "NPS",
+          status: "Estado",
+          whatsapp: "Conexión",
+          queue: "Cola",
+          actions: "Acciones",
+          lastMessage: "Últ. Mensaje",
+          contact: "Cliente",
+          supportTime: "Tiempo de Atención",
+        },
+        buttons: {
+
+          filter: "Aplicar Filtro",
+          onlyRated: "Solo Evaluados",
+        },
+        searchPlaceholder: "Buscar...",
+
+      },
+      queueIntegration: {
+        title: "Integraciones",
+        table: {
+          id: "ID",
+          type: "Tipo",
+          name: "Nombre",
+          projectName: "Nombre del Proyecto",
+          language: "Lenguaje",
+          lastUpdate: "Última actualización",
+          actions: "Acciones",
+        },
+        buttons: {
+          add: "Agregar Proyecto",
+        },
+        searchPlaceholder: "Buscar...",
+        confirmationModal: {
+          deleteTitle: "Eliminar",
+          deleteMessage:
+            "¿Estás seguro? ¡Esta acción no se puede deshacer! y será removida de las colas y conexiones vinculadas",
+        },
+      },
+      users: {
+        title: "Usuarios",
+        table: {
+          status: "Estado",
+          name: "Nombre",
+          email: "Email",
+          profile: "Perfil",
+          startWork: "Inicio de trabajo",
+          endWork: "Fin de trabajo",
+          actions: "Acciones",
+          ID: "ID",
+        },
+        buttons: {
+          add: "Agregar usuario",
+        },
+        toasts: {
+          deleted: "Usuario eliminado con éxito.",
+        },
+        confirmationModal: {
+          deleteTitle: "Eliminar",
+          deleteMessage:
+            "Todos los datos del usuario se perderán. Las atenciones abiertas de este usuario serán movidas a la cola.",
+        },
+      },
+      compaies: {
+        title: "Empresas",
+        table: {
+          ID: "ID",
+          status: "Activo",
+          name: "Nombre",
+          email: "Email",
+          password: "Contraseña",
+          phone: "Teléfono",
+          plan: "Plan",
+          active: "Activo",
+          numberAttendants: "Agentes",
+          numberConections: "Conexiones",
+          value: "Valor",
+          namePlan: "Nombre Plan",
+          numberQueues: "Colas",
+          useCampaigns: "Campañas",
+          useExternalApi: "Rest API",
+          useFacebook: "Facebook",
+          useInstagram: "Instagram",
+          useWhatsapp: "Whatsapp",
+          useInternalChat: "Chat Interno",
+          useSchedules: "Programación",
+          createdAt: "Creada En",
+          dueDate: "Vencimiento",
+          lastLogin: "Últ. Login",
+          actions: "Acciones",
+          money: "$",
+          yes: "Sí",
+          no: "No",
+          document: "CUIT/DNI",
+          recurrence: "Recurrencia",
+          monthly: "Mensual",
+          bimonthly: "Bimestral",
+          quarterly: "Trimestral",
+          semester: "Semestral",
+          yearly: "Anual",
+          clear: "Limpiar",
+          delete: "Eliminar",
+          user: "Usuario",
+          save: "Guardar",
+        },
+        buttons: {
+          add: "Agregar empresa",
+        },
+        toasts: {
+          deleted: "Empresa eliminada con éxito.",
+        },
+        confirmationModal: {
+          deleteTitle: "Eliminar",
+          deleteMessage:
+            "Todos los datos de la empresa se perderán. Los tickets abiertos de este usuario serán movidos a la cola.",
+        },
+      },
+      plans: {
+        form: {
+          name: "Nombre",
+          users: "Usuarios",
+          connections: "Conexiones",
+          campaigns: "Campañas",
+          schedules: "Programaciones",
+          enabled: "Habilitadas",
+          disabled: "Deshabilitadas",
+          clear: "Cancelar",
+          delete: "Eliminar",
+          save: "Guardar",
+          yes: "Sí",
+          no: "No",
+          money: "$",
+          public: "Público"
+        },
+      },
+      helps: {
+        title: "Centro de Ayuda",
+        settings: {
+          codeVideo: "Código del Video",
+          description: "Descripción",
+          clear: "Limpiar",
+          delete: "Eliminar",
+          save: "Guardar",
+        },
+      },
+      schedules: {
+        title: "Programaciones",
+        confirmationModal: {
+          deleteTitle: "¿Estás seguro de que quieres eliminar esta Programación?",
+          deleteMessage: "Esta acción no se puede revertir.",
+        },
+        table: {
+          contact: "Contacto",
+          body: "Mensaje",
+          sendAt: "Fecha de Programación",
+          sentAt: "Fecha de Envío",
+          status: "Estado",
+          actions: "Acciones",
+        },
+        buttons: {
+          add: "Nueva Programación",
+        },
+        toasts: {
+          deleted: "Programación eliminada con éxito.",
+        },
+      },
+      tags: {
+        title: "Etiquetas",
+        confirmationModal: {
+          deleteTitle: "¿Estás seguro de que quieres eliminar esta Etiqueta?",
+          deleteMessage: "Esta acción no se puede revertir.",
+        },
+        table: {
+          id: "ID",
+          name: "Nombre",
+          kanban: "Kanban",
+          color: "Color",
+          tickets: "Registros Etiquetas",
+          contacts: "Contactos",
+          actions: "Acciones",
+        },
+        buttons: {
+          add: "Nueva Etiqueta",
+        },
+        toasts: {
+          deleted: "Etiqueta eliminada con éxito.",
+        },
+      },
+
+      tagsKanban: {
+        title: "Carriles",
+        laneDefault: "Abierto",
+        confirmationModal: {
+          deleteTitle: "¿Estás seguro de que quieres eliminar este Carril?",
+          deleteMessage: "Esta acción no se puede revertir.",
+        },
+        table: {
+          name: "Nombre",
+          color: "Color",
+          tickets: "Tickets",
+          actions: "Acciones",
+        },
+        buttons: {
+          add: "Nuevo Carril",
+        },
+        toasts: {
+          deleted: "Carril eliminado con éxito.",
+        },
+      },
+
+      files: {
+        title: "Lista de archivos",
+        table: {
+          name: "Nombre",
+          contacts: "Contactos",
+          actions: "Acción",
+        },
+        toasts: {
+          deleted: "Lista eliminada con éxito!",
+          deletedAll: "Todas las listas fueron eliminadas con éxito!",
+        },
+        buttons: {
+          add: "Agregar",
+          deleteAll: "Eliminar Todos",
+        },
+        confirmationModal: {
+          deleteTitle: "Eliminar",
+          deleteAllTitle: "Eliminar Todos",
+          deleteMessage: "¿Estás seguro de que deseas eliminar esta lista?",
+          deleteAllMessage: "¿Estás seguro de que deseas eliminar todas las listas?",
+        },
+      },
+      settings: {
+        success: "Configuraciones guardadas con éxito.",
+        title: "Configuraciones",
+        tabs: {
+          options: "Opciones",
+          plans: "Planes",
+          helps: "Ayuda",
+        },
+        settings: {
+          userCreation: {
+            name: "Creación de usuario",
+            options: {
+              enabled: "Activado",
+              disabled: "Desactivado",
+            },
+          },
+          tabs: {
+            options: "Opciones",
+            schedules: "Horarios",
+            plans: "Planes",
+            help: "Ayuda",
+          },
+          options: {
+            disabled: "Deshabilitado",
+            enabled: "Habilitado",
+            updating: "Actualizando...",
+            creationCompanyUser: "Creación de Empresa/Usuario",
+            evaluations: "Evaluaciones",
+            officeScheduling: "Programación de Horario",
+            queueManagement: "Gestión por Cola",
+            companyManagement: "Gestión por Empresa",
+            connectionManagement: "Gestión por Conexión",
+            sendGreetingAccepted: "Enviar saludo al aceptar el ticket",
+            sendMsgTransfTicket:
+              "Enviar mensaje transferencia de sector/agente",
+            checkMsgIsGroup: "Ignorar Mensajes de Grupos",
+            chatBotType: "Tipo de Bot",
+            userRandom: "Elegir agente aleatorio",
+            buttons: "Botones",
+            acceptCallWhatsapp: "¿Informar que no acepta llamadas en whatsapp?",
+            sendSignMessage: "Permite al agente elegir ENVIAR Firma",
+            sendGreetingMessageOneQueues:
+              "Enviar saludo cuando haya solamente 1 cola",
+            sendQueuePosition: "Enviar mensaje con la posición de la cola",
+            sendFarewellWaitingTicket:
+              "Enviar mensaje de despedida en Esperando",
+            acceptAudioMessageContact:
+              "¿Acepta recibir audio de todos los contactos?",
+            enableLGPD: "Habilitar tratamiento LGPD",
+            requiredTag: "Etiqueta obligatoria para cerrar ticket",
+            closeTicketOnTransfer: "Cerrar ticket al transferir a otra cola",
+            DirectTicketsToWallets: "Mover automáticamente cliente a cartera",
+            showNotificationPending: "Mostrar notificación para tickets pendientes"
+          },
+          customMessages: {
+            sendQueuePositionMessage: "Mensaje de posición en la cola",
+            AcceptCallWhatsappMessage: "Mensaje para informar que no acepta llamadas",
+            greetingAcceptedMessage: "Mensaje de Saludo al aceptar ticket",
+            transferMessage: "Mensaje de transferencia - ${queue.name} = cola destino",
+          },
+          LGPD: {
+            title: "LGPD",
+            welcome: "Mensaje de bienvenida (LGPD)",
+            linkLGPD: "Enlace de la política de privacidad",
+            obfuscateMessageDelete: "Ofuscar mensaje eliminado",
+            alwaysConsent: "Siempre solicitar consentimiento",
+            obfuscatePhoneUser: "Ofuscar número de teléfono para usuarios",
+            enabled: "Habilitado",
+            disabled: "Deshabilitado",
+          },
+        },
+      },
+      messagesList: {
+        header: {
+          assignedTo: "Asignado a:",
+          dialogRatingTitle:
+            "¿Deseas dejar una evaluación de atención para el cliente?",
+          dialogClosingTitle: "¡Finalizando la atención con el cliente!",
+          dialogRatingCancel: "Resolver CON Mensaje de Despedida",
+          dialogRatingSuccess: "Resolver y Enviar Evaluación",
+          dialogRatingWithoutFarewellMsg: "Resolver SIN Mensaje de Despedida",
+          ratingTitle: "Elige un menú de evaluación",
+          notMessage: "Ningún mensaje seleccionado",
+          amount: "Valor de prospección",
+          buttons: {
+            return: "Retornar",
+            resolve: "Resolver",
+            reopen: "Reabrir",
+            accept: "Aceptar",
+            rating: "Enviar Evaluación",
+            enableIntegration: "Habilitar integración",
+            disableIntegration: "Deshabilitar integración",
+            logTicket: "Logs del Ticket",
+            requiredTag: "Debes asignar una etiqueta antes de cerrar el ticket.",
+          },
+        },
+      },
+      messagesInput: {
+        placeholderPrivateMessage:
+          "Escribe un mensaje o presiona / para respuestas rápidas",
+        placeholderOpen:
+          "Escribe un mensaje o presiona / para respuestas rápidas",
+        placeholderClosed:
+          "Reabre o acepta este ticket para enviar un mensaje.",
+        signMessage: "Firmar",
+        privateMessage: "Mensaje Privado",
+      },
+      contactDrawer: {
+        header: "Datos del contacto",
+        buttons: {
+          edit: "Editar contacto",
+          block: "Bloquear",
+          unblock: "Desbloquear",
+        },
+        extraInfo: "Otra información",
+      },
+      messageVariablesPicker: {
+        label: "Variables disponibles",
+        vars: {
+          contactFirstName: "Primer Nombre",
+          contactName: "Nombre",
+          user: "Agente",
+          greeting: "Saludo",
+          protocolNumber: "Protocolo",
+          date: "Fecha",
+          hour: "Hora",
+          ticket_id: "Nº del Ticket",
+          queue: "Sector",
+          connection: "Conexión",
+        },
+      },
+      ticketOptionsMenu: {
+        schedule: "Programación",
+        delete: "Eliminar",
+        transfer: "Transferir",
+        registerAppointment: "Observaciones del Contacto",
+        resolveWithNoFarewell: "Finalizar sin despedida",
+        acceptAudioMessage: "¿Aceptar audios del contacto?",
+        appointmentsModal: {
+          title: "Observaciones del Ticket",
+          textarea: "Observación",
+          placeholder: "Inserta aquí la información que deseas registrar",
+        },
+        confirmationModal: {
+          title: "Eliminar el ticket del contacto",
+          titleFrom: "del contacto ",
+          message:
+            "¡Atención! Todos los mensajes relacionados al ticket se perderán.",
+        },
+        buttons: {
+          delete: "Eliminar",
+          cancel: "Cancelar",
+        },
+      },
+      confirmationModal: {
+        buttons: {
+          confirm: "Ok",
+          cancel: "Cancelar",
+        },
+      },
+      messageInput: {
+        tooltip: {
+          signature: "Habilitar/Deshabilitar Firma",
+          privateMessage: "Habilitar/Deshabilitar Mensaje Privado",
+          meet: "Enviar enlace para videoconferencia",
+        },
+        type: {
+          imageVideo: "Fotos y videos",
+          cam: "Cámara",
+          contact: "Contacto",
+          meet: "Video llamada",
+        },
+      },
+      messageOptionsMenu: {
+        delete: "Eliminar",
+        reply: "Responder",
+        edit: "Editar",
+        forward: "Reenviar",
+        toForward: "Reenviar",
+        talkTo: "Conversar Con",
+        confirmationModal: {
+          title: "¿Eliminar mensaje?",
+          message: "Esta acción no se puede deshacer.",
+        },
+      },
+      invoices: {
+        table: {
+          invoices: "Facturas",
+          details: "Detalles",
+          users: "Usuarios",
+          connections: "Conexiones",
+          queue: "Colas",
+          value: "Valor",
+          expirationDate: "Fecha Venc.",
+          action: "Acción",
+        },
+      },
+      backendErrors: {
+        ERR_NO_OTHER_WHATSAPP: "Debe haber al menos un WhatsApp predeterminado.",
+        ERR_NO_DEF_WAPP_FOUND:
+          "Ningún WhatsApp predeterminado encontrado. Verifica la página de conexiones.",
+        ERR_WAPP_NOT_INITIALIZED:
+          "Esta sesión de WhatsApp no fue inicializada. Verifica la página de conexiones.",
+        ERR_WAPP_CHECK_CONTACT:
+          "No fue posible verificar el contacto de WhatsApp. Verifica la página de conexiones",
+        ERR_WAPP_INVALID_CONTACT: "Este no es un número de Whatsapp válido.",
+        ERR_WAPP_DOWNLOAD_MEDIA:
+          "No fue posible descargar medios de WhatsApp. Verifica la página de conexiones.",
+        ERR_INVALID_CREDENTIALS:
+          "Error de autenticación. Por favor, intenta nuevamente.",
+        ERR_SENDING_WAPP_MSG:
+          "Error al enviar mensaje de WhatsApp. Verifica la página de conexiones.",
+        ERR_DELETE_WAPP_MSG: "No fue posible eliminar el mensaje de WhatsApp.",
+        ERR_OTHER_OPEN_TICKET: "Ya existe un ticket abierto para este contacto.",
+        ERR_SESSION_EXPIRED: "Sesión expirada. Por favor ingresa.",
+        ERR_USER_CREATION_DISABLED:
+          "La creación de usuario fue deshabilitada por el administrador.",
+        ERR_NO_PERMISSION: "No tienes permiso para acceder a este recurso.",
+        ERR_DUPLICATED_CONTACT: "Ya existe un contacto con este número.",
+        ERR_NO_SETTING_FOUND: "Ninguna configuración encontrada con este ID.",
+        ERR_NO_CONTACT_FOUND: "Ningún contacto encontrado con este ID.",
+        ERR_NO_TICKET_FOUND: "Ningún ticket encontrado con este ID.",
+        ERR_NO_USER_FOUND: "Ningún usuario encontrado con este ID.",
+        ERR_NO_WAPP_FOUND: "Ningún WhatsApp encontrado con este ID.",
+        ERR_CREATING_MESSAGE: "Error al crear mensaje en la base de datos.",
+        ERR_CREATING_TICKET: "Error al crear ticket en la base de datos.",
+        ERR_FETCH_WAPP_MSG:
+          "Error al buscar el mensaje en WhatsApp, tal vez sea muy antiguo.",
+        ERR_QUEUE_COLOR_ALREADY_EXISTS:
+          "Este color ya está en uso, elige otro.",
+        ERR_WAPP_GREETING_REQUIRED:
+          "El mensaje de saludo es obligatorio cuando hay más de una cola.",
+        ERR_OUT_OF_HOURS: "¡Fuera del Horario de Trabajo!",
+      },
+    },
+  },
+};
+
+export { messages };
