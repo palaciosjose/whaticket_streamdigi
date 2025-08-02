@@ -515,7 +515,7 @@ const messages = {
           actions: "Acciones",
         },
         confirmationModal: {
-          deleteTitle: "Excluir",
+          deleteTitle: "Eliminar",
           deleteMessage: "¿Estás seguro? ¡Esta acción no se puede revertir!",
         },
         buttons: {
@@ -653,7 +653,7 @@ const messages = {
           add: "Agregar usuario",
           edit: "Editar usuario",
           updateImage: "Actualizar Imagen",
-          removeImage: "Excluir Imagen",
+          removeImage: "Eliminar Imagen",
         },
         form: {
           name: "Nombre",
@@ -803,7 +803,7 @@ const messages = {
           save: "Guardar",
         },
         modalDelete: {
-          title: "Excluir Chat",
+          title: "Eliminar Chat",
           message: "Esta acción no se puede revertir, ¿confirmar?",
         },
       },
@@ -888,7 +888,7 @@ const messages = {
           save: "Guardar",
         },
         modalDelete: {
-          title: "Excluir Conversación",
+          title: "Eliminar Conversación",
           message: "Esta acción no se puede revertir, ¿confirmar?",
         },
       },
@@ -983,7 +983,7 @@ const messages = {
             contact: "Contacto",
           },
           notRegister: "No hay registros",
-          refresh: "Atuaclizar",
+          refresh: "Actualizar",
         },
       },
       languages: {
@@ -1060,7 +1060,7 @@ const messages = {
         searchPlaceholder: "Buscar...",
         noAttachment: "No hay",
         confirmationModal: {
-          deleteTitle: "Excluir",
+          deleteTitle: "Eliminar",
           deleteMessage: "Esta acción no se puede revertir. ¿Continuar?",
         },
         buttons: {
@@ -1071,7 +1071,7 @@ const messages = {
         },
         toasts: {
           success: "Atajo agregado satisfactoriamente.",
-          deleted: "Atajo excluido satisfactoriamente.",
+          deleted: "Atajo eliminado satisfactoriamente.",
         },
         dialog: {
           title: "Mensaje Rápida",
@@ -1112,11 +1112,11 @@ const messages = {
           cancel: "Cancelar",
         },
         confirmationModal: {
-          deleteTitle: "Excluir",
+          deleteTitle: "Eliminar",
           deleteMessage: "Esta acción no se puede revertir.",
         },
         toasts: {
-          deleted: "Registro excluído",
+          deleted: "Registro eliminado",
         },
       },
       contactListItems: {
@@ -1146,13 +1146,13 @@ const messages = {
           actions: "Acciones",
         },
         confirmationModal: {
-          deleteTitle: "Excluir",
+          deleteTitle: "Eliminar",
           deleteMessage: "Esta acción no se puede revertir.",
           importMessage: "¿Quieres importar esta plantilla? ",
           importTitlte: "Importar",
         },
         toasts: {
-          deleted: "Registro excluído",
+          deleted: "Registro eliminado",
         },
       },
       kanban: {
@@ -1168,7 +1168,7 @@ const messages = {
         searchPlaceholder: "Búsqueda",
         subMenus: {
           list: "Listados",
-          listContacts: "Listados de contatos",
+          listContacts: "Listados de contactos",
           settings: "Configuraciones",
         },
         settings: {
@@ -1248,14 +1248,14 @@ const messages = {
           },
         },
         confirmationModal: {
-          deleteTitle: "Excluir",
+          deleteTitle: "Eliminar",
           deleteMessage: "Esta acción no se puede revertir.",
         },
         toasts: {
           success: "Acción realizada satisfactoriamente",
           cancel: "Campaña cancelada",
           restart: "Campaña reiniciada",
-          deleted: "Registro excluido",
+          deleted: "Registro eliminado",
           noPermission:
             "¡Esta empresa no tiene permiso para acceder a esta página! Te estamos redirigiendo.",
         },
@@ -1321,12 +1321,12 @@ const messages = {
           },
         },
         confirmationModal: {
-          deleteTitle: "Excluir",
+          deleteTitle: "Eliminar",
           deleteMessage: "Esta acción no se puede revertir.",
         },
         toasts: {
           success: "Acción realizada satisfactoriamente",
-          deleted: "Registro excluido",
+          deleted: "Registro eliminado",
         },
       },
       campaignsConfig: {
@@ -1347,7 +1347,7 @@ const messages = {
         },
         toasts: {
           success: "Fila guardada",
-          deleted: "Fila excluida",
+          deleted: "Fila eliminada",
         },
         confirmationModal: {
           deleteTitle: "Eliminar",
@@ -1378,7 +1378,7 @@ const messages = {
         },
         searchPlaceholder: "Buscar...",
         confirmationModal: {
-          deleteTitle: "Excluir",
+          deleteTitle: "Eliminar",
           deleteMessage:
             "¿Estás seguro? ¡Esta acción no se puede revertir! Se eliminarán las filas y conexiones enlazadas",
         },
@@ -1458,7 +1458,7 @@ const messages = {
           duplicated:
             "No fue posible realizar la operación. Verifique si ya existe una empresa con el mismo nombre o si los campos fueron completados correctamente.",
           loadError: "No fue posible cargar la lista de registros.",
-          deleted: "Empresa excluida satisfactoriamente.",
+          deleted: "Empresa eliminada satisfactoriamente.",
         },
         confirmationModal: {
           deleteTitle: "Eliminar Registro",
@@ -1538,7 +1538,7 @@ const messages = {
       schedules: {
         title: "Programas",
         confirmationModal: {
-          deleteTitle: "¿Seguro que quieres excluir este Programa?",
+          deleteTitle: "¿Seguro que quieres eliminar este Programa?",
           deleteMessage: "Esta acción no se puede revertir.",
         },
         table: {
@@ -1559,7 +1559,7 @@ const messages = {
       tags: {
         title: "Tags",
         confirmationModal: {
-          deleteTitle: "¿Seguro que quieres excluir esta Tag?",
+          deleteTitle: "¿Seguro que quieres eliminar esta Tag?",
           deleteMessage: "Esta acción no se puede revertir.",
         },
         table: {
@@ -1581,7 +1581,7 @@ const messages = {
         title: "Lanes",
         laneDefault: "Abierto(s)",
         confirmationModal: {
-          deleteTitle: "¿Seguro que quieres excluir esta Lane?",
+          deleteTitle: "¿Seguro que quieres eliminar esta Lane?",
           deleteMessage: "Esta acción no se puede revertir.",
         },
         table: {
