@@ -91,7 +91,7 @@ export function HelpManagerForm (props) {
                         <Grid xs={12} sm={6} md={3} item>
                             <Field
                                 as={TextField}
-                                label="Título"
+                                label={i18n.t("helps.settings.title")}
                                 name="title"
                                 variant="outlined"
                                 className={classes.fullWidth}
@@ -152,9 +152,9 @@ export function HelpsManagerGrid (props) {
                 <TableHead>
                 <TableRow>
                     <TableCell align="center" style={{width: '1%'}}>#</TableCell>
-                    <TableCell align="left">Título</TableCell>
+                    <TableCell align="left">{i18n.t("helps.settings.title")}</TableCell>
                     <TableCell align="left">{i18n.t("helps.settings.description")}</TableCell>
-                    <TableCell align="left">Video</TableCell>
+                    <TableCell align="left">{i18n.t("helps.settings.codeVideo")}</TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
@@ -203,7 +203,7 @@ export default function HelpsManager () {
             const helpList = await list()
             setRecords(helpList)
         } catch (e) {
-            toast.error('Não foi possível carregar a lista de registros')
+            toast.error(i18n.t("helps.toasts.loadError"))
         }
         setLoading(false)
     }
@@ -218,9 +218,9 @@ export default function HelpsManager () {
             }
             await loadHelps()
             handleCancel()
-            toast.success('Operação realizada com sucesso!')
+            toast.success(i18n.t("helps.toasts.success"))
         } catch (e) {
-            toast.error('Não foi possível realizar a operação. Verifique se já existe uma helpo com o mesmo nome ou se os campos foram preenchidos corretamente')
+            toast.error(i18n.t("helps.toasts.duplicated"))
         }
         setLoading(false)
     }
@@ -231,9 +231,9 @@ export default function HelpsManager () {
             await remove(record.id)
             await loadHelps()
             handleCancel()
-            toast.success('Operação realizada com sucesso!')
+            toast.success(i18n.t("helps.toasts.success"))
         } catch (e) {
-            toast.error('Não foi possível realizar a operação')
+            toast.error(i18n.t("helps.toasts.error"))
         }
         setLoading(false)
     }
@@ -279,12 +279,12 @@ export default function HelpsManager () {
                 </Grid>
             </Grid>
             <ConfirmationModal
-                title="Exclusão de Registro"
+                title={i18n.t("helps.confirmationModal.deleteTitle")}
                 open={showConfirmDialog}
                 onClose={() => setShowConfirmDialog(false)}
                 onConfirm={() => handleDelete()}
             >
-                Deseja realmente excluir esse registro?
+                {i18n.t("helps.confirmationModal.deleteMessage")}
             </ConfirmationModal>
         </Paper>
     )
