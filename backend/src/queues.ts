@@ -1579,7 +1579,7 @@ async function handleWhatsapp() {
     //*Whatsapp
     GetWhatsapp();
     jobW.stop();
-  }, null, false, 'America/Sao_Paulo')
+  }, null, false, 'America/Bogota')
   jobW.start();
 }
 
