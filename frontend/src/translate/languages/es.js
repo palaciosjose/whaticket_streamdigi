@@ -139,7 +139,7 @@ const messages = {
         durationCalls: "Duración de la atención",
         grupoSessions: "Atención en grupos grupos",
         groupTicketsReports: {
-          timezone: "America/Monterrey",
+          timezone: "America/Bogota",
           msgToast: "Generando relatorio compactado, por favor espere.",
           errorToast: "Erro ao generar relatorio",
           back: "Volver",
