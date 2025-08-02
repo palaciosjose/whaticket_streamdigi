@@ -565,7 +565,7 @@ export default function CompaniesManager() {
       const companyList = await list();
       setRecords(companyList);
     } catch (e) {
-      toast.error("Não foi possível carregar a lista de registros");
+      toast.error(i18n.t("compaies.toasts.loadError"));
     }
     setLoading(false);
   };
@@ -580,10 +580,10 @@ export default function CompaniesManager() {
       }
       await loadPlans();
       handleCancel();
-      toast.success("Operação realizada com sucesso!");
+      toast.success(i18n.t("compaies.toasts.success"));
     } catch (e) {
       toast.error(
-        "Não foi possível realizar a operação. Verifique se já existe uma empresa com o mesmo nome ou se os campos foram preenchidos corretamente"
+        i18n.t("compaies.toasts.duplicated")
       );
     }
     setLoading(false);
@@ -595,9 +595,9 @@ export default function CompaniesManager() {
       await remove(record.id);
       await loadPlans();
       handleCancel();
-      toast.success("Operação realizada com sucesso!");
+      toast.success(i18n.t("compaies.toasts.success"));
     } catch (e) {
-      toast.error("Não foi possível realizar a operação");
+      toast.error(i18n.t("compaies.toasts.error"));
     }
     setLoading(false);
   };
@@ -667,12 +667,12 @@ export default function CompaniesManager() {
         </Grid>
       </Grid>
       <ConfirmationModal
-        title="Exclusão de Registro"
+        title={i18n.t("compaies.confirmationModal.deleteTitle")}
         open={showConfirmDialog}
         onClose={() => setShowConfirmDialog(false)}
         onConfirm={() => handleDelete()}
       >
-        Deseja realmente excluir esse registro?
+        {i18n.t("compaies.confirmationModal.deleteMessage")}
       </ConfirmationModal>
     </Paper>
   );

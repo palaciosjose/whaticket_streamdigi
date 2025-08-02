@@ -166,7 +166,7 @@ export function PlanManagerForm(props) {
                         <Grid xs={12} sm={6} md={1} item>
                             <Field
                                 as={TextField}
-                                label="Filas"
+                                label={i18n.t("plans.form.queues")}
                                 name="queues"
                                 variant="outlined"
                                 className={classes.fullWidth}
@@ -179,7 +179,7 @@ export function PlanManagerForm(props) {
                         <Grid xs={12} sm={6} md={1} item>
                             <Field
                                 as={TextField}
-                                label="Valor"
+                                label={i18n.t("plans.form.value")}
                                 name="amount"
                                 variant="outlined"
                                 className={classes.fullWidth}
@@ -191,11 +191,11 @@ export function PlanManagerForm(props) {
                         {/* WHATSAPP */}
                         <Grid xs={12} sm={6} md={2} item>
                             <FormControl margin="dense" variant="outlined" fullWidth>
-                                <InputLabel htmlFor="useWhatsapp-selection">Whatsapp</InputLabel>
+                                <InputLabel htmlFor="useWhatsapp-selection">{i18n.t("plans.form.whatsapp")}</InputLabel>
                                 <Field
                                     as={Select}
                                     id="useWhatsapp-selection"
-                                    label="Whatsapp"
+                                    label={i18n.t("plans.form.whatsapp")}
                                     labelId="useWhatsapp-selection-label"
                                     name="useWhatsapp"
                                     margin="dense"
@@ -209,11 +209,11 @@ export function PlanManagerForm(props) {
                         {/* FACEBOOK */}
                         <Grid xs={12} sm={6} md={2} item>
                             <FormControl margin="dense" variant="outlined" fullWidth>
-                                <InputLabel htmlFor="useFacebook-selection">Facebook</InputLabel>
+                                <InputLabel htmlFor="useFacebook-selection">{i18n.t("plans.form.facebook")}</InputLabel>
                                 <Field
                                     as={Select}
                                     id="useFacebook-selection"
-                                    label="Facebook"
+                                    label={i18n.t("plans.form.facebook")}
                                     labelId="useFacebook-selection-label"
                                     name="useFacebook"
                                     margin="dense"
@@ -227,11 +227,11 @@ export function PlanManagerForm(props) {
                         {/* INSTAGRAM */}
                         <Grid xs={12} sm={6} md={2} item>
                             <FormControl margin="dense" variant="outlined" fullWidth>
-                                <InputLabel htmlFor="useInstagram-selection">Instagram</InputLabel>
+                                <InputLabel htmlFor="useInstagram-selection">{i18n.t("plans.form.instagram")}</InputLabel>
                                 <Field
                                     as={Select}
                                     id="useInstagram-selection"
-                                    label="Instagram"
+                                    label={i18n.t("plans.form.instagram")}
                                     labelId="useInstagram-selection-label"
                                     name="useInstagram"
                                     margin="dense"
@@ -281,11 +281,11 @@ export function PlanManagerForm(props) {
                         {/* CHAT INTERNO */}
                         <Grid xs={12} sm={8} md={2} item>
                             <FormControl margin="dense" variant="outlined" fullWidth>
-                                <InputLabel htmlFor="useInternalChat-selection">Chat Interno</InputLabel>
+                                <InputLabel htmlFor="useInternalChat-selection">{i18n.t("plans.form.internalChat")}</InputLabel>
                                 <Field
                                     as={Select}
                                     id="useInternalChat-selection"
-                                    label="Chat Interno"
+                                    label={i18n.t("plans.form.internalChat")}
                                     labelId="useInternalChat-selection-label"
                                     name="useInternalChat"
                                     margin="dense"
@@ -299,11 +299,11 @@ export function PlanManagerForm(props) {
                         {/* API Externa */}
                         <Grid xs={12} sm={8} md={4} item>
                             <FormControl margin="dense" variant="outlined" fullWidth>
-                                <InputLabel htmlFor="useExternalApi-selection">API Externa</InputLabel>
+                                <InputLabel htmlFor="useExternalApi-selection">{i18n.t("plans.form.externalApi")}</InputLabel>
                                 <Field
                                     as={Select}
                                     id="useExternalApi-selection"
-                                    label="API Externa"
+                                    label={i18n.t("plans.form.externalApi")}
                                     labelId="useExternalApi-selection-label"
                                     name="useExternalApi"
                                     margin="dense"
@@ -317,11 +317,11 @@ export function PlanManagerForm(props) {
                         {/* KANBAN */}
                         <Grid xs={12} sm={8} md={2} item>
                             <FormControl margin="dense" variant="outlined" fullWidth>
-                                <InputLabel htmlFor="useKanban-selection">Kanban</InputLabel>
+                                <InputLabel htmlFor="useKanban-selection">{i18n.t("plans.form.kanban")}</InputLabel>
                                 <Field
                                     as={Select}
                                     id="useKanban-selection"
-                                    label="Kanban"
+                                    label={i18n.t("plans.form.kanban")}
                                     labelId="useKanban-selection-label"
                                     name="useKanban"
                                     margin="dense"
@@ -335,11 +335,11 @@ export function PlanManagerForm(props) {
                         {/* OPENAI */}
                         <Grid xs={12} sm={8} md={2} item>
                             <FormControl margin="dense" variant="outlined" fullWidth>
-                                <InputLabel htmlFor="useOpenAi-selection">Talk.Ai</InputLabel>
+                                <InputLabel htmlFor="useOpenAi-selection">{i18n.t("plans.form.openAi")}</InputLabel>
                                 <Field
                                     as={Select}
                                     id="useOpenAi-selection"
-                                    label="Talk.Ai"
+                                    label={i18n.t("plans.form.openAi")}
                                     labelId="useOpenAi-selection-label"
                                     name="useOpenAi"
                                     margin="dense"
@@ -353,11 +353,11 @@ export function PlanManagerForm(props) {
                         {/* INTEGRACOES */}
                         <Grid xs={12} sm={8} md={2} item>
                             <FormControl margin="dense" variant="outlined" fullWidth>
-                                <InputLabel htmlFor="useIntegrations-selection">Integrações</InputLabel>
+                                <InputLabel htmlFor="useIntegrations-selection">{i18n.t("plans.form.integrations")}</InputLabel>
                                 <Field
                                     as={Select}
                                     id="useIntegrations-selection"
-                                    label="Integrações"
+                                    label={i18n.t("plans.form.integrations")}
                                     labelId="useIntegrations-selection-label"
                                     name="useIntegrations"
                                     margin="dense"
@@ -453,18 +453,18 @@ export function PlansManagerGrid(props) {
                         <TableCell align="center">{i18n.t("plans.form.users")}</TableCell>
                         <TableCell align="center">{i18n.t("plans.form.public")}</TableCell>
                         <TableCell align="center">{i18n.t("plans.form.connections")}</TableCell>
-                        <TableCell align="center">Filas</TableCell>
-                        <TableCell align="center">Valor</TableCell>
-                        <TableCell align="center">Whatsapp</TableCell>
-                        <TableCell align="center">Facebook</TableCell>
-                        <TableCell align="center">Instagram</TableCell>
+                        <TableCell align="center">{i18n.t("plans.form.queues")}</TableCell>
+                        <TableCell align="center">{i18n.t("plans.form.value")}</TableCell>
+                        <TableCell align="center">{i18n.t("plans.form.whatsapp")}</TableCell>
+                        <TableCell align="center">{i18n.t("plans.form.facebook")}</TableCell>
+                        <TableCell align="center">{i18n.t("plans.form.instagram")}</TableCell>
                         <TableCell align="center">{i18n.t("plans.form.campaigns")}</TableCell>
                         <TableCell align="center">{i18n.t("plans.form.schedules")}</TableCell>
-                        <TableCell align="center">Chat Interno</TableCell>
-                        <TableCell align="center">API Externa</TableCell>
-                        <TableCell align="center">Kanban</TableCell>
-                        <TableCell align="center">Talk.Ai</TableCell>
-                        <TableCell align="center">Integrações</TableCell>
+                        <TableCell align="center">{i18n.t("plans.form.internalChat")}</TableCell>
+                        <TableCell align="center">{i18n.t("plans.form.externalApi")}</TableCell>
+                        <TableCell align="center">{i18n.t("plans.form.kanban")}</TableCell>
+                        <TableCell align="center">{i18n.t("plans.form.openAi")}</TableCell>
+                        <TableCell align="center">{i18n.t("plans.form.integrations")}</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -539,7 +539,7 @@ export default function PlansManager() {
             const planList = await list()
             setRecords(planList)
         } catch (e) {
-            toast.error('Não foi possível carregar a lista de registros')
+            toast.error(i18n.t("plans.toasts.loadError"))
         }
         setLoading(false)
     }
@@ -555,9 +555,9 @@ export default function PlansManager() {
             }
             await loadPlans()
             handleCancel()
-            toast.success('Operação realizada com sucesso!')
+            toast.success(i18n.t("plans.toasts.success"))
         } catch (e) {
-            toast.error('Não foi possível realizar a operação. Verifique se já existe uma plano com o mesmo nome ou se os campos foram preenchidos corretamente')
+            toast.error(i18n.t("plans.toasts.duplicated"))
         }
         setLoading(false)
     }
@@ -568,9 +568,9 @@ export default function PlansManager() {
             await remove(record.id)
             await loadPlans()
             handleCancel()
-            toast.success('Operação realizada com sucesso!')
+            toast.success(i18n.t("plans.toasts.success"))
         } catch (e) {
-            toast.error('Não foi possível realizar a operação')
+            toast.error(i18n.t("plans.toasts.error"))
         }
         setLoading(false)
     }
@@ -655,12 +655,12 @@ export default function PlansManager() {
                 </Grid>
             </Grid>
             <ConfirmationModal
-                title="Exclusão de Registro"
+                title={i18n.t("plans.confirmationModal.deleteTitle")}
                 open={showConfirmDialog}
                 onClose={() => setShowConfirmDialog(false)}
                 onConfirm={() => handleDelete()}
             >
-                Deseja realmente excluir esse registro?
+                {i18n.t("plans.confirmationModal.deleteMessage")}
             </ConfirmationModal>
         </Paper>
     )

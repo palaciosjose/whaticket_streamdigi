@@ -1416,12 +1416,16 @@ const messages = {
           add: "Adicionar empresa",
         },
         toasts: {
+          success: "Operação realizada com sucesso!",
+          error: "Não foi possível realizar a operação",
+          duplicated:
+            "Não foi possível realizar a operação. Verifique se já existe uma empresa com o mesmo nome ou se os campos foram preenchidos corretamente",
+          loadError: "Não foi possível carregar a lista de registros",
           deleted: "Empresa excluído com sucesso.",
         },
         confirmationModal: {
-          deleteTitle: "Excluir",
-          deleteMessage:
-            "Todos os dados da empresa serão perdidos. Os tickets abertos deste usuário serão movidos para a fila.",
+          deleteTitle: "Exclusão de Registro",
+          deleteMessage: "Deseja realmente excluir esse registro?",
         },
       },
       plans: {
@@ -1439,17 +1443,60 @@ const messages = {
           yes: "Sim",
           no: "Não",
           money: "R$",
-          public: "Público"
+          public: "Público",
+          queues: "Filas",
+          value: "Valor",
+          whatsapp: "Whatsapp",
+          facebook: "Facebook",
+          instagram: "Instagram",
+          internalChat: "Chat Interno",
+          externalApi: "API Externa",
+          kanban: "Kanban",
+          openAi: "Talk.Ai",
+          integrations: "Integrações",
+        },
+        toasts: {
+          success: "Operação realizada com sucesso!",
+          error: "Não foi possível realizar a operação",
+          duplicated:
+            "Não foi possível realizar a operação. Verifique se já existe um plano com o mesmo nome ou se os campos foram preenchidos corretamente",
+          loadError: "Não foi possível carregar a lista de registros",
+        },
+        confirmationModal: {
+          deleteTitle: "Exclusão de Registro",
+          deleteMessage: "Deseja realmente excluir esse registro?",
         },
       },
       helps: {
         title: "Central de Ajuda",
         settings: {
+          title: "Título",
           codeVideo: "Código do Video",
           description: "Descrição",
           clear: "Limpar",
           delete: "Excluir",
           save: "Salvar",
+        },
+        toasts: {
+          success: "Operação realizada com sucesso!",
+          error: "Não foi possível realizar a operação",
+          duplicated:
+            "Não foi possível realizar a operação. Verifique se já existe uma ajuda com o mesmo nome ou se os campos foram preenchidos corretamente",
+          loadError: "Não foi possível carregar a lista de registros",
+        },
+        confirmationModal: {
+          deleteTitle: "Exclusão de Registro",
+          deleteMessage: "Deseja realmente excluir esse registro?",
+        },
+      },
+      contactNotes: {
+        toasts: {
+          added: "Observação adicionada com sucesso!",
+          deleted: "Observação excluída com sucesso!",
+        },
+        confirmationModal: {
+          deleteTitle: "Excluir Registro",
+          deleteMessage: "Deseja realmente excluir este registro?",
         },
       },
       schedules: {
