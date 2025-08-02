@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # reset shell colors
 tput init
@@ -17,21 +18,31 @@ source "${PROJECT_ROOT}"/variables/manifest.sh
 source "${PROJECT_ROOT}"/utils/manifest.sh
 source "${PROJECT_ROOT}"/lib/manifest.sh
 
-# user configs file
-if [[ ! -e "${PROJECT_ROOT}"/config ]]; then
-  cat << EOF > "${PROJECT_ROOT}"/config
+# gather credentials interactively or from environment
+if [[ -z "${deploy_password}" ]]; then
+  read -rsp "Ingrese la contraseña del usuario deploy: " deploy_password
+  echo
+fi
+if [[ -z "${mysql_root_password}" ]]; then
+  read -rsp "Ingrese la contraseña de MySQL root: " mysql_root_password
+  echo
+fi
+if [[ -z "${db_pass}" ]]; then
+  read -rsp "Ingrese la contraseña de la base de datos: " db_pass
+  echo
+fi
+
+export deploy_password mysql_root_password db_pass
+
+# store credentials in a protected .env file
+cat <<'EOF' > "${PROJECT_ROOT}"/.env
 deploy_password=${deploy_password}
 mysql_root_password=${mysql_root_password}
 db_pass=${db_pass}
 EOF
-fi
 
-# this file has passwords
-sudo su - root <<EOF
-chown root:root "${PROJECT_ROOT}"/config
-chmod 700 "${PROJECT_ROOT}"/config
-EOF
-source "${PROJECT_ROOT}"/config
+sudo chown root:root "${PROJECT_ROOT}"/.env
+sudo chmod 600 "${PROJECT_ROOT}"/.env
 
 # interactive CLI
 inquiry_options
