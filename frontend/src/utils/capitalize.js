@@ -1,9 +1,9 @@
 export function capitalize(str) {
-    // Verifique se a string não está vazia
+    // Verifica si la cadena no está vacía
     if (str.length === 0) {
       return str;
     }
-  
-    // Capitalize a primeira letra e concatene com o restante da string
+
+    // Capitaliza la primera letra y concatena con el resto de la cadena
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
