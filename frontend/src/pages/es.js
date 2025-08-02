@@ -918,10 +918,10 @@ const messages = {
       },
       languages: {
         undefined: "Idioma",
-        "pt-BR": "Português",
+        "pt-BR": "Portugués",
         es: "Español",
-        en: "English",
-        tr: "Türkçe",
+        en: "Inglés",
+        tr: "Turco",
       },
       messagesAPI: {
         title: "API",

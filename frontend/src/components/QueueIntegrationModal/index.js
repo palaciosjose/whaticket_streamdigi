@@ -258,9 +258,15 @@ const QueueIntegration = ({ open, onClose, integrationId }) => {
                               id="language-selection"
                               required
                             >
-                              <MenuItem value="pt-BR">Portugues</MenuItem>
-                              <MenuItem value="en">Inglês</MenuItem>
-                              <MenuItem value="es">Español</MenuItem>
+                              <MenuItem value="pt-BR">
+                                {i18n.t("languages.pt-BR")}
+                              </MenuItem>
+                              <MenuItem value="en">
+                                {i18n.t("languages.en")}
+                              </MenuItem>
+                              <MenuItem value="es">
+                                {i18n.t("languages.es")}
+                              </MenuItem>
                             </Field>
                           </FormControl>
                         </Grid>

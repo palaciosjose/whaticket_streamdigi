@@ -959,6 +959,7 @@ const messages = {
       },
       languages: {
         undefined: "Idioma",
+        "pt-BR": "Portugués",
         "es-CO": "Español (Colombia)",
         "es-ES": "Español (España)",
         "es-MX": "Español (México)",
