@@ -129,17 +129,17 @@ async function handleVerifySchedules(job) {
     });
 
     if (count > 0) {
-      schedules.map(async schedule => {
+      for (const schedule of schedules) {
         await schedule.update({
           status: "AGENDADA"
         });
-        sendScheduledMessages.add(
+        await sendScheduledMessages.add(
           "SendMessage",
           { schedule },
           { delay: 40000 }
         );
         logger.info(messages.SCHEDULED_SHOT(schedule.contact.name));
-      });
+      }
     }
 
     const [startSchedule, endSchedule] = scheduleTimeWindow();
@@ -153,23 +153,23 @@ async function handleVerifySchedules(job) {
     });
 
     if (scheduled.length > 0) {
-      scheduled.map(async sched => {
+      for (const sched of scheduled) {
         const hasEnvio = await ScheduledMessagesEnvio.findOne({
           where: { scheduledmessages: sched.id }
         });
         if (hasEnvio) {
-          return;
+          continue;
         }
         await sched.update({
           status: "AGENDADA"
         });
-        sendScheduledMessages.add(
+        await sendScheduledMessages.add(
           "SendScheduled",
           { scheduledMessage: sched },
           { delay: 40000 }
         );
         logger.info(messages.SCHEDULED_SHOT(sched.nome));
-      });
+      }
     }
   } catch (e: any) {
     Sentry.captureException(e);
