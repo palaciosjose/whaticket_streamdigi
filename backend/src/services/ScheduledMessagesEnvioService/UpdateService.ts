@@ -1,16 +1,14 @@
 import * as Yup from "yup";
 
 import AppError from "../../errors/AppError";
-import ScheduledMessages from "../../models/ScheduledMessages";
+import ScheduledMessagesEnvio from "../../models/ScheduledMessagesEnvio";
 import ShowService from "./ShowService";
-import Contact from "../../models/Contact";
-import Tag from "../../models/Tag";
 
 interface ScheduleData {
   mediaPath: string;
   mediaName: string;
   mensagem: string;
-  companyId: number
+  companyId: number;
   data_envio: Date;
   scheduledmessages: number;
   key: string;
@@ -22,16 +20,14 @@ interface Request {
   companyId: number;
 }
 
-const UpdateUserService = async ({
+const UpdateService = async ({
   scheduleData,
   id,
   companyId
-}: Request): Promise<ScheduledMessages | undefined> => {
+}: Request): Promise<ScheduledMessagesEnvio | undefined> => {
   const schedule = await ShowService(id);
 
   const schema = Yup.object().shape({
-    data_mensagem_programada: Yup.date().required(),
-    nome: Yup.string().required(),
     mediaPath: Yup.string(),
     mediaName: Yup.string(),
     mensagem: Yup.string().required(),
@@ -78,4 +74,4 @@ const UpdateUserService = async ({
   return schedule;
 };
 
-export default UpdateUserService;
+export default UpdateService;

@@ -23,8 +23,6 @@ const CreateService = async ({
   key
 }: Request): Promise<ScheduledMessagesEnvio> => {
   const schema = Yup.object().shape({
-    data_mensagem_programada: Yup.date().required(),
-    nome: Yup.string().required(),
     mediaPath: Yup.string(),
     mediaName: Yup.string(),
     mensagem: Yup.string().required(),
@@ -47,8 +45,6 @@ const CreateService = async ({
   } catch (err: any) {
     throw new AppError(err.message);
   }
-
-  console.log(mediaPath, mediaName)
 
   const schedule = await ScheduledMessagesEnvio.create(
     {

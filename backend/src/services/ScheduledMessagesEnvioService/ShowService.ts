@@ -1,8 +1,8 @@
-import ScheduledMessages from "../../models/ScheduledMessages";
+import ScheduledMessagesEnvio from "../../models/ScheduledMessagesEnvio";
 import AppError from "../../errors/AppError";
 
-const ScheduleService = async (id: string | number): Promise<ScheduledMessages> => {
-  const schedule = await ScheduledMessages.findByPk(id);
+const ScheduleService = async (id: string | number): Promise<ScheduledMessagesEnvio> => {
+  const schedule = await ScheduledMessagesEnvio.findByPk(id);
 
   if (!schedule) {
     throw new AppError("ERR_NO_SCHEDULE_FOUND", 404);
