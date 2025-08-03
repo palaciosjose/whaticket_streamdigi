@@ -6,7 +6,7 @@ const ShowQueueIntegrationService = async (id: string | number, companyId: numbe
   const integration = await QueueIntegrations.findByPk(id);
 
   // if (Number(integration?.companyId) !== Number(companyId)) {
-  //   throw new AppError("Não é possível excluir registro de outra empresa");
+  //   throw new AppError("No es posible consultar un registro de otra empresa");
   // }
 
   if (!integration) {
