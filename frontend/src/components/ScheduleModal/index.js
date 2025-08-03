@@ -106,8 +106,9 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
 	const [intervalo, setIntervalo] = useState(1);
 	// const [valorIntervalo, setValorIntervalo] = useState(initialContact);
 	// const [enviarQuantasVezes, setEnviarQuantasVezes] = useState(initialContact);
-	const [tipoDias, setTipoDias] = useState(4);
-	const [attachment, setAttachment] = useState(null);
+        const [tipoDias, setTipoDias] = useState(4);
+        const [attachment, setAttachment] = useState(null);
+        const [useSpintax, setUseSpintax] = useState(false);
 	const attachmentFile = useRef(null);
 	const [confirmationOpen, setConfirmationOpen] = useState(false);
 	const messageInputRef = useRef();
@@ -436,9 +437,22 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
 										helperText={touched.body && errors.body}
 										variant="outlined"
 										margin="dense"
-										fullWidth
-									/>
-								</div>
+                                                                                fullWidth
+                                                                        />
+                                                                        <FormControlLabel
+                                                                                control={
+                                                                                        <Switch
+                                                                                                color="primary"
+                                                                                                checked={useSpintax}
+                                                                                                onChange={(e) => setUseSpintax(e.target.checked)}
+                                                                                        />
+                                                                                }
+                                                                                label="Enable Spintax"
+                                                                        />
+                                                                        <Typography variant="caption">
+                                                                                Use {"{option1|option2}"} syntax to randomize text.
+                                                                        </Typography>
+                                                                </div>
 								<Grid item xs={12} md={12} xl={6}>
 									<MessageVariablesPicker
 										disabled={isSubmitting}

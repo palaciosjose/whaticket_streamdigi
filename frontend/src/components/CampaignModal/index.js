@@ -27,12 +27,15 @@ import toastError from "../../errors/toastError";
 import {
   Box,
   FormControl,
+  FormControlLabel,
   Grid,
   InputLabel,
   MenuItem,
   Select,
+  Switch,
   Tab,
   Tabs,
+  Typography,
 } from "@material-ui/core";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import ConfirmationModal from "../ConfirmationModal";
@@ -127,6 +130,7 @@ const CampaignModal = ({
   const [tagLists, setTagLists] = useState([]);
   const [messageTab, setMessageTab] = useState(0);
   const [attachment, setAttachment] = useState(null);
+  const [useSpintax, setUseSpintax] = useState(false);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
   const [campaignEditable, setCampaignEditable] = useState(true);
   const attachmentFile = useRef(null);
@@ -793,6 +797,22 @@ const CampaignModal = ({
                         <MenuItem value={"open"}>{i18n.t("campaigns.dialog.form.openTicketStatus")}</MenuItem>
                       </Field>
                     </FormControl>
+                  </Grid>
+
+                  <Grid xs={12} item>
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          color="primary"
+                          checked={useSpintax}
+                          onChange={(e) => setUseSpintax(e.target.checked)}
+                        />
+                      }
+                      label="Enable Spintax"
+                    />
+                    <Typography variant="caption">
+                      Use {"{option1|option2}"} to randomize text.
+                    </Typography>
                   </Grid>
 
                   <Grid xs={12} item>
