@@ -7,9 +7,10 @@ import moment from "moment";
 export const scheduleTimeWindow = (
   marginSeconds?: number
 ): [string, string] => {
-  const margin =
-    marginSeconds ??
-    parseInt(process.env.SCHEDULE_MARGIN_SECONDS || "300", 10);
+  const envMargin = Number(process.env.SCHEDULE_MARGIN_SECONDS);
+  const parsedEnvMargin =
+    Number.isNaN(envMargin) || envMargin <= 0 ? 300 : envMargin;
+  const margin = marginSeconds ?? parsedEnvMargin;
 
   const start = moment()
     .subtract(margin, "seconds")
