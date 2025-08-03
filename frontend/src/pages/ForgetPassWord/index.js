@@ -74,7 +74,7 @@ const ForgetPassword = () => {
   const [showResetPasswordButton, setShowResetPasswordButton] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [error, setError] = useState(""); // Estado para mensagens de erro
+  const [error, setError] = useState(""); // Estado para mensajes de error
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -133,7 +133,7 @@ const handleSendEmail = async (values) => {
         await api.post(
           `${process.env.REACT_APP_BACKEND_URL}/resetpasswords/${email}/${token}/${newPassword}`
         );
-        setError(""); // Limpe o erro se não houver erro
+        setError(""); // Limpia el error si no hay error
         toast.success(i18n.t("forgetPassword.toasts.passwordReset"));
         history.push("/login");
       } catch (err) {
@@ -154,7 +154,7 @@ const handleSendEmail = async (values) => {
             passwordRegex,
             i18n.t("forgetPassword.validation.passwordLength")
           )
-      : Yup.string(), // Sem validação se não for redefinição de senha
+      : Yup.string(), // Sin validación si no se redefine la contraseña
     confirmPassword: Yup.string().when("newPassword", {
       is: (newPassword) => isResetPasswordButtonClicked && newPassword,
       then: Yup.string()
@@ -163,7 +163,7 @@ const handleSendEmail = async (values) => {
           i18n.t("forgetPassword.validation.passwordMismatch")
         )
         .required(i18n.t("forgetPassword.validation.required")),
-      otherwise: Yup.string(), // Sem validação se não for redefinição de senha
+      otherwise: Yup.string(), // Sin validación si no se redefine la contraseña
     }),
   });
 
