@@ -13,13 +13,13 @@ module.exports = {
         type: DataTypes.DATE
       },
       id_conexao: {
-        type: DataTypes.STRING
+        type: DataTypes.INTEGER
       },
       intervalo: {
-        type: DataTypes.STRING
+        type: DataTypes.INTEGER
       },
       valor_intervalo: {
-        type: DataTypes.STRING
+        type: DataTypes.INTEGER
       },
       mensagem: {
         type: DataTypes.TEXT
@@ -68,7 +68,7 @@ module.exports = {
         type: DataTypes.STRING
       },
       enviar_quantas_vezes: {
-        type: DataTypes.STRING
+        type: DataTypes.INTEGER
       }
     });
   },
