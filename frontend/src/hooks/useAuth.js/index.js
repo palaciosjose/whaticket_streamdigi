@@ -176,7 +176,7 @@ const useAuth = () => {
         setIsAuth(true);
         toastError(`Opss! Sua assinatura venceu ${vencimento}.
 Entre em contato com o Suporte para mais informações! `);
-        history.push("/financeiro");
+        history.push("/financiero");
         setLoading(false);
       }
 

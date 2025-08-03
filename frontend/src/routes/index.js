@@ -9,7 +9,7 @@ import Signup from "../pages/Signup";
 import Login from "../pages/Login";
 import Connections from "../pages/Connections";
 import SettingsCustom from "../pages/SettingsCustom";
-import Financeiro from "../pages/Financeiro";
+import Financiero from "../pages/Financiero";
 import Users from "../pages/Users";
 import Contacts from "../pages/Contacts";
 import ContactImportPage from "../pages/Contacts/import";
@@ -68,7 +68,7 @@ const Routes = () => {
             <Route exact path="/forgetpsw" component={ForgetPassword} />
             <WhatsAppsProvider>
               <LoggedInLayout>
-                <Route exact path="/financeiro" component={Financeiro} isPrivate />
+                <Route exact path="/financiero" component={Financiero} isPrivate />
 
                 <Route exact path="/companies" component={Companies} isPrivate />
                 <Route exact path="/" component={Dashboard} isPrivate />
