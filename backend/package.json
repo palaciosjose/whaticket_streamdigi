@@ -10,9 +10,9 @@
     "dev:server": "ts-node-dev --respawn --transpile-only --ignore node_modules src/server.ts",
     "db:migrate": "npx sequelize db:migrate",
     "db:seed": "sequelize db:seed:all",
-    "pretest": "NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize db:seed:all",
+    "pretest": "if [ \"$SKIP_DB\" != \"true\" ]; then NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize db:seed:all; fi",
     "test": "NODE_ENV=test jest",
-    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all",
+    "posttest": "if [ \"$SKIP_DB\" != \"true\" ]; then NODE_ENV=test sequelize db:migrate:undo:all; fi",
     "lint": "eslint src/**/*.ts"
   },
   "author": "",
