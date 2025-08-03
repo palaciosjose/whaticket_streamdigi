@@ -124,6 +124,12 @@ class Campaign extends Model<Campaign> {
 
   @Column({ defaultValue: "disabled" })
   openTicket: string;
+
+  @Column({ defaultValue: 0 })
+  repeatInterval: number;
+
+  @Column({ defaultValue: 0 })
+  repeatLimit: number;
 }
 
 export default Campaign;
