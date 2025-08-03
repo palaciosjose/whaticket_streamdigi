@@ -4,12 +4,18 @@ import moment from "moment";
  * Returns start and end timestamps for schedule verification window.
  * @param marginSeconds number of seconds before and after the current time
  */
-export const scheduleTimeWindow = (marginSeconds = 30): [string, string] => {
+export const scheduleTimeWindow = (
+  marginSeconds?: number
+): [string, string] => {
+  const margin =
+    marginSeconds ??
+    parseInt(process.env.SCHEDULE_MARGIN_SECONDS || "300", 10);
+
   const start = moment()
-    .subtract(marginSeconds, "seconds")
+    .subtract(margin, "seconds")
     .format("YYYY-MM-DD HH:mm:ss");
   const end = moment()
-    .add(marginSeconds, "seconds")
+    .add(margin, "seconds")
     .format("YYYY-MM-DD HH:mm:ss");
   return [start, end];
 };
