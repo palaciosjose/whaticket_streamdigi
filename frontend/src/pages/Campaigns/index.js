@@ -355,6 +355,12 @@ const Campaigns = () => {
                       {i18n.t("campaigns.table.completedAt")}
                     </TableCell>
                     <TableCell align="center">
+                      {i18n.t("campaigns.table.repeatInterval")}
+                    </TableCell>
+                    <TableCell align="center">
+                      {i18n.t("campaigns.table.repeatLimit")}
+                    </TableCell>
+                    <TableCell align="center">
                       {i18n.t("campaigns.table.confirmation")}
                     </TableCell>
                     <TableCell align="center">
@@ -389,6 +395,12 @@ const Campaigns = () => {
                           {campaign.completedAt
                             ? datetimeToClient(campaign.completedAt)
                             : i18n.t("campaigns.table.notFinished")}
+                        </TableCell>
+                        <TableCell align="center">
+                          {campaign.repeatInterval || "-"}
+                        </TableCell>
+                        <TableCell align="center">
+                          {campaign.repeatLimit || "-"}
                         </TableCell>
                         <TableCell align="center">
                           {campaign.confirmation

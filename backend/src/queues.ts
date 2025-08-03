@@ -818,7 +818,17 @@ async function verifyAndFinalizeCampaign(campaign) {
   });
 
   if (count1 === count2) {
-    await campaign.update({ status: "FINALIZADA", completedAt: moment() });
+    if (campaign.repeatLimit && campaign.repeatLimit > 0 && campaign.repeatInterval) {
+      const nextRun = moment().add(campaign.repeatInterval, "minutes").toDate();
+      await CampaignShipping.destroy({ where: { campaignId: campaign.id } });
+      await campaign.update({
+        status: "PROGRAMADA",
+        scheduledAt: nextRun,
+        repeatLimit: campaign.repeatLimit - 1
+      });
+    } else {
+      await campaign.update({ status: "FINALIZADA", completedAt: moment() });
+    }
   }
 
   const io = getIO();

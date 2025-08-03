@@ -76,6 +76,8 @@ const CampaignSchema = Yup.object().shape({
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
+  repeatInterval: Yup.number().min(0).nullable(),
+  repeatLimit: Yup.number().min(0).nullable(),
 });
 
 const CampaignModal = ({
@@ -111,7 +113,9 @@ const CampaignModal = ({
     tagListId: "Nenhuma",
     companyId,
     statusTicket: "closed",
-    openTicket: "disabled"
+    openTicket: "disabled",
+    repeatInterval: 0,
+    repeatLimit: 0
   };
 
   const [campaign, setCampaign] = useState(initialState);
@@ -293,6 +297,8 @@ const CampaignModal = ({
       Object.entries(values).forEach(([key, value]) => {
         if (key === "scheduledAt" && value !== "" && value !== null) {
           dataValues[key] = moment(value).format("YYYY-MM-DD HH:mm:ss");
+        } else if (key === "repeatInterval" || key === "repeatLimit") {
+          dataValues[key] = value === "" || value === null ? 0 : Number(value);
         } else {
           dataValues[key] = value === "" ? null : value;
         }
@@ -606,7 +612,7 @@ const CampaignModal = ({
                     </FormControl>
                   </Grid>
 
-                  <Grid xs={12} md={4} item>
+                  <Grid xs={12} md={3} item>
                     <Field
                       as={TextField}
                       label={i18n.t("campaigns.dialog.form.scheduledAt")}
@@ -624,7 +630,33 @@ const CampaignModal = ({
                       disabled={!campaignEditable}
                     />
                   </Grid>
-                  <Grid xs={12} md={4} item>
+                  <Grid xs={12} md={3} item>
+                    <Field
+                      as={TextField}
+                      label={i18n.t("campaigns.dialog.form.repeatInterval")}
+                      name="repeatInterval"
+                      variant="outlined"
+                      margin="dense"
+                      type="number"
+                      fullWidth
+                      className={classes.textField}
+                      disabled={!campaignEditable}
+                    />
+                  </Grid>
+                  <Grid xs={12} md={3} item>
+                    <Field
+                      as={TextField}
+                      label={i18n.t("campaigns.dialog.form.repeatLimit")}
+                      name="repeatLimit"
+                      variant="outlined"
+                      margin="dense"
+                      type="number"
+                      fullWidth
+                      className={classes.textField}
+                      disabled={!campaignEditable}
+                    />
+                  </Grid>
+                  <Grid xs={12} md={3} item>
                     <FormControl
                       variant="outlined"
                       margin="dense"

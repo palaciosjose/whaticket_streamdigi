@@ -19,6 +19,8 @@ interface Data {
   queueId: number | string;
   statusTicket: string;
   openTicket: string;
+  repeatInterval?: number;
+  repeatLimit?: number;
 }
 
 const CreateService = async (data: Data): Promise<Campaign> => {
@@ -35,6 +37,12 @@ const CreateService = async (data: Data): Promise<Campaign> => {
       .required("ERR_CAMPAIGN_REQUIRED"),
     confirmationMessages: Yup.array()
       .of(Yup.string().required("ERR_CAMPAIGN_REQUIRED"))
+    repeatInterval: Yup.number()
+      .min(0)
+      .nullable(),
+    repeatLimit: Yup.number()
+      .min(0)
+      .nullable()
   });
 
   try {
