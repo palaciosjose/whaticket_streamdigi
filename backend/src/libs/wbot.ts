@@ -164,7 +164,7 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
         const { version, isLatest } = await fetchLatestBaileysVersion();
         const versionB = [2, 2410, 1];
         // logger.info(`using WA v${version.join(".")}, isLatest: ${isLatest}`);
-        logger.info(`Versão: v${version.join(".")}, isLatest: ${isLatest}`);
+        logger.info(`Versión: v${version.join(".")}, isLatest: ${isLatest}`);
         logger.info(`Starting session ${name}`);
         let retriesQrCode = 0;
 
@@ -236,12 +236,12 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
             addLogs({
               fileName: `preparingImportMessagesWppId${whatsapp.id}.txt`,
               forceNewFile: true,
-              text: `Aguardando conexão para iniciar a importação de mensagens:
-  Whatsapp nome: ${wpp.name}
-  Whatsapp Id: ${wpp.id}
-  Criação do arquivo de logs: ${moment().format("DD/MM/YYYY HH:mm:ss")}
-  Selecionado Data de inicio de importação: ${moment(dateOldLimit).format("DD/MM/YYYY HH:mm:ss")} 
-  Selecionado Data final da importação: ${moment(dateRecentLimit).format("DD/MM/YYYY HH:mm:ss")} 
+              text: `Esperando conexión para iniciar la importación de mensajes:
+  Nombre de Whatsapp: ${wpp.name}
+  ID de Whatsapp: ${wpp.id}
+  Creación del archivo de logs: ${moment().format("DD/MM/YYYY HH:mm:ss")}
+  Fecha de inicio seleccionada para la importación: ${moment(dateOldLimit).format("DD/MM/YYYY HH:mm:ss")}
+  Fecha final seleccionada para la importación: ${moment(dateRecentLimit).format("DD/MM/YYYY HH:mm:ss")}
   `
             });
 
@@ -273,12 +273,12 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
                   if (msg.key?.remoteJid.split("@")[1] != "g.us") {
                     addLogs({
                       fileName: `preparingImportMessagesWppId${whatsapp.id}.txt`,
-                      text: `Adicionando mensagem para pos processamento:
-  Não é Mensagem de GRUPO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  Data e hora da mensagem: ${moment(timestampMsg).format("DD/MM/YYYY HH:mm:ss")}
-  Contato da Mensagem : ${msg.key?.remoteJid}
-  Tipo da mensagem : ${getTypeMessage(msg)}
-  
+                      text: `Añadiendo mensaje para posprocesamiento:
+  No es Mensaje de GRUPO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  Fecha y hora del mensaje: ${moment(timestampMsg).format("DD/MM/YYYY HH:mm:ss")}
+  Contacto del mensaje : ${msg.key?.remoteJid}
+  Tipo de mensaje : ${getTypeMessage(msg)}
+
   `
                     });
                     filteredDateMessages.push(msg);
@@ -286,12 +286,12 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
                     if (wpp?.importOldMessagesGroups) {
                       addLogs({
                         fileName: `preparingImportMessagesWppId${whatsapp.id}.txt`,
-                        text: `Adicionando mensagem para pos processamento:
-  Mensagem de GRUPO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  Data e hora da mensagem: ${moment(timestampMsg).format("DD/MM/YYYY HH:mm:ss")}
-  Contato da Mensagem : ${msg.key?.remoteJid}
-  Tipo da mensagem : ${getTypeMessage(msg)}
-  
+                        text: `Añadiendo mensaje para posprocesamiento:
+  Mensaje de GRUPO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  Fecha y hora del mensaje: ${moment(timestampMsg).format("DD/MM/YYYY HH:mm:ss")}
+  Contacto del mensaje : ${msg.key?.remoteJid}
+  Tipo de mensaje : ${getTypeMessage(msg)}
+
   `
                       });
                       filteredDateMessages.push(msg);
@@ -378,7 +378,7 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
 
             if (connection === "close") {
               console.log(
-                "DESCONECTOU",
+                "SE DESCONECTÓ",
                 JSON.stringify(lastDisconnect, null, 2)
               );
               logger.info(
