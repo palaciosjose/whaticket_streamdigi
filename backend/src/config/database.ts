@@ -1,6 +1,6 @@
 require("../bootstrap");
 
-// Bogota timezone
+// Zona horaria de Bogotá
 module.exports = {
   define: {
     charset: "utf8mb4",
