@@ -188,7 +188,7 @@ async function handleSendScheduledMessage(job) {
     }
 
     if (!whatsapp)
-      whatsapp = await GetDefaultWhatsApp(whatsapp.id,schedule.companyId);
+      whatsapp = await GetDefaultWhatsApp(null, schedule.companyId);
 
 
     // const settings = await CompaniesSettings.findOne({
