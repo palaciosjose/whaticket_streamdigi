@@ -1811,7 +1811,7 @@ export async function startQueueProcess() {
     "Verify",
     {},
     {
-      repeat: { cron: "*/5 * * * * *", key: "verify" },
+      repeat: { cron: "*/30 * * * * *", key: "verify" },
       removeOnComplete: true
     }
   );
