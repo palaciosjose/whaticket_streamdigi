@@ -6,6 +6,7 @@ import logger from "./utils/logger";
 import moment from "moment";
 import messages from "./locales/messages";
 import Schedule from "./models/Schedule";
+import ScheduledMessages from "./models/ScheduledMessages";
 import { Op, QueryTypes, Sequelize } from "sequelize";
 import GetDefaultWhatsApp from "./helpers/GetDefaultWhatsApp";
 import Campaign from "./models/Campaign";
@@ -136,6 +137,26 @@ async function handleVerifySchedules(job) {
           { delay: 40000 }
         );
         logger.info(messages.SCHEDULED_SHOT(schedule.contact.name));
+      });
+    }
+
+    const scheduled = await ScheduledMessages.findAll({
+      where: {
+        data_mensagem_programada: {
+          [Op.gte]: moment().format("YYYY-MM-DD HH:mm:ss"),
+          [Op.lte]: moment().add("30", "seconds").format("YYYY-MM-DD HH:mm:ss")
+        }
+      }
+    });
+
+    if (scheduled.length > 0) {
+      scheduled.map(async sched => {
+        sendScheduledMessages.add(
+          "SendScheduled",
+          { scheduledMessage: sched },
+          { delay: 40000 }
+        );
+        logger.info(messages.SCHEDULED_SHOT(sched.nome));
       });
     }
   } catch (e: any) {
@@ -330,6 +351,60 @@ async function handleSendScheduledMessage(job) {
       status: "ERRO"
     });
     logger.error("SendScheduledMessage -> SendMessage: error", e.message);
+    throw e;
+  }
+}
+
+async function handleSendScheduledMessages(job) {
+  const {
+    data: { scheduledMessage }
+  } = job;
+
+  try {
+    const record = await ScheduledMessages.findByPk(scheduledMessage.id);
+
+    if (!record) {
+      return;
+    }
+
+    const whatsapp = await Whatsapp.findByPk(Number(record.id_conexao));
+
+    let filePath = null;
+    if (record.mediaPath) {
+      filePath = path.resolve(
+        "public",
+        `company${record.companyId}`,
+        record.mediaPath
+      );
+    }
+
+    const bodyMessage =
+      record.mostrar_usuario_mensagem && record.usuario_envio
+        ? `*${record.usuario_envio}:*\n${record.mensagem}`
+        : record.mensagem;
+
+    for (const contactId of record.contatos || []) {
+      try {
+        const contact = await Contact.findByPk(contactId as any);
+        if (!contact) continue;
+
+        await SendMessage(
+          whatsapp,
+          {
+            number: contact.number,
+            body: `\u200e ${bodyMessage}`,
+            mediaPath: filePath,
+            companyId: record.companyId
+          },
+          (contact as any).isGroup
+        );
+      } catch (err) {
+        Sentry.captureException(err);
+      }
+    }
+  } catch (e: any) {
+    Sentry.captureException(e);
+    logger.error("SendScheduledMessage -> SendScheduled: error", e.message);
     throw e;
   }
 }
@@ -1691,6 +1766,7 @@ export async function startQueueProcess() {
   scheduleMonitor.process("Verify", handleVerifySchedules);
 
   sendScheduledMessages.process("SendMessage", handleSendScheduledMessage);
+  sendScheduledMessages.process("SendScheduled", handleSendScheduledMessages);
 
   campaignQueue.process("VerifyCampaignsDaatabase", handleVerifyCampaigns);
 
