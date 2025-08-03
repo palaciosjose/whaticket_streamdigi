@@ -13,34 +13,47 @@ describe("scheduleTimeWindow", () => {
   });
 
   it("captures times within margin even with different seconds", () => {
-    const margin = 30;
+    const margin = 180;
     const [start, end] = scheduleTimeWindow(margin);
 
-    const insideFuture = moment().add(15, "seconds");
-    const insidePast = moment().subtract(15, "seconds");
-    const outsideFuture = moment().add(margin + 5, "seconds");
+    const insideFuture = moment().add(100, "seconds");
+    const insidePast = moment().subtract(100, "seconds");
+    const outsideFuture = moment().add(margin + 10, "seconds");
 
     expect(insideFuture.isBetween(start, end, undefined, "[]")).toBe(true);
     expect(insidePast.isBetween(start, end, undefined, "[]")).toBe(true);
     expect(outsideFuture.isBetween(start, end, undefined, "[]")).toBe(false);
   });
 
-  it("uses SCHEDULE_MARGIN_SECONDS when it is a valid number", () => {
-    process.env.SCHEDULE_MARGIN_SECONDS = "120";
+  it("clamps provided margin to recommended range", () => {
+    const [start, end] = scheduleTimeWindow(30);
+    const diff = moment(end).diff(moment(start), "seconds");
+    expect(diff).toBe(240);
+  });
+
+  it("uses SCHEDULE_MARGIN_SECONDS when it is within range", () => {
+    process.env.SCHEDULE_MARGIN_SECONDS = "200";
+    const [start, end] = scheduleTimeWindow();
+    const diff = moment(end).diff(moment(start), "seconds");
+    expect(diff).toBe(400);
+  });
+
+  it("clamps SCHEDULE_MARGIN_SECONDS below minimum", () => {
+    process.env.SCHEDULE_MARGIN_SECONDS = "60";
     const [start, end] = scheduleTimeWindow();
     const diff = moment(end).diff(moment(start), "seconds");
     expect(diff).toBe(240);
   });
 
-  it("defaults to 300 seconds when SCHEDULE_MARGIN_SECONDS is not a finite number", () => {
-    process.env.SCHEDULE_MARGIN_SECONDS = "abc" as any;
+  it("clamps SCHEDULE_MARGIN_SECONDS above maximum", () => {
+    process.env.SCHEDULE_MARGIN_SECONDS = "400";
     const [start, end] = scheduleTimeWindow();
     const diff = moment(end).diff(moment(start), "seconds");
     expect(diff).toBe(600);
   });
 
-  it("defaults to 300 seconds when SCHEDULE_MARGIN_SECONDS is negative", () => {
-    process.env.SCHEDULE_MARGIN_SECONDS = "-10";
+  it("defaults to 300 seconds when SCHEDULE_MARGIN_SECONDS is not a finite number", () => {
+    process.env.SCHEDULE_MARGIN_SECONDS = "abc" as any;
     const [start, end] = scheduleTimeWindow();
     const diff = moment(end).diff(moment(start), "seconds");
     expect(diff).toBe(600);
