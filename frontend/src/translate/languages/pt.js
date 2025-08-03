@@ -258,6 +258,25 @@ const messages = {
           sendMessage: "Erro ao enviar a mensagem. Tente novamente.",
         },
       },
+      checkout: {
+        planDetails: "Detalhes do plano",
+        users: "Usuários",
+        connection: "Conexão",
+        queues: "Filas",
+        perMonth: "/mês",
+        billingMonthly: "Cobrança: Mensal",
+        select: "SELECIONAR"
+      },
+      finances: {
+        details: "Detalhes",
+        users: "Usuários",
+        connections: "Conexões",
+        queues: "Filas",
+        value: "Valor",
+        dueDate: "Data Venc.",
+        status: "Status",
+        action: "Ação"
+      },
       connections: {
         title: "Conexões",
         waitConnection: "Aguarde... Suas conexões serão reiniciadas!",

@@ -261,6 +261,25 @@ const messages = {
         noButtons: "Sin botones en esta sección.",
         noSections: "Ninguna sección disponible.",
       },
+      checkout: {
+        planDetails: "Detalles del plan",
+        users: "Usuarios",
+        connection: "Conexión",
+        queues: "Colas",
+        perMonth: "/mes",
+        billingMonthly: "Cobranza: Mensual",
+        select: "SELECCIONAR"
+      },
+      finances: {
+        details: "Detalles",
+        users: "Usuarios",
+        connections: "Conexiones",
+        queues: "Colas",
+        value: "Valor",
+        dueDate: "Fecha Venc.",
+        status: "Estado",
+        action: "Acción"
+      },
       connections: {
         title: "Conexiones",
         waitConnection: "Espere... Las conexiones serán reiniciadas!",
@@ -819,7 +838,7 @@ const messages = {
         },
       },
       ticketsQueueSelect: {
-        placeholder: "Filas",
+        placeholder: "Colas",
       },
       tickets: {
         inbox: {
@@ -944,7 +963,7 @@ const messages = {
           tickets: "Inbox",
           quickMessages: "Respuestas Rápidas",
           contacts: "Contactos",
-          queues: "Filas",
+          queues: "Colas",
           tags: "Tags",
           administration: "Administración",
           companies: "Empresas",
@@ -1333,7 +1352,7 @@ const messages = {
         title: "Configuraciones de Campañas",
       },
       queues: {
-        title: "Filas",
+        title: "Colas",
         table: {
           name: "Nombre",
           color: "Color",
@@ -1359,8 +1378,8 @@ const messages = {
         queueData: "Datos",
       },
       queueSelect: {
-        inputLabel: "Filas",
-        inputLabelRO: "Filas solo para lectura",
+        inputLabel: "Colas",
+        inputLabelRO: "Colas solo para lectura",
       },
       queueIntegration: {
         title: "Integraciones",
@@ -1422,7 +1441,7 @@ const messages = {
           numberConections: "Conexiones",
           value: "Valor",
           namePlan: "Nombre del Plan",
-          numberQueues: "Filas",
+          numberQueues: "Colas",
           useCampaigns: "Campañas",
           useExternalApi: "Rest API",
           useFacebook: "Facebook",
@@ -1480,7 +1499,7 @@ const messages = {
           yes: "Sí",
           no: "No",
           money: "MXN",
-          queues: "Filas",
+          queues: "Colas",
           value: "Valor",
           whatsapp: "Whatsapp",
           facebook: "Facebook",
@@ -1882,7 +1901,7 @@ const messages = {
           details: "Detalles",
           users: "Usuarios",
           connections: "Conexiones",
-          queue: "Filas",
+          queue: "Colas",
           value: "Valor",
           expirationDate: "Fecha Venc.",
           action: "Acción",

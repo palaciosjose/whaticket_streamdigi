@@ -14,6 +14,7 @@ import MinimizeIcon from '@material-ui/icons/Minimize';
 import AddIcon from '@material-ui/icons/Add';
 import usePlans from "../../../hooks/usePlans";
 import { AuthContext } from "../../../context/Auth/AuthContext";
+import { i18n } from "../../../translate/i18n";
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -104,14 +105,14 @@ export default function Pricing(props) {
         planId: planList.id,
         price: planList.amount,
         description: [
-          `${planList.users} Usuários`,
-          `${planList.connections} Conexão`,
-          `${planList.queues} Filas`
+          `${planList.users} ${i18n.t("checkout.users")}`,
+          `${planList.connections} ${i18n.t("checkout.connection")}`,
+          `${planList.queues} ${i18n.t("checkout.queues")}`
         ],
         users: planList.users,
         connections: planList.connections,
         queues: planList.queues,
-        buttonText: 'SELECIONAR',
+        buttonText: i18n.t("checkout.select"),
         buttonVariant: 'outlined',
       })
 
@@ -187,7 +188,7 @@ export default function Pricing(props) {
                     }
                   </Typography>
                   <Typography variant="h6" color="textSecondary">
-                    /mês
+                    {i18n.t("checkout.perMonth")}
                   </Typography>
                 </div>
                 <ul>
@@ -206,7 +207,7 @@ export default function Pricing(props) {
                             <IconButton aria-label="delete" className={classes.margin} size="small">
                               <MinimizeIcon fontSize="inherit" onClick={e => handleChangeMin(e, usersPlans - 1)} />
                             </IconButton>
-                            {usersPlans} Usuários
+                            {usersPlans} {i18n.t("checkout.users")}
 
                             <IconButton aria-label="delete" className={classes.margin} size="small">
                               <AddIcon fontSize="inherit" onClick={e => handleChangeAdd(e, usersPlans + 1)} />
@@ -220,7 +221,7 @@ export default function Pricing(props) {
                             <IconButton aria-label="delete" className={classes.margin} size="small">
                               <MinimizeIcon fontSize="inherit" onClick={(e) => handleChangeConnectionsMin(e, connectionsPlans - 1)} />
                             </IconButton>
-                            {connectionsPlans} Conexão
+                            {connectionsPlans} {i18n.t("checkout.connection")}
 
                             <IconButton aria-label="delete" className={classes.margin} size="small">
                               <AddIcon fontSize="inherit" onClick={(e) => handleChangeConnectionsAdd(e, connectionsPlans + 1)} />
