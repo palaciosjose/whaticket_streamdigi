@@ -20,7 +20,7 @@ async function handleLoginStatus(job) {
     try {
       const user = await User.findByPk(item.id);
       await user.update({ online: false });
-      logger.info(`Usuario passado para offline: ${item.id}`);
+      logger.info(`Usuario pasado a offline: ${item.id}`);
     } catch (e: any) {
       Sentry.captureException(e);
     }
@@ -61,5 +61,5 @@ export async function initUserMonitorQueues() {
       removeOnFail: { age: 60 * 60, count: 10 }
     }
   );
-  logger.info("Queue: monitoramento de status de usuário inicializado");
+  logger.info("Queue: monitor de estado de usuario inicializado");
 }
