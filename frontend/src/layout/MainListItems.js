@@ -819,7 +819,7 @@ const MainListItems = ({ collapsed, drawerClose }) => {
               perform="dashboard:view"
               yes={() => (
                 <ListItemLink
-                  to="/financeiro"
+                  to="/financiero"
                   primary={i18n.t("mainDrawer.listItems.financeiro")}
                   icon={<LocalAtmIcon />}
                   tooltip={collapsed}
