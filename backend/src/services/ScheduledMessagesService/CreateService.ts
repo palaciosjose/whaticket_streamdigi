@@ -7,9 +7,9 @@ import Contact from "../../models/Contact";
 
 interface Request {
   data_mensagem_programada: Date;
-  id_conexao: String;
-  intervalo: string;
-  valor_intervalo: string;
+  id_conexao: number;
+  intervalo: number;
+  valor_intervalo: number;
   mensagem: string;
   tipo_dias_envio: string;
   mostrar_usuario_mensagem: boolean;
@@ -22,7 +22,7 @@ interface Request {
   mediaName: string;
   tipo_arquivo: string;
   usuario_envio: string;
-  enviar_quantas_vezes: string;
+  enviar_quantas_vezes: number;
 }
 
 const CreateService = async ({
@@ -47,14 +47,15 @@ const CreateService = async ({
   const schema = Yup.object().shape({
     data_mensagem_programada: Yup.date().required(),
     nome: Yup.string().required(),
-    intervalo: Yup.string().required(),
-    valor_intervalo: Yup.string().required(),
+    intervalo: Yup.number().required(),
+    valor_intervalo: Yup.number().required(),
     mensagem: Yup.string().required(),
     tipo_dias_envio: Yup.string().required(),
     mostrar_usuario_mensagem: Yup.boolean().required(),
     criar_ticket: Yup.boolean().required(),
     companyId: Yup.number().required(),
-    enviar_quantas_vezes: Yup.string().required(),
+    enviar_quantas_vezes: Yup.number().required(),
+    id_conexao: Yup.number().required(),
     mediaPath: Yup.string(),
     mediaName: Yup.string(),
     tipo_arquivo: Yup.string(),

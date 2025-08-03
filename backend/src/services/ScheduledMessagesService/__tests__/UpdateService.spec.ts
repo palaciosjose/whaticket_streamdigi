@@ -15,9 +15,9 @@ describe("ScheduledMessages UpdateService", () => {
 
     const scheduleData = {
       data_mensagem_programada: new Date(),
-      id_conexao: "1",
-      intervalo: "1",
-      valor_intervalo: "1",
+      id_conexao: 1,
+      intervalo: 1,
+      valor_intervalo: 1,
       mensagem: "msg",
       tipo_dias_envio: "day",
       mostrar_usuario_mensagem: true,
@@ -28,7 +28,7 @@ describe("ScheduledMessages UpdateService", () => {
       nome: "test",
       tipo_arquivo: "text",
       usuario_envio: "user",
-      enviar_quantas_vezes: "1",
+      enviar_quantas_vezes: 1,
       mediaName: "",
       mediaPath: ""
     } as any;
@@ -50,9 +50,9 @@ describe("ScheduledMessages UpdateService", () => {
 
     const scheduleData = {
       data_mensagem_programada: new Date(),
-      id_conexao: "1",
-      intervalo: "1",
-      valor_intervalo: "1",
+      id_conexao: 1,
+      intervalo: 1,
+      valor_intervalo: 1,
       mensagem: "msg",
       tipo_dias_envio: "day",
       mostrar_usuario_mensagem: false,
@@ -63,7 +63,7 @@ describe("ScheduledMessages UpdateService", () => {
       nome: "test",
       tipo_arquivo: "text",
       usuario_envio: "user",
-      enviar_quantas_vezes: "1",
+      enviar_quantas_vezes: 1,
       mediaName: "",
       mediaPath: ""
     } as any;

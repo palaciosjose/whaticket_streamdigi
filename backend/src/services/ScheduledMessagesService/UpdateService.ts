@@ -6,9 +6,9 @@ import ShowService from "./ShowService";
 
 interface ScheduleData {
   data_mensagem_programada: Date;
-  id_conexao: String;
-  intervalo: string;
-  valor_intervalo: string;
+  id_conexao: number;
+  intervalo: number;
+  valor_intervalo: number;
   mensagem: string;
   tipo_dias_envio: string;
   mostrar_usuario_mensagem: boolean;
@@ -19,7 +19,7 @@ interface ScheduleData {
   nome: string;
   tipo_arquivo: string;
   usuario_envio: string;
-  enviar_quantas_vezes: string;
+  enviar_quantas_vezes: number;
   mediaName: string;
   mediaPath: string;
 }
@@ -59,18 +59,18 @@ const UpdateService = async ({
   const schema = Yup.object().shape({
     data_mensagem_programada: Yup.date().required(),
     nome: Yup.string().required(),
-    intervalo: Yup.string().required(),
-    valor_intervalo: Yup.string().required(),
+    intervalo: Yup.number().required(),
+    valor_intervalo: Yup.number().required(),
     mensagem: Yup.string().required(),
     tipo_dias_envio: Yup.string().required(),
     mostrar_usuario_mensagem: Yup.boolean().required(),
     criar_ticket: Yup.boolean().required(),
-    enviar_quantas_vezes: Yup.string().required(),
+    enviar_quantas_vezes: Yup.number().required(),
     mediaPath: Yup.string().nullable(),
     mediaName: Yup.string().nullable(),
     tipo_arquivo: Yup.string().nullable(),
     usuario_envio: Yup.string().nullable(),
-    id_conexao: Yup.string().required()
+    id_conexao: Yup.number().required()
   });
 
   try {

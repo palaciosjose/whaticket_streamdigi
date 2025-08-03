@@ -13,14 +13,14 @@ class ScheduledMessages extends Model<ScheduledMessages> {
     @Column
     data_mensagem_programada: Date;
 
-    @Column
-    id_conexao: String;
+    @Column(DataType.INTEGER)
+    id_conexao: number;
 
-    @Column
-    intervalo: string;
+    @Column(DataType.INTEGER)
+    intervalo: number;
 
-    @Column
-    valor_intervalo: string;
+    @Column(DataType.INTEGER)
+    valor_intervalo: number;
 
     @Column(DataType.TEXT)
     mensagem: string;
@@ -73,8 +73,8 @@ class ScheduledMessages extends Model<ScheduledMessages> {
     @Column
     usuario_envio: string;
 
-    @Column
-    enviar_quantas_vezes: string;
+    @Column(DataType.INTEGER)
+    enviar_quantas_vezes: number;
 
 }
 
