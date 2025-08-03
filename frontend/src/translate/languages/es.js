@@ -1866,6 +1866,11 @@ const messages = {
         forward: "Enviar",
         toForward: "Enviar",
         talkTo: "Platicar Con",
+        transcribeAudio: "Transcribir audio",
+        audioTranscriptionTitle: "Transcripción de audio",
+        audioUrlFormatError: "Formato de URL de audio inesperado",
+        transcriptionDataError: "Datos de transcripción inválidos",
+        unknownError: "Error desconocido",
         confirmationModal: {
           title: "¿Borrar mensaje?",
           message: "Esta acción no puede ser revertida.",

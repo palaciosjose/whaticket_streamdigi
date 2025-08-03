@@ -45,9 +45,9 @@ const MessageOptionsMenu = ({
 
   const [ticketOpen, setTicketOpen] = useState(null);
 
-  // Transcrição de áudio
+  // Transcripción de audio
   const [showTranscribedText, setShowTranscribedText] = useState(false);
-	const [audioMessageTranscribeToText, setAudioMessageTranscribeToText] = useState("");
+        const [audioMessageTranscribeToText, setAudioMessageTranscribeToText] = useState("");
 
   const { showSelectMessageCheckbox,
     setShowSelectMessageCheckbox,
@@ -136,9 +136,9 @@ const MessageOptionsMenu = ({
 			const audioUrl = String(message.mediaUrl);
 			const match = audioUrl.match(/\/([^\/]+\.ogg)$/);
 			const extractedPart = match ? match[1] : null;
-			if (!extractedPart) {
-				throw new Error('Formato de URL de áudio inesperado');
-			}
+                        if (!extractedPart) {
+                                throw new Error(i18n.t('messageOptionsMenu.audioUrlFormatError'));
+                        }
 			const response = await api.get(`/messages/transcribeAudio/${extractedPart}`);
 			const { data } = response;
 			if (data && typeof data.transcribedText === 'string') {
@@ -148,12 +148,12 @@ const MessageOptionsMenu = ({
 			} else if (data && data.error) {
 				throw new Error(data.error);
 			} else {
-				throw new Error('Dados de transcrição inválidos');
-			}
-		} catch (err) {
-			toastError(err.message || 'Erro desconhecido');
-		}
-	};
+                                throw new Error(i18n.t('messageOptionsMenu.transcriptionDataError'));
+                        }
+                } catch (err) {
+                        toastError(err.message || i18n.t('messageOptionsMenu.unknownError'));
+                }
+        };
 
   const hanldeReplyMessage = () => {
     setReplyingMessage(message);
@@ -161,11 +161,11 @@ const MessageOptionsMenu = ({
   };
 
   const isWithinFifteenMinutes = () => {
-    const fifteenMinutesInMilliseconds = 15 * 60 * 1000; // 15 minutos em milissegundos
+    const fifteenMinutesInMilliseconds = 15 * 60 * 1000; // 15 minutos en milisegundos
     const currentTime = new Date();
     const messageTime = new Date(message.createdAt);
 
-    // Verifica se a diferença entre o tempo atual e o tempo da mensagem é menor que 15 minutos
+    // Verifica si la diferencia entre el tiempo actual y el tiempo del mensaje es menor que 15 minutos
     return currentTime - messageTime <= fifteenMinutesInMilliseconds;
   };
 
@@ -198,12 +198,12 @@ const MessageOptionsMenu = ({
       </ConfirmationModal>
 
       <InformationModal
-				title={i18n.t("Transcrição de áudio")}
-				open={showTranscribedText}
-				onClose={setShowTranscribedText}
-			>
-				{audioMessageTranscribeToText}
-			</InformationModal>
+                                title={i18n.t("messageOptionsMenu.audioTranscriptionTitle")}
+                                open={showTranscribedText}
+                                onClose={setShowTranscribedText}
+                        >
+                                {audioMessageTranscribeToText}
+                        </InformationModal>
 
       <ForwardModal
         modalOpen={forwardMessageModalOpen}
@@ -238,10 +238,10 @@ const MessageOptionsMenu = ({
           </MenuItem>
         )}
         {(message.mediaType === "audio" && !message.fromMe) && (
-					<MenuItem onClick={handleTranscriptionAudioToText}>
-						{i18n.t("Transcrever áudio")}
-					</MenuItem>
-				)}
+                                        <MenuItem onClick={handleTranscriptionAudioToText}>
+                                                {i18n.t("messageOptionsMenu.transcribeAudio")}
+                                        </MenuItem>
+                                )}
         <MenuItem onClick={hanldeReplyMessage}>
           {i18n.t("messageOptionsMenu.reply")}
         </MenuItem>
