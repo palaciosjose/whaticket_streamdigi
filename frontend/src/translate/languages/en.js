@@ -74,14 +74,15 @@ const messages = {
                                 select: "SELECT"
                         },
                         finances: {
+                                title: "Invoices",
                                 details: "Details",
-                                users: "Users",
                                 connections: "Connections",
                                 queues: "Queues",
                                 value: "Value",
                                 dueDate: "Due Date",
-                                status: "Status",
-                                action: "Action"
+                                action: "Action",
+                                pay: "Pay",
+                                paid: "Paid"
                         },
                         connections: {
                                 title: "Connections",

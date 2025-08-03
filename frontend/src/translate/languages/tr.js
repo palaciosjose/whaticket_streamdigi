@@ -106,14 +106,15 @@ const messages = {
         select: "Seç"
       },
       finances: {
+        title: "Faturalar",
         details: "Detaylar",
-        users: "Kullanıcılar",
         connections: "Bağlantılar",
         queues: "Kuyruklar",
         value: "Değer",
         dueDate: "Vade Tarihi",
-        status: "Durum",
-        action: "Aksiyon"
+        action: "Aksiyon",
+        pay: "Öde",
+        paid: "Ödendi"
       },
       connections: {
         title: "Bağlantı",

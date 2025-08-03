@@ -271,14 +271,15 @@ const messages = {
         select: "SELECCIONAR"
       },
       finances: {
+        title: "Facturas",
         details: "Detalles",
-        users: "Usuarios",
         connections: "Conexiones",
         queues: "Colas",
         value: "Valor",
-        dueDate: "Fecha Venc.",
-        status: "Estado",
-        action: "Acción"
+        dueDate: "Fecha venc.",
+        action: "Acción",
+        pay: "Pagar",
+        paid: "Pagado"
       },
       connections: {
         title: "Conexiones",

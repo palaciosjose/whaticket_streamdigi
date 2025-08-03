@@ -141,21 +141,6 @@ const Invoices = () => {
     }
   };
 
-  const rowStatus = (record) => {
-    const hoje = moment(moment()).format("DD/MM/yyyy");
-    const vencimento = moment(record.dueDate).format("DD/MM/yyyy");
-    var diff = moment(vencimento, "DD/MM/yyyy").diff(moment(hoje, "DD/MM/yyyy"));
-    var dias = moment.duration(diff).asDays();
-    const status = record.status;
-    if (status === "paid") {
-      return "Pago";
-    }
-    if (dias < 0) {
-      return "Vencido";
-    } else {
-      return "Em Aberto"
-    }
-  }
   
   const renderUseWhatsapp = (row) => { return row.status === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes") };
   const renderUseFacebook = (row) => { return row.status === false ? i18n.t("compaies.table.no") : i18n.t("compaies.table.yes") };
@@ -176,7 +161,7 @@ const Invoices = () => {
 
       ></SubscriptionModal>
       <MainHeader>
-        <Title>Faturas ({invoices.length})</Title>
+        <Title>{i18n.t("finances.title")} ({invoices.length})</Title>
       </MainHeader>
       <Paper
         className={classes.mainPaper}
@@ -188,8 +173,6 @@ const Invoices = () => {
             <TableRow>
               {/* <TableCell align="center">Id</TableCell> */}
               <TableCell align="center">{i18n.t("finances.details")}</TableCell>
-
-              <TableCell align="center">{i18n.t("finances.users")}</TableCell>
               <TableCell align="center">{i18n.t("finances.connections")}</TableCell>
               <TableCell align="center">{i18n.t("finances.queues")}</TableCell>
               {/* <TableCell align="center">Whatsapp</TableCell>
@@ -202,7 +185,6 @@ const Invoices = () => {
 
               <TableCell align="center">{i18n.t("finances.value")}</TableCell>
               <TableCell align="center">{i18n.t("finances.dueDate")}</TableCell>
-              <TableCell align="center">{i18n.t("finances.status")}</TableCell>
               <TableCell align="center">{i18n.t("finances.action")}</TableCell>
             </TableRow>
           </TableHead>
@@ -212,8 +194,6 @@ const Invoices = () => {
                 <TableRow style={rowStyle(invoices)} key={invoices.id}>
                   {/* <TableCell align="center">{invoices.id}</TableCell> */}
                   <TableCell align="center">{invoices.detail}</TableCell>
-
-                  <TableCell align="center">{invoices.users}</TableCell>
                   <TableCell align="center">{invoices.connections}</TableCell>
                   <TableCell align="center">{invoices.queues}</TableCell>
                   {/* <TableCell align="center">{renderUseWhatsapp(invoices.useWhatsapp)}</TableCell>
@@ -224,31 +204,29 @@ const Invoices = () => {
                   <TableCell align="center">{renderUseInternalChat(invoices.useInternalChat)}</TableCell>
                   <TableCell align="center">{renderUseExternalApi(invoices.useExternalApi)}</TableCell> */}
 
-                  <TableCell style={{ fontWeight: 'bold' }} align="center">{invoices.value.toLocaleString('es-ES', { style: 'currency', currency: 'BRL' })}</TableCell>
+                  <TableCell style={{ fontWeight: 'bold' }} align="center">
+                    {invoices.value.toLocaleString('es-ES', { style: 'currency', currency: 'BRL' })}
+                  </TableCell>
                   <TableCell align="center">{moment(invoices.dueDate).format("DD/MM/YYYY")}</TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }} align="center">{rowStatus(invoices)}</TableCell>
                   <TableCell align="center">
-                    {rowStatus(invoices) !== "Pago" ?
+                    {invoices.status !== "paid" ? (
                       <Button
                         size="small"
                         variant="outlined"
                         color="secondary"
                         onClick={() => handleOpenContactModal(invoices)}
                       >
-                        PAGAR
-                      </Button> :
-                      <Button
-                        size="small"
-                        variant="outlined"
-                      // color="secondary"
-                      >
-                        PAGO
-                      </Button>}
-
+                        {i18n.t("finances.pay")}
+                      </Button>
+                    ) : (
+                      <Button size="small" variant="outlined">
+                        {i18n.t("finances.paid")}
+                      </Button>
+                    )}
                   </TableCell>
                 </TableRow>
               ))}
-              {loading && <TableRowSkeleton columns={4} />}
+              {loading && <TableRowSkeleton columns={6} />}
             </>
           </TableBody>
         </Table>
