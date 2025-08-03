@@ -562,7 +562,7 @@ const MessageModal = ({ open, onClose, messageId, reload }) => {
                           }
                         />
                       }
-                      label="Mostrar Usuário"
+                      label={i18n.t("scheduleModal.form.showUser")}
                     />
                   </FormControl>
 
