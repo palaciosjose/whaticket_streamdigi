@@ -144,6 +144,7 @@ async function handleVerifySchedules(job) {
     const [startSchedule, endSchedule] = scheduleTimeWindow();
     const scheduled = await ScheduledMessages.findAll({
       where: {
+        status: "PENDENTE",
         data_mensagem_programada: {
           [Op.between]: [startSchedule, endSchedule]
         }
@@ -152,6 +153,9 @@ async function handleVerifySchedules(job) {
 
     if (scheduled.length > 0) {
       scheduled.map(async sched => {
+        await sched.update({
+          status: "AGENDADA"
+        });
         sendScheduledMessages.add(
           "SendScheduled",
           { scheduledMessage: sched },
@@ -403,6 +407,11 @@ async function handleSendScheduledMessages(job) {
         Sentry.captureException(err);
       }
     }
+
+    await record.update({
+      status: "ENVIADA",
+      sentAt: new Date()
+    });
   } catch (e: any) {
     Sentry.captureException(e);
     logger.error("SendScheduledMessage -> SendScheduled: error", e.message);

@@ -48,6 +48,13 @@ class ScheduledMessages extends Model<ScheduledMessages> {
     @Column
     nome: string;
 
+    @Default("PENDENTE")
+    @Column
+    status: string;
+
+    @Column
+    sentAt: Date;
+
     @CreatedAt
     createdAt: Date;
 
