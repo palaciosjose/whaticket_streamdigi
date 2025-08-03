@@ -1,0 +1,13 @@
+[Unit]
+Description=Whaticket Frontend
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/whaticket/frontend
+ExecStart=/usr/bin/node server.js
+Restart=always
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

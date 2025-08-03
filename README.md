@@ -23,6 +23,16 @@
    npm install
    ```
 
+## Variables de entorno
+En `backend/.env.exemple` se incluye un ejemplo de configuración para producción.
+Las variables más importantes son:
+
+- `DB_HOST`, `DB_USER`, `DB_PASS`, `DB_NAME`: credenciales de la base de datos.
+- `REDIS_URI`: URL de conexión a Redis.
+- `SCHEDULE_MARGIN_SECONDS`: margen en segundos para el envío programado de mensajes.
+
+Copia el archivo a `backend/.env` y ajusta los valores según tu entorno.
+
 ## Ejecutar el backend
 1. Configura las variables de entorno en el archivo `.env` según tus necesidades.
 2. Ejecuta las migraciones de la base de datos si es necesario:
@@ -37,8 +47,11 @@
    Para producción:
    ```bash
    npm run build
-   npm start
+   node dist/server.js
    ```
+   También puedes usar [pm2](https://pm2.keymetrics.io/) o systemd con las
+   plantillas incluidas `backend/ecosystem.config.js` y
+   `backend/whaticket-backend.service.example`.
 
 ## Ejecutar el frontend
 1. Inicia el servidor de desarrollo:
@@ -49,6 +62,8 @@
    ```bash
    npm run build
    ```
+   Luego sirve los archivos con `node server.js`, o utiliza pm2/systemd mediante
+   `frontend/ecosystem.config.js` o `frontend/whaticket-frontend.service.example`.
 
 ## Recursos externos
 - Documentación de [Node.js](https://nodejs.org/docs/latest/api/).
