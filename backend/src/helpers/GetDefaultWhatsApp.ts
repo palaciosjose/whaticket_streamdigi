@@ -3,7 +3,7 @@ import Whatsapp from "../models/Whatsapp";
 import GetDefaultWhatsAppByUser from "./GetDefaultWhatsAppByUser";
 
 const GetDefaultWhatsApp = async (
-  whatsappId?: number,
+  whatsappId: number | null = null,
   companyId: number | null = null,
   userId?: number
 ): Promise<Whatsapp> => {
@@ -12,7 +12,7 @@ const GetDefaultWhatsApp = async (
 
   console.log({ whatsappId, companyId, userId })
   
-  if (whatsappId) {
+  if (whatsappId !== null) {
     defaultWhatsapp = await Whatsapp.findOne({
       where: { id: whatsappId, companyId }
     });
