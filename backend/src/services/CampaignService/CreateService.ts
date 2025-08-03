@@ -13,16 +13,8 @@ interface Data {
   scheduledAt: string;
   companyId: number;
   contactListId: number;
-  message1?: string;
-  message2?: string;
-  message3?: string;
-  message4?: string;
-  message5?: string;
-  confirmationMessage1?: string;
-  confirmationMessage2?: string;
-  confirmationMessage3?: string;
-  confirmationMessage4?: string;
-  confirmationMessage5?: string;
+  messages: string[];
+  confirmationMessages: string[];
   userId: number | string;
   queueId: number | string;
   statusTicket: string;
@@ -30,33 +22,54 @@ interface Data {
 }
 
 const CreateService = async (data: Data): Promise<Campaign> => {
-  const { name } = data;
-
-  const ticketnoteSchema = Yup.object().shape({
+  const campaignSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, "ERR_CAMPAIGN_INVALID_NAME")
-      .required("ERR_CAMPAIGN_REQUIRED")
+      .required("ERR_CAMPAIGN_REQUIRED"),
+    scheduledAt: Yup.date()
+      .nullable()
+      .typeError("ERR_CAMPAIGN_INVALID_SCHEDULE"),
+    status: Yup.string().required("ERR_CAMPAIGN_REQUIRED"),
+    messages: Yup.array()
+      .of(Yup.string().required("ERR_CAMPAIGN_REQUIRED"))
+      .required("ERR_CAMPAIGN_REQUIRED"),
+    confirmationMessages: Yup.array()
+      .of(Yup.string().required("ERR_CAMPAIGN_REQUIRED"))
   });
 
   try {
-    await ticketnoteSchema.validate({ name });
+    await campaignSchema.validate(data);
   } catch (err: any) {
     throw new AppError(err.message);
   }
 
-  if (data.scheduledAt != null && data.scheduledAt != "") {
+  if (data.scheduledAt != null && data.scheduledAt !== "") {
     data.status = "PROGRAMADA";
   }
 
-  const record = await Campaign.create(data);
+  const { messages = [], confirmationMessages = [], ...campaignData } = data;
+
+  const record = await Campaign.create({
+    ...campaignData,
+    message1: messages[0],
+    message2: messages[1],
+    message3: messages[2],
+    message4: messages[3],
+    message5: messages[4],
+    confirmationMessage1: confirmationMessages[0],
+    confirmationMessage2: confirmationMessages[1],
+    confirmationMessage3: confirmationMessages[2],
+    confirmationMessage4: confirmationMessages[3],
+    confirmationMessage5: confirmationMessages[4]
+  });
 
   await record.reload({
     include: [
       { model: ContactList },
       { model: Whatsapp, attributes: ["id", "name"] },
       { model: User, attributes: ["id", "name"] },
-      { model: Queue, attributes: ["id", "name"] },
-        ]
+      { model: Queue, attributes: ["id", "name"] }
+    ]
   });
 
   return record;
