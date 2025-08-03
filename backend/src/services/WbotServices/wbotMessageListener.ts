@@ -424,15 +424,15 @@ export const getBodyMessage = (msg: proto.IWebMessageInfo): string | null => {
       advertising:
         getAd(msg) ||
         msg.message?.listResponseMessage?.contextInfo?.externalAdReply?.title,
-        pollCreationMessageV3: msg?.message?.pollCreationMessageV3 ? `*Enquete*\n${msg.message.pollCreationMessageV3.name}\n\n${msg.message.pollCreationMessageV3.options.map(option => option.optionName).join('\n')}` : null,
-      eventMessage: msg?.message?.eventMessage?.name ? `*Nome do Evento: ${msg.message.eventMessage.name}*\n` : 'sem nome do evento\n',
+        pollCreationMessageV3: msg?.message?.pollCreationMessageV3 ? `*Encuesta*\n${msg.message.pollCreationMessageV3.name}\n\n${msg.message.pollCreationMessageV3.options.map(option => option.optionName).join('\n')}` : null,
+      eventMessage: msg?.message?.eventMessage?.name ? `*Nombre del evento: ${msg.message.eventMessage.name}*\n` : 'sin nombre del evento\n',
     };
 
     const objKey = Object.keys(types).find(key => key === type);
 
     if (!objKey) {
       logger.warn(
-        `#### Nao achou o type 152: ${type} ${JSON.stringify(msg.message)}`
+        `#### No se encontró el tipo 152: ${type} ${JSON.stringify(msg.message)}`
       );
       Sentry.setExtra("Mensagem", { BodyMsg: msg.message, msg, type });
       Sentry.captureException(
@@ -1094,7 +1094,7 @@ export const verifyMediaMessage = async (
     return newMessage;
   } catch (error) {
     console.log(error);
-    logger.warn("Erro ao baixar media: ", JSON.stringify(msg));
+    logger.warn("Error al descargar media: ", JSON.stringify(msg));
   }
 };
 
@@ -1216,7 +1216,7 @@ const isValidMsg = (msg: proto.IWebMessageInfo): boolean => {
       msgType === "adMetaPreview"; // Adicionado para tratar mensagens de anúncios
 
     if (!ifType) {
-      logger.warn(`#### Nao achou o type em isValidMsg: ${msgType}
+      logger.warn(`#### No se encontró el tipo en isValidMsg: ${msgType}
 ${JSON.stringify(msg?.message)}`);
       Sentry.setExtra("Mensagem", { BodyMsg: msg.message, msg, msgType });
       Sentry.captureException(new Error("Novo Tipo de Mensagem em isValidMsg"));
@@ -5161,7 +5161,7 @@ const wbotMessageListener = (wbot: Session, companyId: number): void => {
           whatsappId: wbot.id,
           message: message
         };
-        logger.warn("MENSAGEM PERDIDA", JSON.stringify(msg));
+        logger.warn("MENSAJE PERDIDO", JSON.stringify(msg));
       }
       const messageExists = await Message.count({
         where: { wid: message.key.id!, companyId }
