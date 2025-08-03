@@ -96,6 +96,25 @@ const messages = {
           }
         }
       },
+      checkout: {
+        planDetails: "Plan Detayları",
+        users: "Kullanıcılar",
+        connection: "Bağlantı",
+        queues: "Kuyruklar",
+        perMonth: "/ay",
+        billingMonthly: "Faturalandırma: Aylık",
+        select: "Seç"
+      },
+      finances: {
+        details: "Detaylar",
+        users: "Kullanıcılar",
+        connections: "Bağlantılar",
+        queues: "Kuyruklar",
+        value: "Değer",
+        dueDate: "Vade Tarihi",
+        status: "Durum",
+        action: "Aksiyon"
+      },
       connections: {
         title: "Bağlantı",
         toasts: {

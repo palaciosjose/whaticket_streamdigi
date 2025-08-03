@@ -57,18 +57,37 @@ const messages = {
                                         success: "Login successfully!",
                                 },
                         },
-			dashboard: {
-				charts: {
-					perDay: {
-						title: "Tickets today: ",
-					},
-				},
-			},
-			connections: {
-				title: "Connections",
-				toasts: {
-					deleted: "WhatsApp connection deleted sucessfully!",
-					disconnected: "Connection disconnected successfully!",
+                        dashboard: {
+                                charts: {
+                                        perDay: {
+                                                title: "Tickets today: ",
+                                        },
+                                },
+                        },
+                        checkout: {
+                                planDetails: "Plan details",
+                                users: "Users",
+                                connection: "Connection",
+                                queues: "Queues",
+                                perMonth: "/month",
+                                billingMonthly: "Billing: Monthly",
+                                select: "SELECT"
+                        },
+                        finances: {
+                                details: "Details",
+                                users: "Users",
+                                connections: "Connections",
+                                queues: "Queues",
+                                value: "Value",
+                                dueDate: "Due Date",
+                                status: "Status",
+                                action: "Action"
+                        },
+                        connections: {
+                                title: "Connections",
+                                toasts: {
+                                        deleted: "WhatsApp connection deleted sucessfully!",
+                                        disconnected: "Connection disconnected successfully!",
 				},
 				confirmationModal: {
 					deleteTitle: "Delete",

@@ -187,11 +187,11 @@ const Invoices = () => {
           <TableHead>
             <TableRow>
               {/* <TableCell align="center">Id</TableCell> */}
-              <TableCell align="center">Detalhes</TableCell>
+              <TableCell align="center">{i18n.t("finances.details")}</TableCell>
 
-              <TableCell align="center">Usuários</TableCell>
-              <TableCell align="center">Conexões</TableCell>
-              <TableCell align="center">Filas</TableCell>
+              <TableCell align="center">{i18n.t("finances.users")}</TableCell>
+              <TableCell align="center">{i18n.t("finances.connections")}</TableCell>
+              <TableCell align="center">{i18n.t("finances.queues")}</TableCell>
               {/* <TableCell align="center">Whatsapp</TableCell>
               <TableCell align="center">Facebook</TableCell>
               <TableCell align="center">Instagram</TableCell> */}
@@ -200,10 +200,10 @@ const Invoices = () => {
               <TableCell align="center">Chat Interno</TableCell>
               <TableCell align="center">Rest PI</TableCell> */}
 
-              <TableCell align="center">Valor</TableCell>
-              <TableCell align="center">Data Venc.</TableCell>
-              <TableCell align="center">Status</TableCell>
-              <TableCell align="center">Ação</TableCell>
+              <TableCell align="center">{i18n.t("finances.value")}</TableCell>
+              <TableCell align="center">{i18n.t("finances.dueDate")}</TableCell>
+              <TableCell align="center">{i18n.t("finances.status")}</TableCell>
+              <TableCell align="center">{i18n.t("finances.action")}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
