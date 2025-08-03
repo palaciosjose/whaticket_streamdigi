@@ -18,29 +18,33 @@ const ListService = async ({
   pageNumber = "1",
   companyId
 }: Request): Promise<Response> => {
+  const sanitizedSearchParam = searchParam
+    ? searchParam.toLowerCase().trim()
+    : "";
+
   let whereCondition = {};
   const limit = 20;
   const offset = limit * (+pageNumber - 1);
 
-  if (!!searchParam) {
+  if (sanitizedSearchParam) {
     whereCondition = {
       [Op.or]: [
         {
-          "$Schedule.body$": Sequelize.where(
-            Sequelize.fn("LOWER", Sequelize.col("Schedule.message")),
+          mensagem: Sequelize.where(
+            Sequelize.fn("LOWER", Sequelize.col("mensagem")),
             "LIKE",
-            `%${searchParam.toLowerCase()}%`
+            `%${sanitizedSearchParam}%`
           )
         },
         {
-          "$Contact.name$": Sequelize.where(
-            Sequelize.fn("LOWER", Sequelize.col("contact.name")),
+          nome: Sequelize.where(
+            Sequelize.fn("LOWER", Sequelize.col("nome")),
             "LIKE",
-            `%${searchParam.toLowerCase()}%`
+            `%${sanitizedSearchParam}%`
           )
-        },
-      ],
-    }
+        }
+      ]
+    };
   }
 
   whereCondition = {
