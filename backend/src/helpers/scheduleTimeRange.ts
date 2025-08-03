@@ -2,7 +2,7 @@ import moment from "moment";
 
 const envMargin = Number(process.env.SCHEDULE_MARGIN_SECONDS);
 export const SCHEDULE_MARGIN_SECONDS =
-  Number.isNaN(envMargin) || envMargin <= 0 ? 300 : envMargin;
+  Number.isFinite(envMargin) && envMargin >= 0 ? envMargin : 300;
 
 /**
  * Returns start and end timestamps for schedule verification window.
