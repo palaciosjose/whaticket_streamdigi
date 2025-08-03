@@ -129,7 +129,7 @@ export const ActionsWebhookService = async (
       numberClient = numberPhrase.number;
     }
 
-    numberClient = removerNaoLetrasNumeros(numberClient);
+    numberClient = removerNoLetrasNumeros(numberClient);
 
     if (numberClient.substring(0, 2) === "55") {
       if (parseInt(numberClient.substring(2, 4)) >= 31) {
@@ -827,8 +827,8 @@ const constructJsonLine = (line: string, json: any) => {
   return valor;
 };
 
-function removerNaoLetrasNumeros(texto: string) {
-  // Substitui todos os caracteres que não são letras ou números por vazio
+function removerNoLetrasNumeros(texto: string) {
+  // Reemplaza todos los caracteres que no son letras o números por vacío
   return texto.replace(/[^a-zA-Z0-9]/g, "");
 }
 

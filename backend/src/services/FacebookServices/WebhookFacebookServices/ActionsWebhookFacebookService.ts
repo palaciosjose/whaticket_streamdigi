@@ -794,8 +794,8 @@ const constructJsonLine = (line: string, json: any) => {
 };
 
 
-function removerNaoLetrasNumeros(texto: string) {
-    // Substitui todos os caracteres que não são letras ou números por vazio
+function removerNoLetrasNumeros(texto: string) {
+    // Reemplaza todos los caracteres que no son letras o números por vacío
     return texto.replace(/[^a-zA-Z0-9]/g, "");
 }
 
