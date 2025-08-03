@@ -45,6 +45,7 @@ import TicketTag from "./models/TicketTag";
 import Tag from "./models/Tag";
 import { delay } from "@whiskeysockets/baileys";
 import Plan from "./models/Plan";
+import scheduleTimeWindow from "./helpers/scheduleTimeRange";
 
 const connection = process.env.REDIS_URI || "";
 const limiterMax = process.env.REDIS_OPT_LIMITER_MAX || 1;
@@ -112,13 +113,13 @@ async function handleSendMessage(job) {
 
 async function handleVerifySchedules(job) {
   try {
+    const [start, end] = scheduleTimeWindow();
     const { count, rows: schedules } = await Schedule.findAndCountAll({
       where: {
         status: "PENDENTE",
         sentAt: null,
         sendAt: {
-          [Op.gte]: moment().format("YYYY-MM-DD HH:mm:ss"),
-          [Op.lte]: moment().add("30", "seconds").format("YYYY-MM-DD HH:mm:ss")
+          [Op.between]: [start, end]
         }
       },
       include: [{ model: Contact, as: "contact" }, { model: User, as: "user", attributes: ["name"] }],
@@ -140,11 +141,11 @@ async function handleVerifySchedules(job) {
       });
     }
 
+    const [startSchedule, endSchedule] = scheduleTimeWindow();
     const scheduled = await ScheduledMessages.findAll({
       where: {
         data_mensagem_programada: {
-          [Op.gte]: moment().format("YYYY-MM-DD HH:mm:ss"),
-          [Op.lte]: moment().add("30", "seconds").format("YYYY-MM-DD HH:mm:ss")
+          [Op.between]: [startSchedule, endSchedule]
         }
       }
     });
@@ -1784,7 +1785,7 @@ export async function startQueueProcess() {
     "Verify",
     {},
     {
-      repeat: { cron: "0 * * * * *", key: "verify" },
+      repeat: { cron: "*/5 * * * * *", key: "verify" },
       removeOnComplete: true
     }
   );
