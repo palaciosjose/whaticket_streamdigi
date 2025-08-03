@@ -656,7 +656,8 @@ const messages = {
           contact: "Contacto",
           sendAt: "Fecha de Programación",
           sentAt: "Fecha de Envío",
-          assinar: "Enviar Firma"
+          assinar: "Enviar Firma",
+          showUser: "Mostrar Usuario"
         },
         buttons: {
           okAdd: "Agregar",
