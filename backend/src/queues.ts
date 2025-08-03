@@ -7,6 +7,7 @@ import moment from "moment";
 import messages from "./locales/messages";
 import Schedule from "./models/Schedule";
 import ScheduledMessages from "./models/ScheduledMessages";
+import ScheduledMessagesEnvio from "./models/ScheduledMessagesEnvio";
 import { Op, QueryTypes, Sequelize } from "sequelize";
 import GetDefaultWhatsApp from "./helpers/GetDefaultWhatsApp";
 import Campaign from "./models/Campaign";
@@ -153,6 +154,12 @@ async function handleVerifySchedules(job) {
 
     if (scheduled.length > 0) {
       scheduled.map(async sched => {
+        const hasEnvio = await ScheduledMessagesEnvio.findOne({
+          where: { scheduledmessages: sched.id }
+        });
+        if (hasEnvio) {
+          return;
+        }
         await sched.update({
           status: "AGENDADA"
         });
@@ -403,6 +410,16 @@ async function handleSendScheduledMessages(job) {
           },
           (contact as any).isGroup
         );
+
+        await ScheduledMessagesEnvio.create({
+          mediaPath: record.mediaPath,
+          mediaName: record.mediaName,
+          mensagem: record.mensagem,
+          companyId: record.companyId,
+          data_envio: new Date(),
+          scheduledmessages: record.id,
+          key: `${record.id}-${contactId}`
+        });
       } catch (err) {
         Sentry.captureException(err);
       }

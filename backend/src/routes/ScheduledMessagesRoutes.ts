@@ -15,6 +15,7 @@ scheduleMessageRoutes.post("/schedules-message", isAuth, upload.array("file"), S
 scheduleMessageRoutes.put("/schedules-message/:scheduleId", isAuth, upload.array("file"), ScheduleMesageController.update);
 
 scheduleMessageRoutes.get("/schedules-message/:scheduleId", isAuth, ScheduleMesageController.show);
+scheduleMessageRoutes.get("/schedules-message/:scheduleId/history", isAuth, ScheduleMesageController.history);
 
 scheduleMessageRoutes.delete("/schedules-message/:scheduleId", isAuth, ScheduleMesageController.remove);
 
