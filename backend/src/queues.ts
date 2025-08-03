@@ -47,6 +47,7 @@ import Tag from "./models/Tag";
 import { delay } from "@whiskeysockets/baileys";
 import Plan from "./models/Plan";
 import scheduleTimeWindow from "./helpers/scheduleTimeRange";
+import parseSpintax from "./helpers/parseSpintax";
 
 const connection = process.env.REDIS_URI || "";
 const limiterMax = process.env.REDIS_OPT_LIMITER_MAX || 1;
@@ -239,16 +240,22 @@ async function handleSendScheduledMessage(job) {
 
       // @ts-ignore: Unreachable code error
       if (schedule.assinar && !isNil(schedule.userId)) {
-        bodyMessage = `*${schedule?.user?.name}:*\n${schedule.body.trim()}`
+        bodyMessage = `*${schedule?.user?.name}:*\n${schedule.body.trim()}`;
       } else {
         bodyMessage = schedule.body.trim();
       }
-      const sentMessage = await SendMessage(whatsapp, {
-        number: schedule.contact.number,
-        body: `\u200e ${formatBody(bodyMessage, ticket)}`,
-        mediaPath: filePath,
-        companyId: schedule.companyId
-      },
+
+      const formatted = formatBody(bodyMessage, ticket);
+      const parsed = parseSpintax(formatted);
+
+      const sentMessage = await SendMessage(
+        whatsapp,
+        {
+          number: schedule.contact.number,
+          body: `\u200e ${parsed}`,
+          mediaPath: filePath,
+          companyId: schedule.companyId,
+        },
         schedule.contact.isGroup
       );
 
@@ -270,13 +277,17 @@ async function handleSendScheduledMessage(job) {
       //   })
       // }
     } else {
-      await SendMessage(whatsapp, {
-        number: schedule.contact.number,
-        body: `\u200e ${schedule.body}`,
-        mediaPath: filePath,
-        companyId: schedule.companyId
-      },
-        schedule.contact.isGroup);
+      const parsed = parseSpintax(schedule.body);
+      await SendMessage(
+        whatsapp,
+        {
+          number: schedule.contact.number,
+          body: `\u200e ${parsed}`,
+          mediaPath: filePath,
+          companyId: schedule.companyId,
+        },
+        schedule.contact.isGroup
+      );
     }
 
     if (schedule.valorIntervalo > 0 && (isNil(schedule.contadorEnvio) || schedule.contadorEnvio < schedule.enviarQuantasVezes)) {
@@ -1052,8 +1063,11 @@ async function handleDispatchCampaign(job) {
 
       if (whatsapp.status === "CONNECTED") {
         if (campaign.confirmation && campaignShipping.confirmation === null) {
+          const confirmationText = parseSpintax(
+            campaignShipping.confirmationMessage
+          );
           const confirmationMessage = await wbot.sendMessage(chatId, {
-            text: `\u200c ${campaignShipping.confirmationMessage}`
+            text: `\u200c ${confirmationText}`,
           });
 
           await verifyMessage(confirmationMessage, ticket, contact, null, true, false);
@@ -1061,32 +1075,49 @@ async function handleDispatchCampaign(job) {
           await campaignShipping.update({ confirmationRequestedAt: moment() });
         } else {
 
+          const messageText = parseSpintax(campaignShipping.message);
+
           if (!campaign.mediaPath) {
             const sentMessage = await wbot.sendMessage(chatId, {
-              text: `\u200c ${campaignShipping.message}`
+              text: `\u200c ${messageText}`,
             });
 
             await verifyMessage(sentMessage, ticket, contact, null, true, false);
           }
 
-
           if (campaign.mediaPath) {
-
             const publicFolder = path.resolve(__dirname, "..", "public");
-            const filePath = path.join(publicFolder, `company${campaign.companyId}`, campaign.mediaPath);
+            const filePath = path.join(
+              publicFolder,
+              `company${campaign.companyId}`,
+              campaign.mediaPath
+            );
 
-            const options = await getMessageOptions(campaign.mediaName, filePath, String(campaign.companyId), `\u200c ${campaignShipping.message}`);
+            const options = await getMessageOptions(
+              campaign.mediaName,
+              filePath,
+              String(campaign.companyId),
+              `\u200c ${messageText}`
+            );
             if (Object.keys(options).length) {
               if (options.mimetype === "audio/mp4") {
                 const audioMessage = await wbot.sendMessage(chatId, {
-                  text: `\u200c ${campaignShipping.message}`
+                  text: `\u200c ${messageText}`,
                 });
 
                 await verifyMessage(audioMessage, ticket, contact, null, true, false);
               }
               const sentMessage = await wbot.sendMessage(chatId, { ...options });
 
-              await verifyMediaMessage(sentMessage, ticket, ticket.contact, null, false, true, wbot);
+              await verifyMediaMessage(
+                sentMessage,
+                ticket,
+                ticket.contact,
+                null,
+                false,
+                true,
+                wbot
+              );
             }
           }
           // if (campaign?.statusTicket === 'closed') {
@@ -1110,28 +1141,40 @@ async function handleDispatchCampaign(job) {
 
 
       if (campaign.confirmation && campaignShipping.confirmation === null) {
+        const confirmationText = parseSpintax(
+          campaignShipping.confirmationMessage
+        );
         await wbot.sendMessage(chatId, {
-          text: campaignShipping.confirmationMessage
+          text: confirmationText,
         });
         await campaignShipping.update({ confirmationRequestedAt: moment() });
-
       } else {
+        const messageText = parseSpintax(campaignShipping.message);
 
         if (!campaign.mediaPath) {
           await wbot.sendMessage(chatId, {
-            text: campaignShipping.message
+            text: messageText,
           });
         }
 
         if (campaign.mediaPath) {
           const publicFolder = path.resolve(__dirname, "..", "public");
-          const filePath = path.join(publicFolder, `company${campaign.companyId}`, campaign.mediaPath);
+          const filePath = path.join(
+            publicFolder,
+            `company${campaign.companyId}`,
+            campaign.mediaPath
+          );
 
-          const options = await getMessageOptions(campaign.mediaName, filePath, String(campaign.companyId), campaignShipping.message);
+          const options = await getMessageOptions(
+            campaign.mediaName,
+            filePath,
+            String(campaign.companyId),
+            messageText
+          );
           if (Object.keys(options).length) {
             if (options.mimetype === "audio/mp4") {
               await wbot.sendMessage(chatId, {
-                text: campaignShipping.message
+                text: messageText,
               });
             }
             await wbot.sendMessage(chatId, { ...options });
