@@ -9,6 +9,7 @@ import ListService from "../services/ScheduledMessagesService/ListService";
 import UpdateService from "../services/ScheduledMessagesService/UpdateService";
 import ShowService from "../services/ScheduledMessagesService/ShowService";
 import DeleteService from "../services/ScheduledMessagesService/DeleteService";
+import ListEnvioService from "../services/ScheduledMessagesEnvioService/ListService";
 
 type IndexQuery = {
     searchParam?: string;
@@ -75,6 +76,15 @@ export const show = async (req: Request, res: Response): Promise<Response> => {
     const schedule = await ShowService(scheduleId);
 
     return res.status(200).json(schedule);
+};
+
+export const history = async (req: Request, res: Response): Promise<Response> => {
+    const { scheduleId } = req.params;
+    const { companyId } = req.user;
+
+    const envios = await ListEnvioService({ scheduleId: +scheduleId, companyId: +companyId });
+
+    return res.status(200).json(envios);
 };
 
 export const update = async (req: Request, res: Response): Promise<Response> => {
