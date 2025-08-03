@@ -3,8 +3,6 @@ import * as Yup from "yup";
 import AppError from "../../errors/AppError";
 import ScheduledMessages from "../../models/ScheduledMessages";
 import ShowService from "./ShowService";
-import Contact from "../../models/Contact";
-import Tag from "../../models/Tag";
 
 interface ScheduleData {
   data_mensagem_programada: Date;
@@ -13,17 +11,17 @@ interface ScheduleData {
   valor_intervalo: string;
   mensagem: string;
   tipo_dias_envio: string;
-  mostrar_usuario_mensagem: string;
+  mostrar_usuario_mensagem: boolean;
   criar_ticket: boolean;
-  contatos: [];
-  tags: [];
+  contatos: string[];
+  tags: string[];
   companyId: number;
   nome: string;
   tipo_arquivo: string;
   usuario_envio: string;
   enviar_quantas_vezes: string;
-  mediaName: string,
-  mediaPath: string
+  mediaName: string;
+  mediaPath: string;
 }
 
 interface Request {
@@ -33,7 +31,7 @@ interface Request {
   mediaName: string | null,
 }
 
-const UpdateUserService = async ({
+const UpdateService = async ({
   scheduleData,
   id,
   mediaPath,
@@ -58,6 +56,44 @@ const UpdateUserService = async ({
     enviar_quantas_vezes,
   } = scheduleData;
 
+  const schema = Yup.object().shape({
+    data_mensagem_programada: Yup.date().required(),
+    nome: Yup.string().required(),
+    intervalo: Yup.string().required(),
+    valor_intervalo: Yup.string().required(),
+    mensagem: Yup.string().required(),
+    tipo_dias_envio: Yup.string().required(),
+    mostrar_usuario_mensagem: Yup.boolean().required(),
+    criar_ticket: Yup.boolean().required(),
+    enviar_quantas_vezes: Yup.string().required(),
+    mediaPath: Yup.string().nullable(),
+    mediaName: Yup.string().nullable(),
+    tipo_arquivo: Yup.string().nullable(),
+    usuario_envio: Yup.string().nullable(),
+    id_conexao: Yup.string().required()
+  });
+
+  try {
+    await schema.validate({
+      data_mensagem_programada,
+      id_conexao,
+      intervalo,
+      valor_intervalo,
+      mensagem,
+      tipo_dias_envio,
+      mostrar_usuario_mensagem,
+      criar_ticket,
+      nome,
+      mediaPath,
+      mediaName,
+      tipo_arquivo,
+      usuario_envio,
+      enviar_quantas_vezes
+    });
+  } catch (err: any) {
+    throw new AppError(err.message);
+  }
+
   let data = {
     data_mensagem_programada,
     id_conexao,
@@ -71,7 +107,7 @@ const UpdateUserService = async ({
     tags: String(tags).split(','),
     nome,
     tipo_arquivo,
-    usuario_envio: mostrar_usuario_mensagem == 'true' ? usuario_envio : null,
+    usuario_envio: mostrar_usuario_mensagem ? usuario_envio : null,
     enviar_quantas_vezes
   } as ScheduleData;
 
@@ -81,12 +117,10 @@ const UpdateUserService = async ({
     data.mediaPath = mediaPath;
   }
 
-  console.log(data);
-
   await schedule.update(data);
 
   await schedule.reload();
   return schedule;
 };
 
-export default UpdateUserService;
+export default UpdateService;
