@@ -25,6 +25,8 @@
 
 ## Ejecutar el backend
 1. Configura las variables de entorno en el archivo `.env` según tus necesidades.
+   - La variable `SCHEDULE_MARGIN_SECONDS` controla la ventana de margen para mensajes programados.
+     Se recomienda un rango entre 120 y 300 segundos; los valores fuera de este rango se ajustan automáticamente.
 2. Ejecuta las migraciones de la base de datos si es necesario:
    ```bash
    npm run db:migrate
