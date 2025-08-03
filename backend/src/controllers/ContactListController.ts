@@ -16,9 +16,10 @@ import AppError from "../errors/AppError";
 import { ImportContacts } from "../services/ContactListService/ImportContacts";
 
 type IndexQuery = {
-  searchParam: string;
-  pageNumber: string;
-  companyId: string | number;
+  searchParam?: string;
+  pageNumber?: string;
+  limit?: string;
+  offset?: string;
 };
 
 type StoreData = {
@@ -31,13 +32,15 @@ type FindParams = {
 };
 
 export const index = async (req: Request, res: Response): Promise<Response> => {
-  const { searchParam, pageNumber } = req.query as IndexQuery;
+  const { searchParam, pageNumber, limit, offset } = req.query as IndexQuery;
   const { companyId } = req.user;
 
   const { records, count, hasMore } = await ListService({
     searchParam,
     pageNumber,
-    companyId
+    companyId,
+    limit,
+    offset
   });
 
   return res.json({ records, count, hasMore });

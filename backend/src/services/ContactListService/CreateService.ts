@@ -22,6 +22,14 @@ const CreateService = async (data: Data): Promise<ContactList> => {
     throw new AppError(err.message);
   }
 
+  const contactListExists = await ContactList.findOne({
+    where: { name, companyId }
+  });
+
+  if (contactListExists) {
+    throw new AppError("ERR_DUPLICATED_CONTACTLIST");
+  }
+
   const record = await ContactList.create(data);
 
   return record;

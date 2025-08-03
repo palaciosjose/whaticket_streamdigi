@@ -7,6 +7,8 @@ interface Request {
   companyId: number | string;
   searchParam?: string;
   pageNumber?: string;
+  limit?: string;
+  offset?: string;
 }
 
 interface Response {
@@ -18,7 +20,9 @@ interface Response {
 const ListService = async ({
   searchParam = "",
   pageNumber = "1",
-  companyId
+  companyId,
+  limit = "20",
+  offset
 }: Request): Promise<Response> => {
   let whereCondition: any = {
     companyId
@@ -41,13 +45,13 @@ const ListService = async ({
     };
   }
 
-  const limit = 20;
-  const offset = limit * (+pageNumber - 1);
+  const limitNumber = +limit;
+  const offsetNumber = offset ? +offset : limitNumber * (+pageNumber - 1);
 
   const { count, rows: records } = await ContactList.findAndCountAll({
     where: whereCondition,
-    limit,
-    offset,
+    limit: limitNumber,
+    offset: offsetNumber,
     order: [["name", "ASC"]],
     subQuery: false,
     include: [
@@ -66,7 +70,7 @@ const ListService = async ({
     group: ["ContactList.id"]
   });
 
-  const hasMore = count > offset + records.length;
+  const hasMore = count > offsetNumber + records.length;
 
   return {
     records,
