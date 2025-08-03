@@ -178,18 +178,18 @@ const Reports = () => {
 
         return {
           id: ticket.id,
-          Conexão: ticket.whatsappName,
-          Contato: ticket.contactName,
-          Usuário: ticket.userName,
-          Fila: ticket.queueName,
-          Status: ticket.status,
-          ÚltimaMensagem: ticket.lastMessage,
-          DataAbertura: dataCriacao,
-          HoraAbertura: horaCriacao,
-          DataFechamento: ticket.closedAt === null ? "" : dataFechamento,
-          HoraFechamento: ticket.closedAt === null ? "" : horaFechamento,
-          TempoDeAtendimento: ticket.supportTime,
-          nps: ticket.NPS,
+          [i18n.t("reports.table.whatsapp")]: ticket.whatsappName,
+          [i18n.t("reports.table.contact")]: ticket.contactName,
+          [i18n.t("reports.table.user")]: ticket.userName,
+          [i18n.t("reports.table.queue")]: ticket.queueName,
+          [i18n.t("reports.table.status")]: ticket.status,
+          [i18n.t("reports.table.lastMessage")]: ticket.lastMessage,
+          [i18n.t("reports.table.dateOpen")]: dataCriacao,
+          [i18n.t("reports.table.hourOpen")]: horaCriacao,
+          [i18n.t("reports.table.dateClose")]: ticket.closedAt === null ? "" : dataFechamento,
+          [i18n.t("reports.table.hourClose")]: ticket.closedAt === null ? "" : horaFechamento,
+          [i18n.t("reports.table.supportTime")]: ticket.supportTime,
+          [i18n.t("reports.table.NPS")]: ticket.NPS,
         }
       });
 
