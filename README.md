@@ -26,8 +26,8 @@
 ## Configuración de variables de entorno
 1. Copia los archivos de ejemplo:
    ```bash
-   cp backend/.env.exemple backend/.env
-   cp frontend/.env.exemple frontend/.env
+   cp backend/.env.example backend/.env
+   cp frontend/.env.example frontend/.env
    ```
 2. Sustituye los placeholders (`YOUR_DB_PASS`, `YOUR_JWT_SECRET`, etc.) por tus valores reales.
 3. Antes de desplegar, define en tu entorno las variables sensibles utilizadas por los scripts de despliegue:
