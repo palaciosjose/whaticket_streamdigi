@@ -67,6 +67,10 @@
    ```bash
    npm run build
    ```
+3. En producción, puedes definir el puerto mediante la variable de entorno `PORT` (el valor predeterminado es `3000`):
+   ```bash
+   PORT=8080 node server.js
+   ```
 
 ## Recursos externos
 - Documentación de [Node.js](https://nodejs.org/docs/latest/api/).
