@@ -15,7 +15,7 @@ import makeWASocket, {
   makeInMemoryStore,
   proto
 } from "@whiskeysockets/baileys";
-import { FindOptions } from "sequelize/types";
+import { FindOptions } from "sequelize";
 import Whatsapp from "../models/Whatsapp";
 import logger from "../utils/logger";
 import MAIN_LOGGER from "@whiskeysockets/baileys/lib/Utils/logger";
