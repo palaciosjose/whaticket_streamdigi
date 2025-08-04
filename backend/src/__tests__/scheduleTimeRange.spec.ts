@@ -31,11 +31,16 @@ describe("scheduleTimeWindow", () => {
     expect(diff).toBe(240);
   });
 
-  it("uses SCHEDULE_MARGIN_SECONDS when it is within range", () => {
+  it("reflects changes in SCHEDULE_MARGIN_SECONDS between calls", () => {
     process.env.SCHEDULE_MARGIN_SECONDS = "200";
-    const [start, end] = scheduleTimeWindow();
-    const diff = moment(end).diff(moment(start), "seconds");
+    let [start, end] = scheduleTimeWindow();
+    let diff = moment(end).diff(moment(start), "seconds");
     expect(diff).toBe(400);
+
+    process.env.SCHEDULE_MARGIN_SECONDS = "180";
+    [start, end] = scheduleTimeWindow();
+    diff = moment(end).diff(moment(start), "seconds");
+    expect(diff).toBe(360);
   });
 
   it("clamps SCHEDULE_MARGIN_SECONDS below minimum", () => {
