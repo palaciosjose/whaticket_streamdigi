@@ -2,7 +2,7 @@ import Whatsapp from "../../models/Whatsapp";
 import AppError from "../../errors/AppError";
 import Queue from "../../models/Queue";
 import Chatbot from "../../models/Chatbot";
-import { FindOptions } from "sequelize/types";
+import { FindOptions } from "sequelize";
 import Prompt from "../../models/Prompt";
 import { FlowBuilderModel } from "../../models/FlowBuilder";
 

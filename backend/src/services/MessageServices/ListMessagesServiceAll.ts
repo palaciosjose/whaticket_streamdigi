@@ -1,4 +1,4 @@
-import { FindOptions } from "sequelize/types";
+import { FindOptions } from "sequelize";
 import { Op } from "sequelize";
 import AppError from "../../errors/AppError";
 import Message from "../../models/Message";

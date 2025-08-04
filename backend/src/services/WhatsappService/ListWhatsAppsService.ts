@@ -1,4 +1,4 @@
-import { FindOptions } from "sequelize/types";
+import { FindOptions } from "sequelize";
 import Queue from "../../models/Queue";
 import Whatsapp from "../../models/Whatsapp";
 import Prompt from "../../models/Prompt";
