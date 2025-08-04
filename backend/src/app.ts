@@ -54,23 +54,29 @@ if (String(process.env.BULL_BOARD).toLocaleLowerCase() === 'true' && process.env
 }
 
 // Middlewares
-// app.use(helmet({
-//   contentSecurityPolicy: {
-//     directives: {
-//       defaultSrc: ["'self'", "https://localhost:8080"],
-//       imgSrc: ["'self'", "data:", "https://localhost:8080"],
-//       scriptSrc: ["'self'", "https://localhost:8080"],
-//       styleSrc: ["'self'", "'unsafe-inline'", "https://localhost:8080"],
-//       connectSrc: ["'self'", "https://localhost:8080"]
-//     }
-//   },
-//   crossOriginResourcePolicy: false, // Permite recursos de diferentes origens
-//   crossOriginEmbedderPolicy: false, // Permite incorporação de diferentes origens
-//   crossOriginOpenerPolicy: false, // Permite abertura de diferentes origens
-//   // crossOriginResourcePolicy: {
-//   //   policy: "cross-origin" // Permite carregamento de recursos de diferentes origens
-//   // }
-// }));
+const cspConnectSrc = ["'self'", "ws:", "wss:"];
+if (process.env.FRONTEND_URL) {
+  cspConnectSrc.push(process.env.FRONTEND_URL);
+}
+
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", "data:", "blob:"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        connectSrc: cspConnectSrc
+      }
+    },
+    // Desabilitados para evitar bloqueio de recursos externos necessários
+    crossOriginResourcePolicy: false,
+    crossOriginEmbedderPolicy: false,
+    crossOriginOpenerPolicy: false,
+    hsts: { maxAge: 31536000, includeSubDomains: true }
+  })
+);
 
 app.use(compression()); // Compressão HTTP
 app.use(bodyParser.json({ limit: '5mb' })); // Aumentar o limite de carga para 5 MB
