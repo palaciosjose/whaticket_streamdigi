@@ -23,6 +23,22 @@
    npm install
    ```
 
+## Configuración de variables de entorno
+1. Copia los archivos de ejemplo:
+   ```bash
+   cp backend/.env.exemple backend/.env
+   cp frontend/.env.exemple frontend/.env
+   ```
+2. Sustituye los placeholders (`YOUR_DB_PASS`, `YOUR_JWT_SECRET`, etc.) por tus valores reales.
+3. Antes de desplegar, define en tu entorno las variables sensibles utilizadas por los scripts de despliegue:
+   ```bash
+   export JWT_SECRET="tu_jwt_secret"
+   export JWT_REFRESH_SECRET="tu_jwt_refresh_secret"
+   export DEPLOY_PASSWORD="tu_contraseña_deploy"
+   export MYSQL_ROOT_PASSWORD="tu_contraseña_mysql_root"
+   export DB_PASS="tu_contraseña_bd"
+   ```
+
 ## Ejecutar el backend
 1. Configura las variables de entorno en el archivo `.env` según tus necesidades.
    - La variable `SCHEDULE_MARGIN_SECONDS` controla la ventana de margen para mensajes programados.

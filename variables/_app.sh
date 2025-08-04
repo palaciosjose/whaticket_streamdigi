@@ -4,8 +4,8 @@
 
 # app variables
 
-jwt_secret=3123123213123
-jwt_refresh_secret=75756756756
+jwt_secret="${JWT_SECRET:-}"
+jwt_refresh_secret="${JWT_REFRESH_SECRET:-}"
 
 # Credentials are provided via environment variables or interactively
 deploy_password="${DEPLOY_PASSWORD:-}"
