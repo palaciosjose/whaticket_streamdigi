@@ -3,7 +3,8 @@ import moment from 'moment-timezone';
 
 // Función para obtener el timestamp con huso horario
 const timezoned = () => {
-  return moment().tz('America/Bogota').format('DD-MM-YYYY HH:mm:ss');
+  const timezone = process.env.TZ || 'UTC'; // Usa la zona horaria definida en TZ o UTC por defecto
+  return moment().tz(timezone).format('DD-MM-YYYY HH:mm:ss');
 };
 
 const logger = pino({

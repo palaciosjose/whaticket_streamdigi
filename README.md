@@ -36,8 +36,13 @@
    export JWT_REFRESH_SECRET="tu_jwt_refresh_secret"
    export DEPLOY_PASSWORD="tu_contraseña_deploy"
    export MYSQL_ROOT_PASSWORD="tu_contraseña_mysql_root"
-export DB_PASS="tu_contraseña_bd"
+   export DB_PASS="tu_contraseña_bd"
   ```
+
+4. Opcional: establece la variable `TZ` para definir la zona horaria del servidor (por defecto se usa `UTC`):
+   ```bash
+   export TZ="America/Bogota" # Ejemplo
+   ```
 
 ### Activar HTTPS
 
