@@ -1,6 +1,4 @@
 import { FlowBuilderModel } from "../../models/FlowBuilder";
-import { WebhookModel } from "../../models/Webhook";
-import { randomString } from "../../utils/randomCode";
 import logger from "../../utils/logger";
 
 interface Request {
@@ -13,7 +11,7 @@ const CreateFlowBuilderService = async ({
   userId,
   name,
   companyId
-}: Request): Promise<FlowBuilderModel | string> => {
+}: Request): Promise<"ok" | "exist"> => {
   try {
     
     const nameExist = await FlowBuilderModel.findOne({
@@ -24,21 +22,20 @@ const CreateFlowBuilderService = async ({
     })
 
 
-    if(nameExist){
-      return 'exist'
+    if (nameExist) {
+      return "exist";
     }
 
-    const flow = await FlowBuilderModel.create({
+    await FlowBuilderModel.create({
       user_id: userId,
       company_id: companyId,
-      name: name,
+      name
     });
 
-    return flow;
+    return "ok";
   } catch (error) {
     logger.error("Error al insertar el usuario:", error);
-
-    return error
+    throw error;
   }
 };
 
