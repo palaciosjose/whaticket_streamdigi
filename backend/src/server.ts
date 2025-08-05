@@ -6,7 +6,7 @@ import app from "./app";
 import { initIO } from "./libs/socket";
 import { startServerTasks } from "./utils/serverHelper";
 
-const isHttps = process.env.CERTIFICADOS === "true";
+const isHttps = process.env.USE_HTTPS === "true";
 
 const server = isHttps
   ? https.createServer(

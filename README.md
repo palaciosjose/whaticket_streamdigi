@@ -36,8 +36,20 @@
    export JWT_REFRESH_SECRET="tu_jwt_refresh_secret"
    export DEPLOY_PASSWORD="tu_contraseña_deploy"
    export MYSQL_ROOT_PASSWORD="tu_contraseña_mysql_root"
-   export DB_PASS="tu_contraseña_bd"
-   ```
+export DB_PASS="tu_contraseña_bd"
+  ```
+
+### Activar HTTPS
+
+Para ejecutar el backend con HTTPS configura en `backend/.env`:
+
+```bash
+USE_HTTPS=true
+SSL_CRT_FILE=/ruta/al/certificado.crt
+SSL_KEY_FILE=/ruta/a/la/clave.key
+```
+
+Luego inicia el servidor normalmente.
 
 ## Ejecutar el backend
 1. Configura las variables de entorno en el archivo `.env` según tus necesidades.
