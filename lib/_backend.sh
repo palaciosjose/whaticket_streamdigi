@@ -2,7 +2,35 @@
 #
 # functions for setting up app backend
 #######################################
-# creates REDIS db using docker
+# creates Redis docker container
+# Arguments:
+#   None
+#######################################
+backend_create_redis_container() {
+  sudo su - root <<EOF
+  usermod -aG docker deploy
+  docker run --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis redis-server --requirepass ${redis_pass}
+EOF
+}
+
+#######################################
+# creates Postgres database for instance
+# Arguments:
+#   None
+#######################################
+backend_create_postgres_database() {
+  sudo su - postgres <<EOF
+  createdb ${instancia_add};
+  psql
+  CREATE USER ${instancia_add} SUPERUSER INHERIT CREATEDB CREATEROLE;
+  ALTER USER ${instancia_add} PASSWORD '${db_pass}';
+  \q
+  exit
+EOF
+}
+
+#######################################
+# orchestrates Redis & Postgres creation
 # Arguments:
 #   None
 #######################################
@@ -13,22 +41,11 @@ backend_redis_create() {
 
   sleep 2
 
-  sudo su - root <<EOF
-  usermod -aG docker deploy
-  docker run --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis redis-server --requirepass ${redis_pass}
+  backend_create_redis_container
+  sleep 2
+  backend_create_postgres_database
 
   sleep 2
-  sudo su - postgres <<EOF
-    createdb ${instancia_add};
-    psql
-    CREATE USER ${instancia_add} SUPERUSER INHERIT CREATEDB CREATEROLE;
-    ALTER USER ${instancia_add} PASSWORD '${db_pass}';
-    \q
-    exit
-EOF
-
-sleep 2
-
 }
 
 #######################################
@@ -111,7 +128,6 @@ backend_node_dependencies() {
   sudo su - deploy <<EOF
   cd /home/deploy/${instancia_add}/backend
   npm install @whiskeysockets/baileys@6.7.9
-  npm install
 EOF
 
   sleep 2
@@ -142,6 +158,66 @@ EOF
 # Arguments:
 #   None
 #######################################
+#######################################
+# stops service and pulls latest code
+# Arguments:
+#   None
+#######################################
+backend_update_fetch() {
+  sudo su - deploy <<EOF
+  cd /home/deploy/${empresa_atualizar}
+  pm2 stop ${empresa_atualizar}-backend
+  git pull
+EOF
+}
+
+#######################################
+# installs dependencies for update
+# Arguments:
+#   None
+#######################################
+backend_update_install() {
+  sudo su - deploy <<EOF
+  cd /home/deploy/${empresa_atualizar}/backend
+  npm install --force
+  npm update -f
+  npm install @types/fs-extra
+EOF
+}
+
+#######################################
+# builds code and runs migrations/seeds
+# Arguments:
+#   None
+#######################################
+backend_update_build_and_db() {
+  sudo su - deploy <<EOF
+  cd /home/deploy/${empresa_atualizar}/backend
+  rm -rf dist
+  npm run build
+  npx sequelize db:migrate
+  npx sequelize db:seed
+EOF
+}
+
+#######################################
+# restarts backend service using pm2
+# Arguments:
+#   None
+#######################################
+backend_update_restart() {
+  sudo su - deploy <<EOF
+  cd /home/deploy/${empresa_atualizar}
+  pm2 start ${empresa_atualizar}-backend
+  pm2 save
+EOF
+}
+
+#######################################
+# updates backend by orchestrating steps
+# Arguments:
+#   None
+#######################################
 backend_update() {
   print_banner
   printf "${WHITE} 💻 Atualizando o backend...${GRAY_LIGHT}"
@@ -149,22 +225,10 @@ backend_update() {
 
   sleep 2
 
-  sudo su - deploy <<EOF
-  cd /home/deploy/${empresa_atualizar}
-  pm2 stop ${empresa_atualizar}-backend
-  git pull
-  cd /home/deploy/${empresa_atualizar}/backend
-  npm install --force
-  npm update -f
-  npm install @types/fs-extra
-  rm -rf dist 
-  npm run build
-  npx sequelize db:migrate
-  npx sequelize db:migrate
-  npx sequelize db:seed
-  pm2 start ${empresa_atualizar}-backend
-  pm2 save 
-EOF
+  backend_update_fetch
+  backend_update_install
+  backend_update_build_and_db
+  backend_update_restart
 
   sleep 2
 }
@@ -183,7 +247,6 @@ backend_db_migrate() {
 
   sudo su - deploy <<EOF
   cd /home/deploy/${instancia_add}/backend
-  npx sequelize db:migrate
   npx sequelize db:migrate
 EOF
 
