@@ -9,7 +9,11 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "express-rate-limit": ["src/libs/express-rate-limit"]
+    }
   },
   "exclude": ["public"]
 }
