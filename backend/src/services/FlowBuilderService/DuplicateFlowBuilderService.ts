@@ -1,6 +1,7 @@
 import { FlowBuilderModel } from "../../models/FlowBuilder";
 import { WebhookModel } from "../../models/Webhook";
 import { randomString } from "../../utils/randomCode";
+import logger from "../../utils/logger";
 
 interface Request {
   id: number;
@@ -25,7 +26,7 @@ const DuplicateFlowBuilderService = async ({
 
     return duplicate;
   } catch (error) {
-    console.error("Error al insertar el usuario:", error);
+    logger.error("Error al insertar el usuario:", error);
 
     return error;
   }

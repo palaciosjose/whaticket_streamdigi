@@ -100,7 +100,6 @@ const CampaignsConfig = () => {
   useEffect(() => {
     api.get("/campaign-settings").then(({ data }) => {
       const settingsList = [];
-      console.log(data)
       if (Array.isArray(data) && data.length > 0) {
         data.forEach((item) => {
           settingsList.push([item.key, item.value]);

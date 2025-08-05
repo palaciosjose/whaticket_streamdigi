@@ -1,6 +1,7 @@
 import { WebhookModel } from "../../models/Webhook";
 import User from "../../models/User";
 import { FlowBuilderModel } from "../../models/FlowBuilder";
+import logger from "../../utils/logger";
 
 interface Request {
   companyId: number;
@@ -31,7 +32,7 @@ const FlowsGetDataService = async ({
             flow: flow
         }
       } catch (error) {
-        console.error('Error al consultar flujo:', error);
+        logger.error('Error al consultar flujo:', error);
       }
 };
 

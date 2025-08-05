@@ -227,8 +227,6 @@ const CompanyModal = ({ open, onClose, companyId }) => {
 										type="number"
 										fullWidth
 										style={
-											// console.log('touched', touched)
-											console.log('value', values)
 										}
 									/>
 								</div> */}

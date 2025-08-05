@@ -242,9 +242,6 @@ const TicketListItem = ({ ticket }) => {
     const { setCurrentTicket, setTabOpen } = useContext(TicketsContext);
 
     useEffect(() => {
-        console.log("======== TicketListItemCustom ===========")
-        console.log(ticket)
-        console.log("=========================================")
     }, [ticket])
 
     

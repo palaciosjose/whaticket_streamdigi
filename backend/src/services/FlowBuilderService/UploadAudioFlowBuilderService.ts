@@ -3,6 +3,7 @@ import { FlowBuilderModel } from "../../models/FlowBuilder";
 import { FlowImgModel } from "../../models/FlowImg";
 import { WebhookModel } from "../../models/Webhook";
 import { randomString } from "../../utils/randomCode";
+import logger from "../../utils/logger";
 
 interface Request {
   userId: number;
@@ -24,7 +25,7 @@ const UploadAudioFlowBuilderService = async ({
 
     return flowImg;
   } catch (error) {
-    console.error("Error al insertar el usuario:", error);
+    logger.error("Error al insertar el usuario:", error);
 
     return error
   }

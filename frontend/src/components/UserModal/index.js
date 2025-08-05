@@ -210,11 +210,9 @@ const UserModal = ({ open, onClose, userId }) => {
 			whatsappId,
 			queueIds: selectedQueueIds
 		};
-		console.log("userData", userData)
 		try {
 			if (userId) {
 				const { data } = await api.put(`/users/${userId}`, userData);
-				console.log("avatar", avatar, user?.profileImage, avatar?.name)
 				if (avatar && (!user?.profileImage || !user?.profileImage !== avatar.name))// getBasename(avatar)))
 					uploadAvatar(data)
 			} else {

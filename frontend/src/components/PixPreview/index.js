@@ -26,8 +26,6 @@ const PixPreview = ({ companyId, avatarUser, avatarName, avatarUrl, name, numero
     const profileImage = avatarUser;
     const avatarUserUrl = `${backendUrl}/public/company${companyId}/user/${profileImage}`;
     
-    console.log("Avatar:", avatarUserUrl);
-    console.log("Avatar User URL:", avatarUserUrl);
     
 
     const handleCloseToast = () => setOpenToast(false);

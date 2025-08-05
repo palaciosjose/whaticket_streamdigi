@@ -623,7 +623,6 @@ const hanldeReplyMessage = (e, message) => {
 };
 
 const checkMessageMedia = (message) => {
-  console.log(message)
   if (message.mediaType === "eventMessage") {
     try {
       // Parsear o dataJson diretamente da coluna do banco de dados
@@ -729,7 +728,6 @@ const checkMessageMedia = (message) => {
         if (viewOnceMessage.header?.imageMessage?.jpegThumbnail) {
             imagem = viewOnceMessage.header.imageMessage.jpegThumbnail;    
         } else {
-            console.log("Nenhuma imagem encontrada no header.");
         }
         return (
             <ButtonPreview 
@@ -824,11 +822,9 @@ const checkMessageMedia = (message) => {
           }
         }
       }
-      // console.log(message)
       return <VcardPreview contact={contact} numbers={obj[0]?.number} queueId={message?.ticket?.queueId} whatsappId={message?.ticket?.whatsappId} />
     } 
     else if (message.mediaType === "adMetaPreview") { // Adicionado para renderizar o componente de preview de anúncio
-      console.log("Entrou no MetaPreview");
       let [image, sourceUrl, title, body, messageUser] = message.body.split('|');
       return <AdMetaPreview image={image} sourceUrl={sourceUrl} title={title} body={body} messageUser={messageUser} />;
   }

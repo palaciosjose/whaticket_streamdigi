@@ -206,7 +206,6 @@ function Chat(props) {
 
     const onChatUser = (data) => {
 
-      console.log(data)
       if (data.action === "create") {
         setChats((prev) => [data.record, ...prev]);
       }
@@ -329,7 +328,7 @@ function Chat(props) {
       const { data } = await api.get("/chats");
       return data;
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

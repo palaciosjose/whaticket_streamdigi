@@ -1,6 +1,7 @@
 import { FlowBuilderModel } from "../../models/FlowBuilder";
 import { WebhookModel } from "../../models/Webhook";
 import { randomString } from "../../utils/randomCode";
+import logger from "../../utils/logger";
 
 interface node {
     id: string,
@@ -44,7 +45,7 @@ const FlowUpdateDataService = async ({
 
     return 'ok';
   } catch (error) {
-    console.error("Error al insertar el usuario:", error);
+    logger.error("Error al insertar el usuario:", error);
 
     return error
   }
