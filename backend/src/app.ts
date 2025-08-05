@@ -35,6 +35,12 @@ export const isBullAuth = (req, res, next) => {
 // Carregar variáveis de ambiente
 dotenvConfig();
 
+const frontendUrlsEnv = process.env.FRONTEND_URLS;
+if (!frontendUrlsEnv) {
+  throw new Error("FRONTEND_URLS environment variable is not defined");
+}
+const allowedOrigins = frontendUrlsEnv.split(",").map(origin => origin.trim());
+
 // Inicializar Sentry
 Sentry.init({ dsn: process.env.SENTRY_DSN });
 
@@ -45,8 +51,6 @@ app.set("queues", {
   messageQueue,
   sendScheduledMessages
 });
-
-const allowedOrigins = [process.env.FRONTEND_URL];
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -63,10 +67,7 @@ if (String(process.env.BULL_BOARD).toLocaleLowerCase() === 'true' && process.env
 }
 
 // Middlewares
-const cspConnectSrc = ["'self'", "ws:", "wss:"];
-if (process.env.FRONTEND_URL) {
-  cspConnectSrc.push(process.env.FRONTEND_URL);
-}
+const cspConnectSrc = ["'self'", "ws:", "wss:", ...allowedOrigins];
 
 app.use(
   helmet({
