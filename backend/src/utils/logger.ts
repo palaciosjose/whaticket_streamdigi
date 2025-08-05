@@ -7,16 +7,10 @@ const timezoned = () => {
 };
 
 const logger = pino({
-  transport: {
-    target: 'pino-pretty',
-    options: {
-      colorize: true,
-      levelFirst: true,
-      translateTime: 'SYS:dd-mm-yyyy HH:MM:ss', // Úsalo para traducir la hora
-      ignore: "pid,hostname"
-    },
-  },
   timestamp: () => `,"time":"${timezoned()}"`, // Añade el timestamp formateado
 });
+
+// Para redirigir los logs a un archivo o servicio externo, configura pino.destination
+// según la infraestructura disponible.
 
 export default logger;
