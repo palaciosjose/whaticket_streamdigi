@@ -328,7 +328,6 @@ const Contacts = () => {
     };
 
     const handleimportChats = async () => {
-        console.log("handleimportChats")
         try {
             await api.post("/contacts/import/chats");
             history.go(0);

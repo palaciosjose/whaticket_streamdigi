@@ -132,7 +132,6 @@ const Login = () => {
         setUserCreation(data === "enabled");
       })
       .catch((error) => {
-        console.log("Erro ao ler a configuração", error);
       });
   }, [getPublicSetting]);
 

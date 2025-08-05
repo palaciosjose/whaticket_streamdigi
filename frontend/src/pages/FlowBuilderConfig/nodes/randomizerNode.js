@@ -34,7 +34,6 @@ export default memo(({ data, isConnectable, id }) => {
           left: "-12px",
           cursor: 'pointer'
         }}
-        onConnect={params => console.log("handle onConnect", params)}
         isConnectable={isConnectable}
       >
         <ArrowForwardIos

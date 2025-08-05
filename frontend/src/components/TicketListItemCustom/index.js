@@ -214,9 +214,6 @@ const TicketListItemCustom = ({ setTabOpen, ticket }) => {
     const { get: getSetting } = useCompanySettings();
 
     useEffect(() => {
-        console.log("======== TicketListItemCustom ===========")
-        console.log(ticket)
-        console.log("=========================================")
     }, [ticket])
 
     useEffect(() => {
@@ -226,7 +223,6 @@ const TicketListItemCustom = ({ setTabOpen, ticket }) => {
     }, []);
 
     const handleOpenAcceptTicketWithouSelectQueue = useCallback(() => {
-        // console.log(ticket)
         setAcceptTicketWithouSelectQueueOpen(true);
     }, []);
 
@@ -467,7 +463,6 @@ const TicketListItemCustom = ({ setTabOpen, ticket }) => {
                 button
                 dense
                 onClick={(e) => {
-                    console.log('e', e)
                     const isCheckboxClicked = (e.target.tagName.toLowerCase() === 'input' && e.target.type === 'checkbox')
                         || (e.target.tagName.toLowerCase() === 'svg' && e.target.type === undefined)
                         || (e.target.tagName.toLowerCase() === 'path' && e.target.type === undefined);
@@ -537,7 +532,6 @@ const TicketListItemCustom = ({ setTabOpen, ticket }) => {
                                 component="span"
                                 variant="body2"
                             // color="textSecondary"
-                            // style={console.log('ticket.lastMessage', ticket.lastMessage)}
                             >
                                 {ticket.lastMessage ? (
                                     <>

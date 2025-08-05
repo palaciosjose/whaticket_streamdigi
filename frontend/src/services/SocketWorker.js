@@ -25,11 +25,11 @@ class SocketWorker {
     });
 
     this.socket.on("connect", () => {
-      console.log("Conectado al servidor Socket.IO");
+      // connection established
     });
 
     this.socket.on("disconnect", () => {
-      console.log("Desconectado del servidor Socket.IO");
+      // connection lost
       this.reconnectAfterDelay();
     });
   }
@@ -73,14 +73,12 @@ class SocketWorker {
       this.socket.disconnect();
       this.socket = null
       this.instance = null
-      console.log("Socket desconectado manualmente");
     }
   }
 
   reconnectAfterDelay() {
     setTimeout(() => {
       if (!this.socket || !this.socket.connected) {
-        console.log("Intentando reconectar tras la desconexión");
         this.connect();
       }
     }, 1000);

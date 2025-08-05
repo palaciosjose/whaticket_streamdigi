@@ -81,7 +81,6 @@ export default function CheckoutPage(props) {
       }
 
       const { data } = await api.post("/subscription", newValues);
-      console.log(data);
       setDatePayment(data)
       actions.setSubmitting(false);
       setActiveStep(activeStep + 1);

@@ -78,7 +78,6 @@ const useAuth = () => {
 
   useEffect(() => {
     if (Object.keys(user).length && user.id > 0) {
-      // console.log("Entrou useWhatsapp com user", Object.keys(user).length, Object.keys(socket).length ,user, socket)
       let io;
       if (!Object.keys(socket).length) {
         io = socketConnection({ user });
@@ -93,7 +92,6 @@ const useAuth = () => {
       });
 
       return () => {
-        // console.log("desconectou o company user ", user.id)
         io.off(`company-${user.companyId}-user`);
         // io.disconnect();
       };
@@ -209,7 +207,6 @@ Entre em contato com o Suporte para mais informações! `);
   const getCurrentUserInfo = async () => {
     try {
       const { data } = await api.get("/auth/me");
-      console.log(data)
       return data;
     } catch (_) {
       return null;

@@ -1,6 +1,7 @@
 import { FlowBuilderModel } from "../../models/FlowBuilder";
 import { WebhookModel } from "../../models/Webhook";
 import { randomString } from "../../utils/randomCode";
+import logger from "../../utils/logger";
 
 interface Request {
   companyId: number;
@@ -22,7 +23,7 @@ const UpdateFlowBuilderService = async ({
       }
     })
 
-    console.log({ nameExist })
+    logger.info({ nameExist })
     
     if(nameExist){
       return 'exist'
@@ -34,7 +35,7 @@ const UpdateFlowBuilderService = async ({
 
     return 'ok';
   } catch (error) {
-    console.error("Error al insertar el usuario:", error);
+    logger.error("Error al insertar el usuario:", error);
 
     return error
   }

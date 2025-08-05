@@ -117,7 +117,6 @@ const ContactImport = () => {
   const processImport = async () => {
     setUploading(true);
 
-    console.log(selection)
 
     if (!selection.number) {
       toastError(i18n.t("contactImport.errors.noNumberField"));

@@ -65,8 +65,6 @@ const useTickets = ({
           }
         } else {
           try {
-            // console.log("ENTROU AQUI DASH")
-            // console.log(status,
             //   showAll,
             //   queueIds,
             //   format(sub(new Date(), { days: 30 }), 'yyyy-MM-dd'),
@@ -84,7 +82,6 @@ const useTickets = ({
               }
             })
 
-            // console.log(data)
             let tickets = [];
             tickets = data.filter(item => item.userId == userFilter);            
 

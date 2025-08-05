@@ -295,8 +295,6 @@ const CampaignModal = ({
         queueId: selectedQueue || null
       };
 
-      //console.log(values);
-      //console.log(selectedWhatsapps);
 
       Object.entries(values).forEach(([key, value]) => {
         if (key === "scheduledAt" && value !== "" && value !== null) {
@@ -332,7 +330,6 @@ const CampaignModal = ({
       }
       toast.success(i18n.t("campaigns.toasts.success"));
     } catch (err) {
-      console.log(err);
       toastError(err);
     }
   };
@@ -595,7 +592,6 @@ const CampaignModal = ({
                         disabled={!campaignEditable}
                         value={whatsappId}
                         onChange={(event) => {
-                          console.log(event.target.value)
                           setWhatsappId(event.target.value)
                         }}
                         // renderValue={(selected) => (

@@ -137,7 +137,6 @@ const ButtonModal = ({ modalOpen, onClose, ticketId }) => {
         copyText: copyText,
       };
 
-      console.log('PAYLOAD:', payload);
       if (isMounted.current) {
         await api.post(`/messages/copy/${ticketId}`, payload); // Envia a mensagem para a API
       }
@@ -249,7 +248,6 @@ const ButtonModal = ({ modalOpen, onClose, ticketId }) => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImageBase64(reader.result);
-        //  console.log('Image Base64:', reader.result); // Log the Base64 string
       };
       reader.readAsDataURL(file);
     }
@@ -257,7 +255,6 @@ const ButtonModal = ({ modalOpen, onClose, ticketId }) => {
 
 
   const createMessage = async () => {
-    console.log('createMessage chamada');
 
     try {
       if (selectedOption === "Lista") {

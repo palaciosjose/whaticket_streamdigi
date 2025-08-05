@@ -525,7 +525,6 @@ export const FlowBuilderConfig = () => {
   };
 
   const doubleClick = (event, node) => {
-    console.log("NODE", node);
     setDataNode(node);
     if (node.type === "message") {
       setModalAddText("edit");
@@ -913,7 +912,6 @@ export const FlowBuilderConfig = () => {
                   tooltipOpen
                   tooltipPlacement={"right"}
                   onClick={() => {
-                    console.log(action.type);
                     clickActions(action.type);
                   }}
                 />

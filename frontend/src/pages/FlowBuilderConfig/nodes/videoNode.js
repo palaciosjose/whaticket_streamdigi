@@ -26,7 +26,6 @@ export default memo(({ data, isConnectable, id }) => {
         type="target"
         position="left"
         style={{ background: "#0000FF" }}
-        onConnect={params => console.log("handle onConnect", params)}
         isConnectable={isConnectable}
       />
       <div

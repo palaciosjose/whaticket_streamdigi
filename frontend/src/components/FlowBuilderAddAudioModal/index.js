@@ -138,7 +138,6 @@ const FlowBuilderAddAudioModal = ({ open, onSave, onUpdate, data, close }) => {
             },
               error(err) {
                 alert("error");
-                console.log(err.message);
               }
           });
         } else {
@@ -148,7 +147,6 @@ const FlowBuilderAddAudioModal = ({ open, onSave, onUpdate, data, close }) => {
       });
 
       setTimeout(async () => {
-        console.log(formData);
         await api.post("/flowbuilder/audio", formData).then(res => {
           handleClose();
           onSave({

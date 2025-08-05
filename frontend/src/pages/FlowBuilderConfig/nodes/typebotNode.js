@@ -13,7 +13,6 @@ import typebotIcon from "../../../assets/typebot-ico.png";
 
 export default memo(({ data, isConnectable, id }) => {
   const storageItems = useNodeStorage();
-  console.log(12, "ticketNode", data);
   return (
     <div
       style={{
@@ -35,7 +34,6 @@ export default memo(({ data, isConnectable, id }) => {
           left: "-12px",
           cursor: "pointer",
         }}
-        onConnect={(params) => console.log("handle onConnect", params)}
         isConnectable={isConnectable}
       >
         <ArrowForwardIos

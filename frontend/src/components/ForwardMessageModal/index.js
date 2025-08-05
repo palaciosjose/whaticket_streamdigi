@@ -44,7 +44,6 @@ const ForwardMessageModal = ({ messages, onClose, modalOpen }) => {
 					const { data } = await api.get("contacts", {
 						params: { searchParam },
 					});
-					console.log('contacts', data.contacts);
 					setOptionsContacts(data.contacts);
 					setLoading(false);
 				} catch (err) {
