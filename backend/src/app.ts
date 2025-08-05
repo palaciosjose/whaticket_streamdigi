@@ -9,6 +9,7 @@ import compression from "compression";
 import * as Sentry from "@sentry/node";
 import { config as dotenvConfig } from "dotenv";
 import bodyParser from 'body-parser';
+import rateLimit from "express-rate-limit";
 
 import "./database";
 import uploadConfig from "./config/upload";
@@ -46,6 +47,14 @@ app.set("queues", {
 });
 
 const allowedOrigins = [process.env.FRONTEND_URL];
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Too many requests from this IP, please try again later."
+});
+
+app.use(limiter);
 
 // Configuração do BullBoard
 if (String(process.env.BULL_BOARD).toLocaleLowerCase() === 'true' && process.env.REDIS_URI_ACK !== '') {
