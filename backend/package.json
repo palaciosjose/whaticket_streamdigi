@@ -69,7 +69,6 @@
     "openai": "^4.24.7",
     "pg": "^8.7.3",
     "pino": "^7.8.0",
-    "pino-pretty": "^10.0.0",
     "puppeteer": "^19.4.0",
     "puppeteer-core": "^22.13.1",
     "qrcode-terminal": "^0.12.0",
