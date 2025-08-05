@@ -80,10 +80,10 @@ app.use(
         connectSrc: cspConnectSrc
       }
     },
-    // Desabilitados para evitar bloqueio de recursos externos necessários
-    crossOriginResourcePolicy: false,
-    crossOriginEmbedderPolicy: false,
-    crossOriginOpenerPolicy: false,
+    // Políticas de origem cruzada
+    crossOriginResourcePolicy: { policy: "same-origin" },
+    crossOriginEmbedderPolicy: { policy: "credentialless" },
+    crossOriginOpenerPolicy: { policy: "same-origin" },
     hsts: { maxAge: 31536000, includeSubDomains: true }
   })
 );
