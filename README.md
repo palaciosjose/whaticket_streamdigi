@@ -52,10 +52,15 @@
    ```bash
    npm run dev:server
    ```
-   Para producción:
+   Para producción (Node.js):
    ```bash
    npm run build
    npm start
+   ```
+   También puedes usar [PM2](https://pm2.keymetrics.io/) para administrar el proceso:
+   ```bash
+   npm run build
+   npm run start:pm2
    ```
 
 ## Ejecutar el frontend
